@@ -1,0 +1,27 @@
+{
+  "title": "Historiques (connaissances)",
+  "dieSize": 20,
+  "source": "Adapté des backgrounds & wises de Knave 2e (Ben Milton).",
+  "entries": [
+    { "name": "Charlatan", "description": "grâces sociales, repérer les naïfs, diversions opportunes" },
+    { "name": "Clergé", "description": "allégories, signes de péché, fois du monde" },
+    { "name": "Roturier", "description": "coutumes locales, sagesse pratique, superstitions" },
+    { "name": "Artisan", "description": "qualité d'ouvrage, contacts marchands, usure des objets" },
+    { "name": "Vagabond", "description": "rencontres fortuites, contes lointains, lecture du terrain" },
+    { "name": "Amuseur", "description": "légendes et contes, comportements de foule, présence scénique" },
+    { "name": "Excentrique", "description": "vérités dures, faits aléatoires, en-cas étranges" },
+    { "name": "Guérisseur", "description": "aliments réconfortants, signes de maladie, propriétés des plantes" },
+    { "name": "Chasseur", "description": "survie, pistes, comportement animal" },
+    { "name": "Marin", "description": "savoir nautique, navigation, météo" },
+    { "name": "Mystique", "description": "prophéties anciennes, lignes telluriques, symbolisme" },
+    { "name": "Noble", "description": "diplomatie, contacts influents, luxe" },
+    { "name": "Crapule", "description": "chemins cachés, rumeurs, débrouille des rues" },
+    { "name": "Sage", "description": "histoires anciennes, peuples du monde, philosophie" },
+    { "name": "Filou", "description": "voies d'évasion, signes de faiblesse, contacts louches" },
+    { "name": "Marchand", "description": "goûts culturels, désirs des gens, biens rares" },
+    { "name": "Guerrier", "description": "plans de bataille, contacts militaires, récits de guerre" },
+    { "name": "Survivant", "description": "dangers naturels, abris improvisés, herbes médicinales" },
+    { "name": "Rôdeur", "description": "frontières, peuples sauvages, rumeurs des marches" },
+    { "name": "Au choix", "description": "inventez votre propre historique avec 3 domaines de connaissance" }
+  ]
+}

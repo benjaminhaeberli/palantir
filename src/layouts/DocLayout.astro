@@ -1,0 +1,40 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  status?: 'stable' | 'wip' | 'draft';
+  headings: MarkdownHeading[];
+  currentPath: string;
+}
+
+const { title, description, status = 'stable', headings, currentPath } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="app">
+    <aside class="app__sidebar">
+      <Sidebar currentPath={currentPath} />
+    </aside>
+
+    <main class="app__main">
+      <article>
+        <h1>
+          {title}
+          {status === 'wip' && <span class="badge badge--wip">WIP</span>}
+          {status === 'draft' && <span class="badge badge--draft">Draft</span>}
+        </h1>
+        {description && <p class="page-meta">{description}</p>}
+        <slot />
+      </article>
+    </main>
+
+    <aside class="app__toc">
+      <TableOfContents headings={headings} />
+    </aside>
+  </div>
+</BaseLayout>

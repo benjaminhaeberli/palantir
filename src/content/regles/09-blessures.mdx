@@ -1,0 +1,32 @@
+---
+title: Blessures
+description: Jet de blessure, table interactive des situations, premiers soins et inconscience.
+order: 9
+status: stable
+---
+import RollableTable from '../../components/RollableTable.astro';
+import WoundTable from '../../components/WoundTable.astro';
+
+## Jet de blessure
+
+Durant un périple périlleux, un héros peut parfois se blesser. Pour déterminer la gravité de celle-ci, il doit effectuer un *jet de blessure (CON)*.
+
+- En cas de **réussite critique**, le héros subit la moitié de la perte d'endurance.
+- En cas de **réussite**, le héros subit la totalité de la perte d'endurance.
+- En cas d'**échec**, le héros est *Blessé*.
+
+## Table des blessures
+
+Renseignez votre CON, puis cliquez sur la situation pour faire le jet, ou sur les dégâts pour les lancer.
+
+<WoundTable />
+
+## Premiers soins
+
+Un héros peut tenter de soigner un compagnon *Blessé* avec un jet de *ESP* ou *DEX*. Un héros ne peut recevoir des soins qu'une fois par *repos long* (en cas d'échec, il faut attendre le lendemain). À l'inverse, il ne peut soigner qu'une fois par *repos long* également.
+
+## Inconscient
+
+Si l'*Endurance* d'un héros atteint zéro ou qu'il subit une *Blessure* alors qu'il est déjà *Blessé* ou *Empoisonné*, il tombe *Inconscient*. Si celui-ci est attaqué alors qu'il est *Inconscient* ou qu'il n'est pas stabilisé après 1d4 tours, il lance 1d12 sur la *Table du dernier espoir*.
+
+<RollableTable data="dernier-espoir" />

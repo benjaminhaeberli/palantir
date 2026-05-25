@@ -1,0 +1,80 @@
+---
+/**
+ * Floating YouTube music player — bottom-right corner.
+ *
+ * Click "♪ Musique" to load + autoplay an embedded YouTube track.
+ * Click again or the close button to stop and unload the iframe.
+ *
+ * To change the default track or use a playlist, edit DEFAULT_VIDEO_ID
+ * or set type="playlist" with PLAYLIST_ID.
+ */
+
+// Edit me — YouTube video ID (the part after v= in the URL).
+const DEFAULT_VIDEO_ID = 'BE6JUt9LnCw';
+const TRACK_LABEL = 'Ambiance Palantír';
+---
+
+<div class="music-player" data-music-player>
+  <button
+    type="button"
+    class="music-player__toggle"
+    data-music-toggle
+    aria-expanded="false"
+    aria-label="Activer la musique d'ambiance"
+  >
+    <span class="music-player__icon">♪</span>
+    <span class="music-player__label">Musique</span>
+  </button>
+
+  <div class="music-player__panel" data-music-panel hidden>
+    <div class="music-player__header">
+      <span class="music-player__track">{TRACK_LABEL}</span>
+      <button
+        type="button"
+        class="music-player__close"
+        data-music-close
+        aria-label="Fermer le lecteur"
+      >×</button>
+    </div>
+    <div class="music-player__iframe-slot" data-music-slot></div>
+  </div>
+</div>
+
+<script define:vars={{ DEFAULT_VIDEO_ID }}>
+  const container = document.querySelector('[data-music-player]');
+  if (container) {
+    const toggle = container.querySelector('[data-music-toggle]');
+    const closeBtn = container.querySelector('[data-music-close]');
+    const panel = container.querySelector('[data-music-panel]');
+    const slot = container.querySelector('[data-music-slot]');
+
+    const start = () => {
+      slot.innerHTML = `<iframe
+        width="280"
+        height="60"
+        src="https://www.youtube.com/embed/${DEFAULT_VIDEO_ID}?autoplay=1&loop=1&playlist=${DEFAULT_VIDEO_ID}&controls=1&modestbranding=1&rel=0"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        title="Musique d'ambiance"
+      ></iframe>`;
+      panel.hidden = false;
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.classList.add('is-playing');
+      toggle.querySelector('.music-player__label').textContent = 'Stop';
+    };
+
+    const stop = () => {
+      slot.innerHTML = ''; // unload iframe → stops playback
+      panel.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.classList.remove('is-playing');
+      toggle.querySelector('.music-player__label').textContent = 'Musique';
+    };
+
+    toggle.addEventListener('click', () => {
+      if (toggle.classList.contains('is-playing')) stop();
+      else start();
+    });
+    closeBtn.addEventListener('click', stop);
+  }
+</script>

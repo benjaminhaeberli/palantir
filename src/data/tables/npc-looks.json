@@ -1,0 +1,18 @@
+{
+  "title": "Apparence de PNJ",
+  "dieSize": 12,
+  "entries": [
+    { "name": "Couvert de cicatrices anciennes" },
+    { "name": "Yeux d'une couleur étrange (mauve, jaune…)" },
+    { "name": "Plus grand ou plus petit que la moyenne" },
+    { "name": "Démarche claudicante" },
+    { "name": "Manque deux ou trois doigts" },
+    { "name": "Cheveux gris prématurés" },
+    { "name": "Tatouage ou marque rituelle visible" },
+    { "name": "Vêtements bien plus riches ou pauvres que son rang" },
+    { "name": "Sourire dévastateur" },
+    { "name": "Voix grave ou fluette inattendue pour son corps" },
+    { "name": "Brûlure faciale ou tache de naissance marquée" },
+    { "name": "Une dent en or, en argent ou manquante" }
+  ]
+}

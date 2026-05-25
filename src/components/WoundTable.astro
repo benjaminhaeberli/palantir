@@ -1,0 +1,247 @@
+---
+/**
+ * Interactive wound table — click any situation cell to roll the CON
+ * blessure jet with the matching mode, or click the damage cell to roll
+ * the damage die.
+ *
+ * Data is inlined here because the table is tightly coupled to the
+ * mechanic. To customize, edit the `rows` constant below.
+ */
+
+interface Row {
+  type: string;
+  advantage?: string;
+  normal?: string;
+  disadvantage?: string;
+  damage?: string;          // "1d4", "1d6", "1d12", "Δ6"
+  damageNote?: string;      // "par round", "s'éteint avec de l'eau"
+  combatOnly?: boolean;     // "Jet normal dans tous les cas"
+}
+
+const rows: Row[] = [
+  {
+    type: "Combat (défense ratée)",
+    normal: "Jet normal dans tous les cas",
+    combatOnly: true,
+  },
+  {
+    type: "Froid extrême",
+    advantage: "Vent glacial",
+    normal: "Neige épaisse",
+    disadvantage: "Eaux glaciales",
+    damage: "1d4",
+    damageNote: "par round",
+  },
+  {
+    type: "Chute",
+    advantage: "Chute amortie (3 m)",
+    normal: "Chute haute ou violente (9 m)",
+    disadvantage: "Chute mortelle, atterrissage brutal",
+    damage: "1d12",
+  },
+  {
+    type: "Feu",
+    advantage: "Torche, feu de camp",
+    normal: "Brasier, maison en flammes",
+    disadvantage: "Bûcher funéraire, souffle de dragon",
+    damage: "Δ6",
+    damageNote: "s'éteint avec de l'eau",
+  },
+  {
+    type: "Suffocation",
+    advantage: "Vapeurs étouffantes",
+    normal: "Noyade",
+    disadvantage: "Étranglement",
+    damage: "1d4",
+    damageNote: "par round",
+  },
+  {
+    type: "Poison",
+    advantage: "Intoxication alimentaire",
+    normal: "Venin de serpent",
+    disadvantage: "Poison d'araignée",
+    damage: "1d6",
+    damageNote: "après chaque repos long",
+  },
+];
+---
+
+<div class="wound-table" data-wound-table>
+  <div class="wound-table__controls">
+    <label>
+      <span>Votre CON :</span>
+      <input type="number" min="0" max="6" value="2" data-wt-con />
+    </label>
+    <span class="wound-table__sr">
+      SR du jet de blessure : <strong data-wt-sr>14</strong>
+    </span>
+    <span class="wound-table__hint">
+      Cliquez une situation pour faire le jet de blessure, ou les dégâts pour les lancer.
+    </span>
+  </div>
+
+  <table class="wound-table__table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Avantage</th>
+        <th>Jet normal</th>
+        <th>Désavantage</th>
+        <th>Dégâts</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map(row => (
+        <tr>
+          <th scope="row">{row.type}</th>
+          {row.combatOnly ? (
+            <td class="wound-table__combat" colspan="3">{row.normal}</td>
+          ) : (
+            <>
+              <td>
+                {row.advantage && (
+                  <button type="button" class="wt-cell" data-wt-jet data-wt-mode="advantage">
+                    {row.advantage}
+                  </button>
+                )}
+              </td>
+              <td>
+                {row.normal && (
+                  <button type="button" class="wt-cell" data-wt-jet data-wt-mode="normal">
+                    {row.normal}
+                  </button>
+                )}
+              </td>
+              <td>
+                {row.disadvantage && (
+                  <button type="button" class="wt-cell" data-wt-jet data-wt-mode="disadvantage">
+                    {row.disadvantage}
+                  </button>
+                )}
+              </td>
+            </>
+          )}
+          <td>
+            {row.damage ? (
+              <button type="button" class="wt-cell wt-cell--dmg" data-wt-dmg data-wt-die={row.damage}>
+                <strong>{row.damage}</strong>{row.damageNote && <> <span class="wound-table__note">{row.damageNote}</span></>}
+              </button>
+            ) : (
+              <span class="wound-table__none">—</span>
+            )}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <div class="wound-table__result" data-wt-result>
+    <em>Résultats des jets ici…</em>
+  </div>
+</div>
+
+<script>
+  // Roll helpers (mirror logic from /outils/probabilites — kept self-contained).
+  const rollD = (n: number) => Math.floor(Math.random() * n) + 1;
+  const rollNd6 = (n: number) => Array.from({ length: n }, () => rollD(6));
+  const rollD12Mode = (mode: 'normal' | 'advantage' | 'disadvantage') => {
+    const a = rollD(12);
+    if (mode === 'normal') return { kept: a, both: [a] };
+    const b = rollD(12);
+    const kept = mode === 'advantage' ? Math.max(a, b) : Math.min(a, b);
+    return { kept, both: [a, b] };
+  };
+
+  const parseDie = (spec: string): { n: number; sides: number; isUsage: boolean } => {
+    // "1d4", "1d6", "1d12", "Δ6", "Δ4"
+    const usageMatch = spec.match(/^Δ(\d+)$/);
+    if (usageMatch) return { n: 1, sides: parseInt(usageMatch[1], 10), isUsage: true };
+    const m = spec.match(/^(\d+)d(\d+)$/);
+    if (m) return { n: parseInt(m[1], 10), sides: parseInt(m[2], 10), isUsage: false };
+    return { n: 1, sides: 6, isUsage: false };
+  };
+
+  const setupWoundTables = () => {
+    document.querySelectorAll<HTMLElement>('[data-wound-table]').forEach(table => {
+      const conInput = table.querySelector<HTMLInputElement>('[data-wt-con]')!;
+      const srEl = table.querySelector<HTMLElement>('[data-wt-sr]')!;
+      const resultEl = table.querySelector<HTMLElement>('[data-wt-result]')!;
+
+      const getCon = () => Math.max(0, Math.min(6, parseInt(conInput.value, 10) || 0));
+      const updateSR = () => { srEl.textContent = String(10 + 2 * getCon()); };
+      conInput.addEventListener('input', updateSR);
+      updateSR();
+
+      const showResult = (html: string, status: 'success' | 'fail' | 'crit-success' | 'crit-fail' | 'neutral') => {
+        resultEl.className = `wound-table__result wound-table__result--${status}`;
+        resultEl.innerHTML = html;
+      };
+
+      table.querySelectorAll<HTMLButtonElement>('[data-wt-jet]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const mode = btn.dataset.wtMode as 'normal' | 'advantage' | 'disadvantage';
+          const con = getCon();
+          const sr = 10 + 2 * con;
+          const { kept: d12, both: d12Rolls } = rollD12Mode(mode);
+          const d6s = rollNd6(con);
+          const d6sum = d6s.reduce((a, b) => a + b, 0);
+          const total = d12 + d6sum;
+
+          let status: Parameters<typeof showResult>[1];
+          let label: string;
+          if (d12 === 12) { status = 'crit-success'; label = 'Réussite critique'; }
+          else if (d12 === 1) { status = 'crit-fail'; label = 'Échec critique — Blessé'; }
+          else if (total >= sr) { status = 'success'; label = 'Réussite'; }
+          else { status = 'fail'; label = 'Échec — Blessé'; }
+
+          const modeLabel = mode === 'normal' ? '' :
+            mode === 'advantage' ? ' (avantage)' : ' (désavantage)';
+          const d12Display = mode === 'normal'
+            ? `<strong>${d12}</strong>`
+            : `${d12Rolls.map(v => v === d12 ? `<strong>${v}</strong>` : `<s>${v}</s>`).join(', ')}`;
+          const d6Display = d6s.length
+            ? ` + d6 [${d6s.join(', ')}] = <strong>${total}</strong>`
+            : '';
+
+          showResult(
+            `<span class="wt-roll-label">${btn.textContent?.trim() ?? ''}${modeLabel}</span>
+             <span class="wt-roll-dice">d12 ${d12Display}${d6Display}</span>
+             <span class="wt-roll-status">${label}</span>
+             <span class="wt-roll-sr">SR ${sr}</span>`,
+            status
+          );
+        });
+      });
+
+      table.querySelectorAll<HTMLButtonElement>('[data-wt-dmg]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const spec = btn.dataset.wtDie ?? '';
+          const { n, sides, isUsage } = parseDie(spec);
+          const rolls = Array.from({ length: n }, () => rollD(sides));
+          const sum = rolls.reduce((a, b) => a + b, 0);
+
+          let extra = '';
+          if (isUsage) {
+            const lowest = Math.min(...rolls);
+            if (lowest <= 2) {
+              extra = ` — <strong>dé rétrogradé</strong> (Δ${sides} → Δ${Math.max(4, sides - 2)})`;
+              if (sides === 4) extra = ' — <strong>ressource épuisée</strong>';
+            }
+          }
+
+          showResult(
+            `<span class="wt-roll-label">Dégâts ${spec}</span>
+             <span class="wt-roll-dice">[${rolls.join(', ')}] = <strong>${sum}</strong>${extra}</span>`,
+            'neutral'
+          );
+        });
+      });
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupWoundTables);
+  } else {
+    setupWoundTables();
+  }
+</script>

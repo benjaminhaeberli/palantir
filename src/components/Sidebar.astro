@@ -1,0 +1,155 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  currentPath?: string;
+  /**
+   * 'anchor' — links point to #slug (used on the single-page book).
+   * 'page'   — links point to /collection/slug (used on standalone chapter pages).
+   */
+  mode?: 'anchor' | 'page';
+}
+
+const { currentPath = '', mode = 'page' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const [regles, conseilsMj, extensions, ressources] = await Promise.all([
+  getCollection('regles'),
+  getCollection('conseils-mj'),
+  getCollection('extensions'),
+  getCollection('ressources'),
+]);
+
+const sortByOrder = (a: { data: { order: number } }, b: { data: { order: number } }) =>
+  a.data.order - b.data.order;
+
+const groups = [
+  { title: 'Règles', collection: 'regles', items: regles.sort(sortByOrder) },
+  { title: 'Conseils MJ', collection: 'conseils-mj', items: conseilsMj.sort(sortByOrder) },
+  { title: 'Extensions', collection: 'extensions', items: extensions.sort(sortByOrder) },
+  { title: 'Ressources', collection: 'ressources', items: ressources.sort(sortByOrder) },
+];
+
+const linkFor = (collection: string, id: string) =>
+  mode === 'anchor' ? `${base}/#${id}` : `${base}/${collection}/${id}`;
+---
+
+<nav aria-label="Navigation principale" data-sidebar data-mode={mode}>
+  {groups.map(group => (
+    <div class="sidebar-group">
+      <h2 class="sidebar-group__title">{group.title}</h2>
+      <ul class="sidebar-list">
+        {group.items.map(item => {
+          const href = linkFor(group.collection, item.id);
+          const isActive = mode === 'page' && currentPath === `/${group.collection}/${item.id}`;
+          return (
+            <li>
+              <a
+                href={href}
+                class={isActive ? 'is-active' : ''}
+                data-sidebar-link={item.id}
+              >
+                {item.data.title}
+                {item.data.status === 'wip' && <span class="badge badge--wip">WIP</span>}
+                {item.data.status === 'draft' && <span class="badge badge--draft">Draft</span>}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  ))}
+</nav>
+
+<script>
+  // Scroll-spy + URL hash update for the single-page book (anchor mode).
+  // No-op on standalone pages.
+  const setup = () => {
+    const sidebar = document.querySelector<HTMLElement>('[data-sidebar][data-mode="anchor"]');
+    if (!sidebar) return;
+
+    const chapters = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-chapter-id]')
+    );
+    if (!chapters.length) return;
+
+    const linksById = new Map<string, HTMLAnchorElement>();
+    sidebar
+      .querySelectorAll<HTMLAnchorElement>('[data-sidebar-link]')
+      .forEach(link => linksById.set(link.dataset.sidebarLink!, link));
+
+    let lastActiveId: string | null = null;
+    let pendingHashFromUser = false;
+
+    // When the user clicks a sidebar link, we want to avoid fighting the
+    // browser's hash update; trust the click for ~600 ms.
+    sidebar.addEventListener('click', e => {
+      const link = (e.target as HTMLElement).closest<HTMLAnchorElement>('[data-sidebar-link]');
+      if (!link) return;
+      pendingHashFromUser = true;
+      setTimeout(() => { pendingHashFromUser = false; }, 700);
+    });
+
+    const update = () => {
+      const triggerY = window.innerHeight * 0.3;
+      let activeId: string | null = chapters[0]?.dataset.chapterId ?? null;
+      for (const ch of chapters) {
+        if (ch.getBoundingClientRect().top <= triggerY) {
+          activeId = ch.dataset.chapterId!;
+        }
+      }
+      // Edge case: at the very bottom of the page, force the last chapter.
+      const atBottom =
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 4;
+      if (atBottom) {
+        activeId = chapters[chapters.length - 1]?.dataset.chapterId ?? activeId;
+      }
+
+      if (activeId !== lastActiveId) {
+        linksById.forEach((link, id) => {
+          link.classList.toggle('is-active', id === activeId);
+        });
+        // Scroll the active link into view inside the sidebar.
+        if (activeId) {
+          const activeLink = linksById.get(activeId);
+          if (activeLink) {
+            const aRect = activeLink.getBoundingClientRect();
+            const sRect = sidebar.getBoundingClientRect();
+            if (aRect.top < sRect.top || aRect.bottom > sRect.bottom) {
+              activeLink.scrollIntoView({ block: 'nearest' });
+            }
+          }
+        }
+        // Update URL hash without polluting history.
+        if (!pendingHashFromUser && activeId) {
+          const newHash = `#${activeId}`;
+          if (window.location.hash !== newHash) {
+            window.history.replaceState(null, '', newHash);
+          }
+        }
+        lastActiveId = activeId;
+      }
+    };
+
+    let scheduled = false;
+    const onScroll = () => {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => {
+        update();
+        scheduled = false;
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup);
+  } else {
+    setup();
+  }
+</script>

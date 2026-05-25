@@ -1,0 +1,366 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// ---- Probability math (mirrors tools/probabilites.py) ----------------------
+
+type Mode = 'normal' | 'advantage' | 'disadvantage';
+
+const d12Distribution = (mode: Mode): Map<number, number> => {
+  const dist = new Map<number, number>();
+  if (mode === 'normal') {
+    for (let v = 1; v <= 12; v++) dist.set(v, 1 / 12);
+    return dist;
+  }
+  for (let a = 1; a <= 12; a++) {
+    for (let b = 1; b <= 12; b++) {
+      const v = mode === 'advantage' ? Math.max(a, b) : Math.min(a, b);
+      dist.set(v, (dist.get(v) ?? 0) + 1 / 144);
+    }
+  }
+  return dist;
+};
+
+const nd6Distribution = (n: number): Map<number, number> => {
+  if (n <= 0) return new Map([[0, 1]]);
+  const dist = new Map<number, number>();
+  const total = 6 ** n;
+  const enumerate = (depth: number, sum: number) => {
+    if (depth === 0) {
+      dist.set(sum, (dist.get(sum) ?? 0) + 1 / total);
+      return;
+    }
+    for (let v = 1; v <= 6; v++) enumerate(depth - 1, sum + v);
+  };
+  enumerate(n, 0);
+  return dist;
+};
+
+interface Outcome {
+  sr: number;
+  critFail: number;
+  fail: number;        // includes crit fail
+  success: number;     // includes crit success
+  critSuccess: number;
+  normalFail: number;
+  normalSuccess: number;
+}
+
+const analyze = (attribute: number, mode: Mode = 'normal', srOverride?: number): Outcome => {
+  const sr = srOverride ?? 10 + 2 * attribute;
+  const d12 = d12Distribution(mode);
+  const d6s = nd6Distribution(attribute);
+
+  let critSuccess = 0;
+  let critFail = 0;
+  let success = 0;
+  let fail = 0;
+
+  for (const [d12Val, p12] of d12) {
+    for (const [sumD6, p6] of d6s) {
+      const total = d12Val + sumD6;
+      const joint = p12 * p6;
+      if (d12Val === 12) { critSuccess += joint; success += joint; }
+      else if (d12Val === 1) { critFail += joint; fail += joint; }
+      else if (total >= sr) success += joint;
+      else fail += joint;
+    }
+  }
+
+  return {
+    sr,
+    critFail,
+    fail,
+    success,
+    critSuccess,
+    normalFail: fail - critFail,
+    normalSuccess: success - critSuccess,
+  };
+};
+
+const pct = (v: number) => `${(v * 100).toFixed(2)} %`;
+
+// Pre-computed tables for the static section
+const modes: Mode[] = ['normal', 'advantage', 'disadvantage'];
+const modeLabel: Record<Mode, string> = {
+  normal: 'Normal',
+  advantage: 'Avantage',
+  disadvantage: 'Désavantage',
+};
+const attributeRange = [0, 1, 2, 3];
+
+const tables = modes.map(mode => ({
+  mode,
+  rows: attributeRange.map(attr => ({ attr, ...analyze(attr, mode) })),
+}));
+
+// Defense crit fail rule comparison
+const defenseRows = attributeRange.map(con => {
+  const blessure = analyze(con);
+  const critFailP = 1 / 12;
+  return {
+    con,
+    sr: blessure.sr,
+    failBlessure: blessure.fail,
+    blesseCurrent: critFailP * blessure.fail,
+    blesseProposed: critFailP,
+    ratio: 1 / blessure.fail,
+  };
+});
+---
+
+<BaseLayout title="Probabilités du système">
+  <div class="app app--book">
+    <aside class="app__sidebar">
+      <nav aria-label="Navigation outils">
+        <div class="sidebar-group">
+          <h2 class="sidebar-group__title">Outils</h2>
+          <ul class="sidebar-list">
+            <li><a href={`${base}/#outils-divers`}>← Retour au livre</a></li>
+            <li><a href={`${base}/outils/probabilites`} class="is-active">Probabilités</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="app__main">
+      <article class="chapter" id="probabilites">
+        <h1 class="chapter__title">Probabilités du système</h1>
+        <p class="page-meta">Calculateur exact pour le jet d'attribut <code>1d12 + Nd6 ≥ SR</code>.</p>
+
+        <p>
+          <strong>Rappel.</strong> Un jet d'attribut lance 1d12 (<em>dé du destin</em>) et N d6
+          (<em>dés de bravoure</em>, N = valeur d'attribut). Réussite si le total est <em>≥ SR</em>
+          (<code>10 + 2 × attribut</code>). Un 12 sur le d12 est une réussite critique systématique,
+          un 1 est un échec critique systématique — quelle que soit la valeur des d6.
+        </p>
+
+        <h2>Tableaux de référence</h2>
+
+        {tables.map(t => (
+          <>
+            <h3>Mode : {modeLabel[t.mode]}</h3>
+            <table class="probs">
+              <thead>
+                <tr>
+                  <th>Attribut</th>
+                  <th>SR</th>
+                  <th>Crit ✗</th>
+                  <th>Échec</th>
+                  <th>Réussite</th>
+                  <th>Crit ✓</th>
+                  <th>Total ✓</th>
+                </tr>
+              </thead>
+              <tbody>
+                {t.rows.map(r => (
+                  <tr>
+                    <td>{r.attr}</td>
+                    <td>{r.sr}</td>
+                    <td>{pct(r.critFail)}</td>
+                    <td>{pct(r.normalFail)}</td>
+                    <td>{pct(r.normalSuccess)}</td>
+                    <td>{pct(r.critSuccess)}</td>
+                    <td><strong>{pct(r.success)}</strong></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        ))}
+
+        <h2>Échec critique en défense — règle actuelle vs proposée</h2>
+        <p>
+          Un pote a proposé : sur un <em>échec critique</em> en défense, infliger l'état <em>Blessé</em>
+          directement, sans repasser par un jet de blessure (CON). On garderait le jet de blessure
+          uniquement pour les blessures hors combat (chute, feu, poison…).
+        </p>
+        <p>Voici l'impact chiffré :</p>
+        <table class="probs">
+          <thead>
+            <tr>
+              <th>CON</th>
+              <th>SR</th>
+              <th>P(rater jet blessure)</th>
+              <th>P(Blessé) <strong>actuelle</strong></th>
+              <th>P(Blessé) <strong>proposée</strong></th>
+              <th>×</th>
+            </tr>
+          </thead>
+          <tbody>
+            {defenseRows.map(r => (
+              <tr>
+                <td>{r.con}</td>
+                <td>{r.sr}</td>
+                <td>{pct(r.failBlessure)}</td>
+                <td>{pct(r.blesseCurrent)}</td>
+                <td>{pct(r.blesseProposed)}</td>
+                <td>{r.ratio.toFixed(2)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <h2>Calculateur libre</h2>
+        <p>Modifier l'attribut, le mode et éventuellement le SR pour explorer des cas custom.</p>
+
+        <form class="prob-form" id="prob-form">
+          <label>
+            <span>Attribut (Nd6)</span>
+            <input type="number" id="prob-attr" value="2" min="0" max="6" />
+          </label>
+          <label>
+            <span>SR personnalisé (laisser vide pour auto = 10 + 2×attr)</span>
+            <input type="number" id="prob-sr" placeholder="auto" min="1" max="30" />
+          </label>
+          <label>
+            <span>Mode</span>
+            <select id="prob-mode">
+              <option value="normal">Normal</option>
+              <option value="advantage">Avantage</option>
+              <option value="disadvantage">Désavantage</option>
+            </select>
+          </label>
+        </form>
+
+        <div id="prob-result" class="prob-result" aria-live="polite"></div>
+
+        <h2>Notes de design</h2>
+        <ul>
+          <li>
+            <strong>Attribut 0 (1d12 seul)</strong> ≈ 25 % de réussite — déjà punitif mais cohérent
+            pour quelqu'un de novice. L'avantage le remonte à 43,75 %.
+          </li>
+          <li>
+            <strong>Attribut 2 (max actuel)</strong> ≈ 50 % de réussite — le maximum sans aide.
+            Avec avantage ça monte à 70,95 %, ce qui justifie d'en faire une mécanique rare (PB, alliés).
+          </li>
+          <li>
+            <strong>Crits</strong> ≈ 8,33 % chacun (1/12). En avantage les crits ✓ montent à ~16 %,
+            les crits ✗ chutent à ~0,7 %. Et inversement en désavantage.
+          </li>
+          <li>
+            La règle proposée pour l'échec critique en combat (Blessé direct) est
+            <strong>plus simple et plus tendue</strong> mais double quasi le taux de blessures sur
+            défense ratée à CON 2+. À tester : ça récompense davantage la <em>parade avec bouclier</em>
+            (avantage = beaucoup moins de crit fail) et l'évitement quand on est blessé.
+          </li>
+        </ul>
+      </article>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  table.probs th, table.probs td { font-variant-numeric: tabular-nums; }
+  .prob-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .prob-form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.95em; }
+  .prob-form input,
+  .prob-form select {
+    padding: 0.5em 0.7em;
+    border: 1px solid var(--color-border-strong);
+    background: white;
+    font-family: var(--font-body);
+    font-size: 1em;
+  }
+  .prob-result {
+    margin-bottom: 2em;
+  }
+  .prob-result table {
+    margin: 0;
+  }
+</style>
+
+<script define:vars={{ }}>
+  // Mirror of the analyze() function above, in plain JS for client-side use.
+  const d12Dist = (mode) => {
+    const m = new Map();
+    if (mode === 'normal') {
+      for (let v = 1; v <= 12; v++) m.set(v, 1 / 12);
+      return m;
+    }
+    for (let a = 1; a <= 12; a++) for (let b = 1; b <= 12; b++) {
+      const v = mode === 'advantage' ? Math.max(a, b) : Math.min(a, b);
+      m.set(v, (m.get(v) ?? 0) + 1 / 144);
+    }
+    return m;
+  };
+
+  const nd6Dist = (n) => {
+    if (n <= 0) return new Map([[0, 1]]);
+    const m = new Map();
+    const total = 6 ** n;
+    const walk = (d, s) => {
+      if (d === 0) { m.set(s, (m.get(s) ?? 0) + 1 / total); return; }
+      for (let v = 1; v <= 6; v++) walk(d - 1, s + v);
+    };
+    walk(n, 0);
+    return m;
+  };
+
+  const analyze = (attribute, mode, srOverride) => {
+    const sr = srOverride ?? 10 + 2 * attribute;
+    const d12 = d12Dist(mode);
+    const d6s = nd6Dist(attribute);
+    let cs = 0, cf = 0, s = 0, f = 0;
+    for (const [v12, p12] of d12) for (const [s6, p6] of d6s) {
+      const total = v12 + s6;
+      const joint = p12 * p6;
+      if (v12 === 12) { cs += joint; s += joint; }
+      else if (v12 === 1) { cf += joint; f += joint; }
+      else if (total >= sr) s += joint;
+      else f += joint;
+    }
+    return { sr, critFail: cf, fail: f, success: s, critSuccess: cs };
+  };
+
+  const pct = (v) => `${(v * 100).toFixed(2)} %`;
+
+  const render = () => {
+    const attr = Math.max(0, Math.min(6, Number(document.getElementById('prob-attr').value) || 0));
+    const srRaw = document.getElementById('prob-sr').value.trim();
+    const sr = srRaw === '' ? undefined : Number(srRaw);
+    const mode = document.getElementById('prob-mode').value;
+    const r = analyze(attr, mode, sr);
+    document.getElementById('prob-result').innerHTML = `
+      <table class="probs">
+        <thead>
+          <tr>
+            <th>SR utilisé</th>
+            <th>Crit ✗</th>
+            <th>Échec</th>
+            <th>Réussite</th>
+            <th>Crit ✓</th>
+            <th>Total ✓</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${r.sr}</td>
+            <td>${pct(r.critFail)}</td>
+            <td>${pct(r.fail - r.critFail)}</td>
+            <td>${pct(r.success - r.critSuccess)}</td>
+            <td>${pct(r.critSuccess)}</td>
+            <td><strong>${pct(r.success)}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    `;
+  };
+
+  const setup = () => {
+    document.getElementById('prob-form').addEventListener('input', render);
+    render();
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+  else setup();
+</script>
