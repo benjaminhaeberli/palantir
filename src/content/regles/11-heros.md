@@ -9,7 +9,7 @@ status: wip
 
 1. Choisir son *Peuple*
 2. Choisir deux *Historiques*
-3. Choisir ses *Traits* et *Désirs*
+3. Choisir ses *Traits* et *Désirs* — un de chaque qui lui correspond, un de chaque qui lui est étranger (voir *Caractéristiques → Traits & Désirs*).
 4. Répartir 6 points parmi les cinq *attributs*. Maximum 2 par attribut, puis calculer le *SR* de chacun : `10 + (2 × attribut)`.
 5. Noter son *Endurance* : `10 + (3 × CON)`
 6. Noter sa *Charge* → *SR* de *CON*.

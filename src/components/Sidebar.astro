@@ -1,16 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 
-interface Props {
-  currentPath?: string;
-  /**
-   * 'anchor' — links point to #slug (used on the single-page book).
-   * 'page'   — links point to /collection/slug (used on standalone chapter pages).
-   */
-  mode?: 'anchor' | 'page';
-}
-
-const { currentPath = '', mode = 'page' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const [regles, conseilsMj, extensions, ressources] = await Promise.all([
@@ -30,23 +20,20 @@ const groups = [
   { title: 'Ressources', collection: 'ressources', items: ressources.sort(sortByOrder) },
 ];
 
-const linkFor = (collection: string, id: string) =>
-  mode === 'anchor' ? `${base}/#${id}` : `${base}/${collection}/${id}`;
+const linkFor = (id: string) => `${base}#${id}`;
 ---
 
-<nav aria-label="Navigation principale" data-sidebar data-mode={mode}>
+<nav aria-label="Navigation principale" data-sidebar data-mode="anchor">
   {groups.map(group => (
     <div class="sidebar-group">
       <h2 class="sidebar-group__title">{group.title}</h2>
       <ul class="sidebar-list">
         {group.items.map(item => {
-          const href = linkFor(group.collection, item.id);
-          const isActive = mode === 'page' && currentPath === `/${group.collection}/${item.id}`;
+          const href = linkFor(item.id);
           return (
             <li>
               <a
                 href={href}
-                class={isActive ? 'is-active' : ''}
                 data-sidebar-link={item.id}
               >
                 {item.data.title}

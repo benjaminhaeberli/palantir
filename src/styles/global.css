@@ -170,7 +170,10 @@ img { max-width: 100%; height: auto; }
   grid-template-columns: var(--sidebar-w) minmax(0, 1fr) var(--toc-w);
   max-width: none;
   margin: 0;
-  padding: var(--space-6) 0;
+  /* No top padding: the sticky sidebar/TOC pin to the header edge, so any top
+     padding here makes them "jump" on scroll. Breathing room lives inside the
+     sidebar instead (see .app--book .app__sidebar). */
+  padding: 0 0 var(--space-6);
   gap: 0;
 }
 
@@ -192,6 +195,8 @@ img { max-width: 100%; height: auto; }
 .app--book .app__sidebar {
   padding-left: var(--space-4);
   padding-right: var(--space-4);
+  /* Breathing room from the header, consistent whether scrolled or not. */
+  padding-top: var(--space-6);
   /* Sticky sidebar fills viewport height so the parchment + nav feel like a real left panel. */
   height: calc(100vh - var(--header-h));
   top: var(--header-h);

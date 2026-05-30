@@ -1,7 +1,7 @@
 ---
 title: Sorcellerie
 description: Catalyseurs, jets d'Esprit et tables des mésaventures magiques.
-order: 10
+order: 3
 status: wip
 ---
 

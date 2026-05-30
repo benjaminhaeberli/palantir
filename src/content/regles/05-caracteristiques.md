@@ -1,6 +1,6 @@
 ---
 title: Caractéristiques
-description: Les cinq attributs et les quatre essences (Bravoure, Endurance, Armure, Instinct).
+description: Les cinq attributs, les quatre essences (Bravoure, Endurance, Armure, Instinct) et la personnalité (Traits & Désirs).
 order: 5
 status: stable
 ---
@@ -37,7 +37,7 @@ Elle est déterminée par votre *Équipement*.
 
 ### Instinct
 
-L'**Instinct** est une essence purement narrative : un mot ou une courte phrase qui décrit la pulsion profonde qui anime votre héros. Vous le choisissez (ou le tirez au hasard sur la table ci-dessous) à la création, **en secret avec le MJ uniquement**. Les autres joueurs n'en savent rien.
+L'**Instinct** est une essence purement narrative : un mot ou une courte phrase qui décrit la **pulsion du moment** qui anime votre héros — son humeur secrète, plus mouvante que son identité de fond (voir *Traits & Désirs*). Vous le choisissez (ou le tirez au hasard sur la table ci-dessous) à la création, **en secret avec le MJ uniquement**. Les autres joueurs n'en savent rien.
 
 **Mécanique d'alignement.** Quand vous accomplissez une action que le MJ juge alignée avec votre *Instinct*, chaque 6 obtenu sur vos *dés de bravoure* vous octroie **1 PB pour vous-même**, en plus du PB que vous donnez à un compagnon. Vous générez donc 2 PB sur ce jet au lieu d'un seul.
 
@@ -64,3 +64,18 @@ Un joueur ne peut être deviné qu'**une seule fois** sur un même Instinct. Pou
 12. **Mystère** — Percer les secrets, cacher ce qui doit l'être.
 
 > **Conseil au MJ.** Notez l'*Instinct* de chaque joueur dans vos notes. Quand un joueur fait un choix risqué ou typé, demandez-vous si ça correspond à son Instinct — si oui, signalez-lui discrètement le bonus de PB. Ne l'annoncez jamais à toute la table : les autres joueurs doivent deviner par eux-mêmes.
+
+## Traits & Désirs
+
+Au-delà de son *Instinct*, chaque héros possède une **identité de fond**, faite de ce qui le définit et de ce qui lui échappe. À la création, choisissez :
+
+- **un *Trait* qui le décrit** et **un *Trait* qui ne lui correspond pas du tout** ;
+- **un *Désir* qui l'anime** et **un *Désir* qui lui est étranger**.
+
+Ces choix sont **purement narratifs** : ils n'accordent aucun bonus mécanique — seul l'*Instinct* en donne un. Ils servent de boussole pour incarner le personnage, et de matière à de beaux conflits intérieurs quand la situation le pousse vers ce qu'il rejette.
+
+Contrairement à l'*Instinct* — la pulsion mouvante du moment —, les *Traits* et *Désirs* forment une identité plus stable. Ils peuvent néanmoins **évoluer en cours de campagne**, lorsqu'un joueur souhaite ouvrir un nouvel arc pour son héros (à valider avec le MJ).
+
+**Traits** — Courageux·se, Bienveillant·e, Confiant·e, Curieux·se, Doux·ce, Honnête, Honorable, Persévérant·e, Protecteur·rice, Silencieux·se, Impulsif·ve, Têtu·e, Loyal·e, Rusé·e, Empathique, Pragmatique, Optimiste, Stoïque, Téméraire, Patient·e, Charismatique, Sanguin·e.
+
+**Désirs** — Appartenance, Gloire, Harmonie, Honneur, Justice, Savoir, Amour, Pouvoir, Renommée, Frissons, Richesse, Sagesse, Liberté, Vengeance, Héritage, Aventure, Sécurité, Contrôle, Foi, Équilibre, Influence, Survie.

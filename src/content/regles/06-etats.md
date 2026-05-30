@@ -19,7 +19,7 @@ status: stable
 
 Un héros peut endurer beaucoup de choses, mais il n'est jamais à l'abri du danger, qui peut surgir de toutes parts.
 
-- **Inconscient** : Si votre *Endurance* atteint zéro ou que vous subissez une *Blessure* alors que vous êtes déjà *Blessé* ou *Empoisonné*. Vous ne pouvez plus effectuer de jets (voir *Inconscient*).
+- **Inconscient** : Si votre *Endurance* tombe à zéro, ou si vous subissez une *Blessure* alors que vous êtes déjà *Blessé* ou *Empoisonné*. Vous vous effondrez et ne pouvez plus agir (voir *Blessures* pour la suite).
 
 ## États supplémentaires
 
