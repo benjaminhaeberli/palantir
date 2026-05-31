@@ -1,0 +1,18 @@
+{
+  "title": "Manies de PNJ",
+  "dieSize": 12,
+  "entries": [
+    { "name": "Collectionne les boutons, cailloux ou dents" },
+    { "name": "Compte tout ce qu'il voit" },
+    { "name": "Ne mange jamais en public" },
+    { "name": "Refuse de prononcer certains noms" },
+    { "name": "Porte une amulette de famille bien visible" },
+    { "name": "Voyage avec un animal mineur (rat, oiseau, chat)" },
+    { "name": "Cherche à corriger toute erreur de grammaire" },
+    { "name": "Embrasse les pièces avant de payer" },
+    { "name": "Compose des poèmes pour le moindre événement" },
+    { "name": "Ne dort jamais plus de quatre heures par nuit" },
+    { "name": "Refuse les couleurs vives dans son habillement" },
+    { "name": "Mémorise tous les noms et les répète plusieurs fois" }
+  ]
+}

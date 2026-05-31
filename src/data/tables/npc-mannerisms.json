@@ -1,0 +1,18 @@
+{
+  "title": "Tics de PNJ",
+  "dieSize": 12,
+  "entries": [
+    { "name": "Se gratte la barbe / les cheveux constamment" },
+    { "name": "Évite votre regard" },
+    { "name": "Termine ses phrases par un petit rire nerveux" },
+    { "name": "Parle très lentement, en pesant chaque mot" },
+    { "name": "Parle vite, sans pause" },
+    { "name": "Cite des proverbes à tout bout de champ" },
+    { "name": "Parle de soi à la troisième personne" },
+    { "name": "Touche votre épaule pour appuyer ses propos" },
+    { "name": "Souffle sur sa main, frotte ses bagues" },
+    { "name": "Renifle souvent, comme s'il était enrhumé" },
+    { "name": "Murmure des prières entre deux phrases" },
+    { "name": "Vérifie sans cesse derrière son épaule" }
+  ]
+}

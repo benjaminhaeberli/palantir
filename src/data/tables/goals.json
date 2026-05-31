@@ -1,0 +1,27 @@
+{
+  "title": "Buts narratifs",
+  "dieSize": 20,
+  "source": "Inspiré de Knave 2e — un but de campagne, plus tactique que l'Instinct.",
+  "entries": [
+    { "name": "Bâtir une réputation" },
+    { "name": "Explorer le monde" },
+    { "name": "Achever la mission" },
+    { "name": "Réparer un tort" },
+    { "name": "Satisfaire ses désirs" },
+    { "name": "Découvrir la vérité" },
+    { "name": "Affronter ses démons" },
+    { "name": "Douter de ses convictions" },
+    { "name": "Nourrir ses vices" },
+    { "name": "Flirter avec la trahison" },
+    { "name": "Garder un secret" },
+    { "name": "Survivre à l'épreuve" },
+    { "name": "Embrasser le changement" },
+    { "name": "Échapper à son passé" },
+    { "name": "Trouver sa place" },
+    { "name": "Profiter de la vie" },
+    { "name": "Prouver sa valeur" },
+    { "name": "Régler ses dettes" },
+    { "name": "Venger une perte" },
+    { "name": "Servir un protecteur" }
+  ]
+}

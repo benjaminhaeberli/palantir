@@ -1,0 +1,31 @@
+{
+  "title": "Table du dernier espoir",
+  "dieSize": 12,
+  "entries": [
+    {
+      "roll": "1",
+      "name": "Mort",
+      "description": "Le héros meurt et le joueur peut créer un nouveau personnage du même niveau."
+    },
+    {
+      "roll": "2-3",
+      "name": "Abattu",
+      "description": "Le héros perd un point d'attribut définitivement (à choix)."
+    },
+    {
+      "roll": "4-5",
+      "name": "Faiblard",
+      "description": "Un objet que vous aviez sur vous (au choix du MJ) est détruit."
+    },
+    {
+      "roll": "6-11",
+      "name": "Fortuné",
+      "description": "Le héros obtient l'état Épuisé jusqu'au prochain long repos."
+    },
+    {
+      "roll": "12",
+      "name": "Chanceux",
+      "description": "Le héros s'en sort indemne, juste avec une grosse cicatrice."
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+---
+import '../styles/global.css';
+import MusicPlayer from '../components/MusicPlayer.astro';
+import ViewCounter from '../components/ViewCounter.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Palantír RPG — Jeu de rôle OSR. Héroïsme et bravoure, armés de 1d12 face au destin.' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fullTitle = title === 'Palantír RPG' ? title : `${title} — Palantír RPG`;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <title>{fullTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-header__brand" href={`${base}/`}>
+          Palantír<span>·</span>RPG
+        </a>
+        <nav class="site-header__nav" aria-label="Liens externes">
+          <a href={`${base}#introduction`}>Le jeu</a>
+          <a href="https://github.com/benjaminhaeberli/palantir" target="_blank" rel="noopener">GitHub</a>
+        </nav>
+      </div>
+    </header>
+    <slot />
+
+    <div class="fab-stack">
+      <ViewCounter />
+      <MusicPlayer />
+    </div>
+
+    <script>
+      // Unified dice-rolling logic for the whole site:
+      //  (a) Auto-inject "Lancer 1dN" before any <ol> in chapter bodies whose
+      //      item count matches a standard die size (and which isn't inside a
+      //      <RollableTable> component, which has its own button).
+      //  (b) Wire up RollableTable buttons (data-rollable-roll="<id>") to roll
+      //      against the matching [data-rollable-id] list.
+      const DIE_SIZES = new Set([4, 6, 8, 10, 12, 20, 100]);
+
+      const rollAndHighlight = (items: HTMLLIElement[]) => {
+        items.forEach(li => li.classList.remove('is-rolled'));
+        if (!items.length) return;
+        const i = Math.floor(Math.random() * items.length);
+        items[i].classList.add('is-rolled');
+      };
+
+      const setupAutoRollers = () => {
+        document.querySelectorAll<HTMLOListElement>('.chapter__body ol').forEach(list => {
+          if (list.closest('.rollable-table')) return; // managed by RollableTable
+          const items = Array.from(list.children).filter(
+            (c): c is HTMLLIElement => c.tagName === 'LI'
+          );
+          const n = items.length;
+          if (!DIE_SIZES.has(n)) return;
+          if (list.previousElementSibling?.classList.contains('die-roll-btn')) return;
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'die-roll-btn';
+          btn.textContent = `Lancer 1d${n}`;
+          btn.setAttribute('aria-label', `Tirer un résultat aléatoire sur 1d${n}`);
+          btn.addEventListener('click', () => rollAndHighlight(items));
+          list.before(btn);
+        });
+      };
+
+      const parseRange = (raw: string): [number, number] | null => {
+        if (!raw) return null;
+        const m = raw.match(/^(\d+)(?:\s*-\s*(\d+))?$/);
+        if (!m) return null;
+        const min = parseInt(m[1], 10);
+        const max = m[2] ? parseInt(m[2], 10) : min;
+        return [min, max];
+      };
+
+      const rollAndHighlightRanged = (
+        items: HTMLLIElement[],
+        dieSize: number
+      ) => {
+        items.forEach(li => li.classList.remove('is-rolled'));
+        if (!items.length || !dieSize) return;
+        const roll = Math.floor(Math.random() * dieSize) + 1;
+        const hit = items.find(li => {
+          const r = parseRange(li.dataset.rollRange ?? '');
+          return r ? roll >= r[0] && roll <= r[1] : false;
+        });
+        if (hit) {
+          hit.classList.add('is-rolled');
+        }
+      };
+
+      const updateResultLine = (id: string, target: HTMLLIElement | null) => {
+        const line = document.querySelector<HTMLElement>(`[data-rollable-result-for="${id}"]`);
+        if (!line) return;
+        if (!target) { line.hidden = true; line.innerHTML = ''; return; }
+        // Clone the rolled item's content into the inline result.
+        line.innerHTML = `<span class="rollable__result-arrow">→</span> ${target.innerHTML}`;
+        line.hidden = false;
+      };
+
+      const setupRollableTables = () => {
+        document.querySelectorAll<HTMLButtonElement>('[data-rollable-roll]').forEach(btn => {
+          if (btn.dataset.rollableBound) return;
+          btn.dataset.rollableBound = '1';
+          btn.addEventListener('click', () => {
+            const id = btn.dataset.rollableRoll!;
+            const container = document.querySelector<HTMLElement>(`[data-rollable-id="${id}"]`);
+            if (!container) return;
+            const items = Array.from(
+              container.querySelectorAll<HTMLLIElement>('li[data-roll-index]')
+            );
+            // If entries declare ranges, roll d{dieSize} and map; otherwise pick index uniformly.
+            const hasRanges = items.some(li => li.dataset.rollRange);
+            if (hasRanges) {
+              const dieSize = parseInt(container.dataset.dieSize ?? `${items.length}`, 10);
+              rollAndHighlightRanged(items, dieSize);
+            } else {
+              rollAndHighlight(items);
+            }
+            // Mirror the highlighted item into the compact result line.
+            const target = items.find(li => li.classList.contains('is-rolled')) ?? null;
+            updateResultLine(id, target);
+          });
+        });
+
+        // Expand button → open modal.
+        document.querySelectorAll<HTMLButtonElement>('[data-rollable-expand]').forEach(btn => {
+          if (btn.dataset.rollableBound) return;
+          btn.dataset.rollableBound = '1';
+          btn.addEventListener('click', () => {
+            const id = btn.dataset.rollableExpand!;
+            const modal = document.querySelector<HTMLDialogElement>(`dialog[data-rollable-modal="${id}"]`);
+            if (modal?.showModal) modal.showModal();
+          });
+        });
+
+        // Close button + click on backdrop → close modal.
+        document.querySelectorAll<HTMLButtonElement>('[data-rollable-close]').forEach(btn => {
+          if (btn.dataset.rollableBound) return;
+          btn.dataset.rollableBound = '1';
+          btn.addEventListener('click', () => {
+            const id = btn.dataset.rollableClose!;
+            document
+              .querySelector<HTMLDialogElement>(`dialog[data-rollable-modal="${id}"]`)
+              ?.close();
+          });
+        });
+        document.querySelectorAll<HTMLDialogElement>('dialog[data-rollable-modal]').forEach(dlg => {
+          if (dlg.dataset.rollableBound) return;
+          dlg.dataset.rollableBound = '1';
+          dlg.addEventListener('click', e => {
+            if (e.target === dlg) dlg.close();
+          });
+        });
+      };
+
+      const setup = () => {
+        setupAutoRollers();
+        setupRollableTables();
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setup);
+      } else {
+        setup();
+      }
+    </script>
+  </body>
+</html>

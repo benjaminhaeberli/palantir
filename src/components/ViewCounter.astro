@@ -1,0 +1,52 @@
+---
+/**
+ * Floating page view counter — bottom-right corner, above the music player.
+ *
+ * Uses abacus.jasoncameron.dev — a free, no-signup hit counter API.
+ * Incremented once per browser session (sessionStorage flag).
+ *
+ * If you want to swap to GoatCounter / Plausible / CounterAPI later, just
+ * rewrite fetchCount() to hit the new endpoint and parse the response.
+ */
+
+// Edit me — namespace.key identifies your counter.
+const NAMESPACE = 'palantir-rpg';
+const KEY = 'site-views';
+---
+
+<div class="view-counter" data-view-counter>
+  <span class="view-counter__icon" aria-hidden="true">★</span>
+  <span class="view-counter__value" data-view-value>···</span>
+  <span class="view-counter__label">visites</span>
+</div>
+
+<script define:vars={{ NAMESPACE, KEY }}>
+  const root = document.querySelector('[data-view-counter]');
+  const valueEl = root?.querySelector('[data-view-value]');
+  if (root && valueEl) {
+    const SESSION_KEY = `palantir-counted-${NAMESPACE}-${KEY}`;
+    const HIT_URL = `https://abacus.jasoncameron.dev/hit/${NAMESPACE}/${KEY}`;
+    const GET_URL = `https://abacus.jasoncameron.dev/get/${NAMESPACE}/${KEY}`;
+
+    const format = (n) => {
+      if (typeof n !== 'number' || Number.isNaN(n)) return '—';
+      return new Intl.NumberFormat('fr-FR').format(n);
+    };
+
+    const shouldHit = !sessionStorage.getItem(SESSION_KEY);
+    const url = shouldHit ? HIT_URL : GET_URL;
+
+    fetch(url)
+      .then(r => r.json())
+      .then(({ value }) => {
+        valueEl.textContent = format(value);
+        if (shouldHit) sessionStorage.setItem(SESSION_KEY, '1');
+        root.classList.add('is-loaded');
+      })
+      .catch(() => {
+        // Counter API down? Hide gracefully.
+        root.classList.add('is-error');
+        valueEl.textContent = '—';
+      });
+  }
+</script>

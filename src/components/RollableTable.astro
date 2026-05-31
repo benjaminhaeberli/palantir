@@ -1,0 +1,103 @@
+---
+/**
+ * Compact rollable d-table.
+ *
+ * Renders a small bar with: title · die size · "Lancer" button · expand icon.
+ * Clicking "Lancer" rolls and shows the result inline below the bar.
+ * Clicking expand opens a centered <dialog> modal with the full table list.
+ *
+ * Expected JSON shape: see /Users/benjamin/Herd/palantir/src/data/tables/*.json
+ *
+ * Use in MDX:
+ *   import RollableTable from '../../components/RollableTable.astro';
+ *   <RollableTable data="careers" />
+ *
+ * The roll + modal interactions are wired up globally in BaseLayout's script.
+ */
+
+interface Entry {
+  name: string;
+  items?: string[];
+  description?: string;
+  roll?: string; // "1", "2-3", "6-11"…
+}
+
+interface TableData {
+  title: string;
+  dieSize?: number;
+  entries: Entry[];
+}
+
+interface Props {
+  data: string;
+  title?: string;
+}
+
+const { data, title } = Astro.props;
+
+const tables = import.meta.glob<{ default: TableData }>('../data/tables/*.json', {
+  eager: true,
+});
+const key = `../data/tables/${data}.json`;
+const json = tables[key]?.default;
+if (!json) {
+  throw new Error(`RollableTable: no table found for "${data}" (looked for src/data/tables/${data}.json)`);
+}
+const dieSize = json.dieSize ?? json.entries.length;
+const tableTitle = title ?? json.title;
+const tableId = data;
+---
+
+<div class="rollable" data-rollable-root={tableId}>
+  <div class="rollable__bar">
+    <p class="rollable__title">
+      {tableTitle} <span class="rollable__die">· 1d{dieSize}</span>
+    </p>
+    <div class="rollable__actions">
+      <button
+        type="button"
+        class="die-roll-btn"
+        data-rollable-roll={tableId}
+        aria-label={`Tirer un résultat aléatoire sur 1d${dieSize}`}
+      >Lancer 1d{dieSize}</button>
+      <button
+        type="button"
+        class="rollable__expand"
+        data-rollable-expand={tableId}
+        aria-label={`Voir la table complète : ${tableTitle}`}
+      >⛶</button>
+    </div>
+  </div>
+  <div class="rollable__result" data-rollable-result-for={tableId} hidden></div>
+
+  <dialog class="rollable-modal" data-rollable-modal={tableId}>
+    <div class="rollable-modal__header">
+      <p class="rollable-modal__title">
+        {tableTitle} <span class="rollable__die">· 1d{dieSize}</span>
+      </p>
+      <div class="rollable-modal__actions">
+        <button
+          type="button"
+          class="die-roll-btn"
+          data-rollable-roll={tableId}
+        >Lancer 1d{dieSize}</button>
+        <button
+          type="button"
+          class="rollable-modal__close"
+          data-rollable-close={tableId}
+          aria-label="Fermer"
+        >×</button>
+      </div>
+    </div>
+    <ol class="rollable-modal__list" data-rollable-id={tableId} data-die-size={dieSize} start="1">
+      {json.entries.map((entry, i) => (
+        <li data-roll-index={i} data-roll-range={entry.roll ?? ''}>
+          {entry.roll && (<><span class="rollable-table__range">{entry.roll}</span> · </>)}
+          <strong>{entry.name}</strong>{entry.items && entry.items.length > 0 && (
+            <> — <span class="rollable-table__items">{entry.items.join(', ')}</span></>
+          )}{entry.description && <> — <span class="rollable-table__desc">{entry.description}</span></>}
+        </li>
+      ))}
+    </ol>
+  </dialog>
+</div>

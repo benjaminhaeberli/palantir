@@ -1,0 +1,26 @@
+{
+  "title": "Traits de personnalité",
+  "dieSize": 20,
+  "entries": [
+    { "name": "Stoïque", "description": "silence et fermeté" },
+    { "name": "Sanguin", "description": "explosif, généreux" },
+    { "name": "Mélancolique", "description": "pensif, attaché au passé" },
+    { "name": "Sceptique", "description": "doute tout, demande des preuves" },
+    { "name": "Pieux", "description": "invoque sa foi à chaque occasion" },
+    { "name": "Cynique", "description": "voit le pire des intentions" },
+    { "name": "Hâbleur", "description": "exagère ses exploits" },
+    { "name": "Discret", "description": "préfère l'ombre et le silence" },
+    { "name": "Vif d'esprit", "description": "répliques rapides, jeux de mots" },
+    { "name": "Lent à la colère", "description": "patient mais terrible quand provoqué" },
+    { "name": "Curieux", "description": "fouille tout, pose des questions" },
+    { "name": "Méfiant", "description": "suppose toujours le piège" },
+    { "name": "Loyal", "description": "soutient ses amis sans condition" },
+    { "name": "Pragmatique", "description": "résultats avant principes" },
+    { "name": "Romantique", "description": "voit du sens partout" },
+    { "name": "Superstitieux", "description": "touche du bois, croise les doigts" },
+    { "name": "Goguenard", "description": "moque les autorités" },
+    { "name": "Sentimental", "description": "pleure pour un rien" },
+    { "name": "Réservé", "description": "n'aime pas se confier" },
+    { "name": "Bavard", "description": "parle pour combler les silences" }
+  ]
+}

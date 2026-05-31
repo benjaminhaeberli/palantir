@@ -1,0 +1,95 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import BookToc from '../components/BookToc.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const sortByOrder = (a: { data: { order: number } }, b: { data: { order: number } }) =>
+  a.data.order - b.data.order;
+
+const [regles, conseilsMj, extensions, ressources] = await Promise.all([
+  getCollection('regles'),
+  getCollection('conseils-mj'),
+  getCollection('extensions'),
+  getCollection('ressources'),
+]);
+
+const sections = [
+  { collection: 'regles', groupTitle: 'Le livre des règles', entries: regles.sort(sortByOrder) },
+  { collection: 'conseils-mj', groupTitle: 'Conseils MJ', entries: conseilsMj.sort(sortByOrder) },
+  { collection: 'extensions', groupTitle: 'Extensions officielles', entries: extensions.sort(sortByOrder) },
+  { collection: 'ressources', groupTitle: 'Ressources & outils', entries: ressources.sort(sortByOrder) },
+];
+
+const renderedSections = await Promise.all(
+  sections.map(async section => ({
+    ...section,
+    rendered: await Promise.all(
+      section.entries.map(async entry => {
+        const { Content, headings } = await render(entry);
+        return { entry, Content, headings };
+      })
+    ),
+  }))
+);
+
+// Flatten chapters for the right TOC.
+const tocChapters = renderedSections.flatMap(s =>
+  s.rendered.map(r => ({
+    id: r.entry.id,
+    title: r.entry.data.title,
+    headings: r.headings,
+  }))
+);
+---
+
+<BaseLayout title="Palantír RPG">
+  <div class="app app--book">
+    <aside class="app__sidebar">
+      <Sidebar />
+    </aside>
+
+    <main class="app__main">
+      <section id="accueil" class="hero hero--compact">
+        <h1>Palantír RPG</h1>
+        <p class="tagline">Héroïsme et bravoure, armés de 1d12 face au destin.</p>
+        <p class="hero__lead">
+          Un jeu de rôle OSR générique, modulable et simple à prendre en main.
+          Toutes les règles tiennent sur cette page — faites défiler ou utilisez la navigation.
+        </p>
+        <div class="hero__cta">
+          <a class="btn" href="#introduction">Commencer à lire</a>
+          <a class="btn btn--ghost" href="https://github.com/benjaminhaeberli/palantir" target="_blank" rel="noopener">Contribuer sur GitHub</a>
+        </div>
+      </section>
+
+      {renderedSections.map(section => (
+        <>
+          <header class="book-divider" id={`partie-${section.collection}`}>
+            <p class="book-divider__eyebrow">Partie</p>
+            <h2 class="book-divider__title">{section.groupTitle}</h2>
+          </header>
+          {section.rendered.map(({ entry, Content }) => (
+            <article class="chapter" id={entry.id} data-chapter-id={entry.id}>
+              <h1 class="chapter__title">
+                {entry.data.title}
+                {entry.data.status === 'wip' && <span class="badge badge--wip">WIP</span>}
+                {entry.data.status === 'draft' && <span class="badge badge--draft">Draft</span>}
+              </h1>
+              {entry.data.description && <p class="page-meta">{entry.data.description}</p>}
+              <div class="chapter__body">
+                <Content />
+              </div>
+            </article>
+          ))}
+        </>
+      ))}
+    </main>
+
+    <aside class="app__toc">
+      <BookToc chapters={tocChapters} />
+    </aside>
+  </div>
+</BaseLayout>
