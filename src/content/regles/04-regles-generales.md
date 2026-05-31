@@ -1,7 +1,7 @@
 ---
 title: Règles générales
 description: Tours, points d'action, dés d'usage, distances et jets d'attributs.
-order: 4
+order: 10
 status: stable
 ---
 

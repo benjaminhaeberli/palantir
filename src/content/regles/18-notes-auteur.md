@@ -1,7 +1,7 @@
 ---
 title: Notes de l'auteur
 description: Le making-of du jeu, à la manière de Knave.
-order: 18
+order: 17
 status: stable
 ---
 
