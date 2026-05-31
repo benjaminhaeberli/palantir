@@ -38,6 +38,13 @@ const fullTitle = title === 'Palantír RPG' ? title : `${title} — Palantír RP
     </header>
     <slot />
 
+    <footer class="site-footer">
+      <p>
+        <a href={`${base}/`}>Palantír RPG</a> © 2025 Benjamin Haeberli —
+        <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener license">CC BY 4.0</a>
+      </p>
+    </footer>
+
     <div class="fab-stack">
       <ViewCounter />
       <MusicPlayer />

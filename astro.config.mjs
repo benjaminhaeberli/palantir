@@ -4,8 +4,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://benjaminhaeberli.github.io',
-  base: '/palantir',
+  site: 'https://palantir-rpg.com',
+  base: '/',
   trailingSlash: 'never',
   integrations: [mdx(), sitemap()],
   markdown: {

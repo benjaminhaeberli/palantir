@@ -48,6 +48,14 @@ Pour comprendre la roadmap (PDF print, i18n, intégration Scribe AI), voir [`doc
 
 ## Licence
 
-Le contenu du jeu sera publié sous une licence ouverte permettant la photocopie pour usage personnel et la publication de matériel compatible — voir la mention de licence dans le site lui-même (chapitre Notes de l'auteur / page d'accueil). Détails de licence définitive à confirmer.
+**[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.fr)** — Palantír RPG © Benjamin Haeberli, 2025.
 
-Palantír RPG © Benjamin Haeberli, 2025.
+Vous pouvez copier, adapter et même vendre du matériel basé sur ces règles, à condition de créditer l'auteur. Voir le fichier [`LICENSE`](LICENSE) pour le texte complet et les éléments réservés.
+
+### Matériel compatible
+
+Vous pouvez créer et vendre des suppléments (aventures, listes d'atouts, peuples, monstres, settings…) en utilisant ce système. Mentionnez simplement :
+
+> *« Compatible avec Palantír RPG de Benjamin Haeberli (CC BY 4.0) »*
+
+Le nom **Palantír RPG** et le logo officiel sont réservés — ne les utilisez pas pour nommer votre propre jeu.
