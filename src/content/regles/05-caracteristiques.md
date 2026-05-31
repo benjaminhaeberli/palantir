@@ -25,7 +25,7 @@ Les *Essences* sont des ressources qui permettent de mesurer comment se porte vo
 
 ### Bravoure
 
-Pour vous surpasser et affronter de terribles périples. Elle est accumulée lors des *jets d'attribut*, puis dépensée pour *Forcer le destin*, pour utiliser certains *atouts* et, lors des phases de combat, pour effectuer des *manœuvres*. Si elle tombe à zéro, votre héros est *Pessimiste*.
+Pour vous surpasser et affronter de terribles périples. Elle est accumulée lors des *jets d'attribut*, puis dépensée pour *Forcer le destin* et pour déclencher les effets renforcés de certains *atouts*. Si elle tombe à zéro, votre héros est *Pessimiste*.
 
 ### Endurance
 
