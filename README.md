@@ -1,61 +1,108 @@
 # Palantír RPG
 
-> Héroïsme et bravoure, armés de 1d12 face au destin ⚔️
+> Héroïsme et bravoure, armés de 1d12 face au destin.
 
-Site officiel et règles open source de **Palantír RPG**, un jeu de rôle OSR francophone générique, modulable et simple à prendre en main.
+**Palantír RPG** est un système de jeu de rôle OSR générique, francophone et open source. Minimaliste et modulable : 5 attributs, une mécanique centrale (1d12 + dés de bravoure), pas de classes. Conçu pour être joué en quelques minutes d'explication et adapté à n'importe quel univers médiéval-fantastique.
 
-- **Site public** : <https://palantir-rpg.com>
-- **Sources** : ce dépôt — toutes les règles vivent dans `src/content/` en Markdown.
-- **Communauté** : les PRs sont les bienvenues, voir [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md).
+- **Site officiel** : [palantir-rpg.com](https://palantir-rpg.com) — les règles complètes, lisibles en ligne
+- **Licence** : [CC BY 4.0](LICENSE.md) — libre d'utilisation, y compris commerciale, avec attribution
 
-## Stack
+---
 
-- [Astro 5](https://astro.build/) (SSG)
-- Content Collections + MDX
-- [Pagefind](https://pagefind.app/) pour la recherche
-- Déploiement automatique sur GitHub Pages
+## Matériel compatible
 
-## Charte visuelle
+Vous pouvez créer et **vendre** des suppléments basés sur ce système (aventures, listes d'atouts, peuples, monstres, settings…). Mentionnez simplement :
 
-Strictement **monochrome** — noir, blanc et nuances de gris. Pas de teintes chaudes (parchemin, beige) ni d'accent coloré. Inspirée du minimalisme de *Shadowdark*. Le contraste sémantique passe par la typographie (poids, soulignement, texte barré), pas par la couleur.
+> *« Compatible avec Palantír RPG de Benjamin Haeberli — [palantir-rpg.com](https://palantir-rpg.com) »*
 
-## Quickstart
+Le nom **Palantír RPG** et le logo officiel sont réservés. Voir [`LICENSE.md`](LICENSE.md) pour le détail.
+
+---
+
+## Dev — modifier ou auto-héberger
+
+Vous voulez adapter les règles à votre propre univers, corriger une typo ou héberger votre propre version du site ? Les sources sont là pour ça.
+
+### Prérequis
+
+- [Node.js](https://nodejs.org/) ≥ 20
+- `npm` (inclus avec Node)
+
+### Installation
 
 ```bash
+git clone https://github.com/benjaminhaeberli/palantir.git
+cd palantir
 npm install
-npm run dev          # http://localhost:4321
-npm run build        # build + indexation Pagefind dans dist/
-npm run preview      # prévisualisation du build
+npm run dev        # → http://localhost:4321
 ```
 
-## Structure
+### Modifier les règles
+
+Tout le contenu du jeu vit dans `src/content/` en Markdown :
 
 ```
-src/
-├── content/
-│   ├── regles/         # Le livre de base (14 chapitres)
-│   ├── extensions/     # Extensions officielles (Espoir, Gloire)
-│   └── ressources/     # Outils, fiches, tables
-├── layouts/
-├── components/
-├── pages/
-└── styles/
+src/content/
+├── regles/         # Chapitres du livre de base (01-introduction.md, etc.)
+├── extensions/     # Extensions officielles (espoir-et-tourment.md, etc.)
+├── conseils-mj/    # Conseils pour les maîtres de jeu
+└── ressources/     # Outils, fiches, tables aléatoires
 ```
 
-Pour proposer un changement de règle, modifier un chapitre ou ajouter une extension, voir [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md).
+Chaque fichier a un frontmatter minimal :
 
-Pour comprendre la roadmap (PDF print, i18n, intégration Scribe AI), voir [`docs/DEVELOPMENT_PLAN.md`](docs/DEVELOPMENT_PLAN.md).
+```yaml
+---
+title: Combat
+description: Initiative libre, actions et défense.
+order: 13          # Détermine la position dans la sidebar
+status: stable     # ou 'wip' (badge WIP affiché) ou 'draft'
+---
+```
+
+### Adapter à votre univers
+
+Pour publier votre propre SRD ou livre de règles :
+
+1. Forkez ce dépôt
+2. Remplacez le contenu de `src/content/regles/` par vos propres règles
+3. Ajustez les variables CSS dans `src/styles/global.css` (couleurs, typographie)
+4. Mettez à jour `astro.config.mjs` avec votre propre domaine
+5. Déployez sur GitHub Pages, Netlify, Vercel ou votre propre serveur
+
+### Build et déploiement
+
+```bash
+npm run build      # Build Astro + indexation Pagefind → dist/
+npm run preview    # Prévisualiser le build final
+```
+
+Le site est un **site statique** (aucun backend, aucune base de données). Le dossier `dist/` peut être déposé sur n'importe quel hébergement.
+
+Le déploiement sur GitHub Pages se fait automatiquement à chaque push sur `main` via `.github/workflows/deploy.yml`.
+
+### Stack technique
+
+| Outil | Rôle |
+|---|---|
+| [Astro 5](https://astro.build/) | Framework SSG |
+| Content Collections + MDX | Contenu structuré en Markdown |
+| [Pagefind](https://pagefind.app/) | Recherche full-text côté client |
+| GitHub Pages | Hébergement |
+
+---
+
+## Contribuer aux règles
+
+Les contributions sont les bienvenues — corrections, clarifications, nouvelles extensions. Voir [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md) pour le processus détaillé.
+
+En résumé :
+- **Typo / coquille** → PR directe
+- **Clarification de règle** → PR avec justification
+- **Nouvelle mécanique** → Issue d'abord, PR ensuite
+
+---
 
 ## Licence
 
-**[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.fr)** — Palantír RPG © Benjamin Haeberli, 2025.
-
-Vous pouvez copier, adapter et même vendre du matériel basé sur ces règles, à condition de créditer l'auteur. Voir le fichier [`LICENSE`](LICENSE) pour le texte complet et les éléments réservés.
-
-### Matériel compatible
-
-Vous pouvez créer et vendre des suppléments (aventures, listes d'atouts, peuples, monstres, settings…) en utilisant ce système. Mentionnez simplement :
-
-> *« Compatible avec Palantír RPG de Benjamin Haeberli (CC BY 4.0) »*
-
-Le nom **Palantír RPG** et le logo officiel sont réservés — ne les utilisez pas pour nommer votre propre jeu.
+**[CC BY 4.0](LICENSE.md)** — Palantír RPG © Benjamin Haeberli, 2025.
