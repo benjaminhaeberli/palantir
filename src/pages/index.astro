@@ -17,8 +17,8 @@ const [regles, conseilsMj, extensions, ressources] = await Promise.all([
 ]);
 
 const sections = [
-  { collection: 'regles', groupTitle: 'Le livre des règles', entries: regles.sort(sortByOrder) },
-  { collection: 'conseils-mj', groupTitle: 'Conseils MJ', entries: conseilsMj.sort(sortByOrder) },
+  { collection: 'regles', groupTitle: 'Livre de base', entries: regles.sort(sortByOrder) },
+  { collection: 'conseils-mj', groupTitle: 'Livre du MJ', entries: conseilsMj.sort(sortByOrder) },
   { collection: 'extensions', groupTitle: 'Extensions officielles', entries: extensions.sort(sortByOrder) },
   { collection: 'ressources', groupTitle: 'Ressources & outils', entries: ressources.sort(sortByOrder) },
 ];

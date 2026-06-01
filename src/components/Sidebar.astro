@@ -14,8 +14,8 @@ const sortByOrder = (a: { data: { order: number } }, b: { data: { order: number 
   a.data.order - b.data.order;
 
 const groups = [
-  { title: 'Règles', collection: 'regles', items: regles.sort(sortByOrder) },
-  { title: 'Conseils MJ', collection: 'conseils-mj', items: conseilsMj.sort(sortByOrder) },
+  { title: 'Livre de base', collection: 'regles', items: regles.sort(sortByOrder) },
+  { title: 'Livre du MJ', collection: 'conseils-mj', items: conseilsMj.sort(sortByOrder) },
   { title: 'Extensions', collection: 'extensions', items: extensions.sort(sortByOrder) },
   { title: 'Ressources', collection: 'ressources', items: ressources.sort(sortByOrder) },
 ];

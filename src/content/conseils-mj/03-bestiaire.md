@@ -1,7 +1,7 @@
 ---
 title: Bestiaire
 description: Attitudes, statistiques et créatures de référence.
-order: 16
+order: 3
 status: wip
 ---
 

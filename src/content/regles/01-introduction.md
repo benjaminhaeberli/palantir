@@ -9,7 +9,7 @@ status: stable
 
 Les personnages sont définis par 5 *Attributs*, 4 *Essences* et 6 *États*. Un état invisible n'est pas nécessaire : utilisez votre bon sens, discutez autour de la table et — si cela s'avère nécessaire — rédigez votre propre règle maison.
 
-En effet, chaque MJ ou joueur·euse est vivement invité·e à adapter le jeu pour sa table, et pourquoi pas créer ses *Essences* et *États* : les extensions *Espoir et tourment* et *Gloire, Gloire !* sont de bons exemples.
+En effet, chaque MJ ou joueur·euse est vivement invité·e à adapter le jeu pour sa table, et pourquoi pas créer ses *Essences* et *États* : l'extension *Espoir et tourment* en est un bon exemple.
 
 La mécanique la plus atypique à adopter est l'utilisation simultanée de d12 et d6 pour les jets d'attributs, là où la majorité des autres jeux OSR utilisent le classique d20.
 

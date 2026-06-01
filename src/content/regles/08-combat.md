@@ -11,9 +11,9 @@ Les héros attaquent toujours en premier, sauf s'ils sont pris par surprise, c'e
 
 Pour le MJ, il suffit de tenir la liste des protagonistes et faire une croix à chaque fois qu'il joue pour s'assurer que tout le monde a joué avant de passer au tour suivant.
 
-## Actions
+## Manœuvres libres
 
-Toutes les actions communes coûtent 1 *PA* et peuvent être effectuées plusieurs fois dans le même tour.
+Toutes les manœuvres communes coûtent 1 *PA* et peuvent être effectuées plusieurs fois dans le même tour.
 
 - Attaque de mêlée (*jet de FOR*)
 - Attaque à distance (*jet de DEX*)
@@ -25,7 +25,7 @@ Toutes les actions communes coûtent 1 *PA* et peuvent être effectuées plusieu
 - Se relever
 - etc.
 
-Certaines actions spécifiques peuvent coûter davantage de *PA* (actions d'atouts, objets magiques, etc.).
+Certaines manœuvres spécifiques peuvent coûter davantage de *PA* (effets d'atouts, objets magiques, etc.).
 
 ## Se défendre
 
@@ -53,6 +53,10 @@ Toutes les armes infligent **1d6 dégâts**. Une attaque à main nue cause 1d4.
 ### Coup critique
 
 Une **réussite critique** lors d'une attaque inflige les dégâts maximum de votre arme, plus un dé de dégâts supplémentaire — **et inflige une blessure à la cible** (voir *Bestiaire → Blessures de créature*).
+
+### Attaque en puissance
+
+Avant de lancer vos dégâts, vous pouvez déclarer une **attaque en puissance** : vous **doublez les dés de dégâts**, mais votre **arme se brise** une fois les dégâts infligés. Inutilisable à main nue.
 
 ### Dommages continus
 
