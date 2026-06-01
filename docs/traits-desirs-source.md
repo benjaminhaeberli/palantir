@@ -5,7 +5,7 @@ qu'intégrées dans `src/content/regles/05-caracteristiques.md` (section *Traits
 
 Règles narratives maison, compatibles avec n'importe quel système : à la création, le
 héros choisit **1 trait qu'il a + 1 trait qu'il n'a pas** et **1 désir qu'il a + 1 désir
-qu'il n'a pas**. Purement narratif (le bonus mécanique reste sur l'*Instinct*).
+qu'il n'a pas**. Purement narratif — aucun bonus mécanique.
 
 > Ce fichier vit hors de `src/content/`, il n'est donc pas publié sur le site.
 

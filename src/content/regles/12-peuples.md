@@ -1,7 +1,7 @@
 ---
 title: Peuples
 description: Capacités uniques selon l'origine, à définir avec votre table.
-order: 12
+order: 5
 status: wip
 ---
 

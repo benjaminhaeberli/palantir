@@ -1,6 +1,7 @@
-# Conventions Claude Code — Palantír RPG
+# CLAUDE.md — Conventions pour l'assistance IA
 
-Ce fichier guide les sessions Claude Code sur ce dépôt. Lis-le avant toute modification non triviale.
+> Ce fichier guide les assistants IA (Claude Code, Copilot, etc.) travaillant sur ce dépôt.
+> Il documente aussi les conventions éditoriales utiles à tout contributeur humain.
 
 ## Nature du projet
 

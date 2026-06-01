@@ -1,7 +1,7 @@
 ---
 title: États
 description: Les états principaux, l'inconscience et les états supplémentaires.
-order: 6
+order: 9
 status: stable
 ---
 

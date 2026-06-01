@@ -1,7 +1,7 @@
 ---
 title: Repos
 description: Récupération d'Endurance, conditions du repos court et du repos long.
-order: 7
+order: 12
 status: stable
 ---
 

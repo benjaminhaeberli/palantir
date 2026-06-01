@@ -1,7 +1,7 @@
 ---
 title: Combat
-description: Initiative libre, actions, manœuvres et défense.
-order: 8
+description: Initiative libre, actions, dégâts et défense.
+order: 13
 status: wip
 ---
 
@@ -17,21 +17,15 @@ Toutes les actions communes coûtent 1 *PA* et peuvent être effectuées plusieu
 
 - Attaque de mêlée (*jet de FOR*)
 - Attaque à distance (*jet de DEX*)
+- Pousser un ennemi (*jet de FOR*)
+- Maintenir / immobiliser (*jet de FOR*)
+- Intimider (*jet de CHA*)
 - Stabiliser un compagnon
-- Ouvrir/fermer une porte
+- Ouvrir / fermer une porte
 - Se relever
 - etc.
 
-Certaines actions spécifiques peuvent coûter davantage de *PA* (*actions d'atouts, de classes, objets magiques, etc.*).
-
-## Manœuvres
-
-Vous pouvez dépenser des points de *Bravoure* lors d'une attaque pour effectuer une manœuvre :
-
-- **Désarmer** (2 PB) : *à définir*
-- **Férocité** (4 PB) : *à définir*
-
-> Inspirations à intégrer : voir [les manœuvres du guerrier sur AideDD](https://www.aidedd.org/regles/classes/guerrier/) (balayage, briser, brutal, charge, cruel, désarmer, distraire, forcené, immobiliser, sacrifice).
+Certaines actions spécifiques peuvent coûter davantage de *PA* (actions d'atouts, objets magiques, etc.).
 
 ## Se défendre
 
@@ -54,11 +48,11 @@ L'armure d'un héros est déterminée par son *Équipement* et permet de réduir
 
 ## Dégâts
 
-Les dégâts infligés par les armes sont indiqués dans la section *Équipement*. Une attaque à main nue cause 1d4.
+Toutes les armes infligent **1d6 dégâts**. Une attaque à main nue cause 1d4.
 
 ### Coup critique
 
-Une **réussite critique** lors d'une attaque inflige les dégâts maximum de votre arme à votre adversaire, ainsi qu'un dé de dégâts supplémentaires.
+Une **réussite critique** lors d'une attaque inflige les dégâts maximum de votre arme, plus un dé de dégâts supplémentaire — **et inflige une blessure à la cible** (voir *Bestiaire → Blessures de créature*).
 
 ### Dommages continus
 

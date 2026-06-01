@@ -1,7 +1,7 @@
 ---
 title: Équipement
 description: Liste d'équipement et règles de Charge.
-order: 15
+order: 8
 status: wip
 ---
 

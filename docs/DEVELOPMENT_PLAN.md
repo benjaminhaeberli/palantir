@@ -17,12 +17,13 @@ Roadmap vivante du projet. Mise à jour au fil des versions.
 
 ## v1.1 — Compléter les sections WIP
 
-- [ ] Compléter **Combat** : finaliser les manœuvres (Désarmer, Férocité, Charge, Sacrifice…)
-- [ ] Compléter **Héros** : système d'XP/niveaux finalisé, atouts, historiques
-- [ ] Compléter **Équipement** : liste complète d'armes/armures avec dégâts et propriétés
-- [ ] Compléter **Mésaventures** : tables Knave/Shadowdark adaptées
-- [ ] Compléter **Bestiaire** : 20-30 créatures de référence
-- [ ] Compléter **Sortilèges** : liste de référence inspirée de Knave/Shadowdark
+- [x] Simplifier **Atouts** : 8 atouts avec effet de base + effet renforcé (PB)
+- [x] Compléter **Combat** : actions non-offensives, dégâts 1d6 uniformes, coup critique = blessure
+- [x] Compléter **Bestiaire** : 8 créatures de référence (niveaux 1–6), mécanique blessures/niveau
+- [ ] Compléter **Équipement** : liste complète d'armes/armures avec propriétés
+- [ ] Compléter **Mésaventures** : tables inspirées de Knave/Shadowdark
+- [ ] Compléter **Bestiaire** : étendre à 20–30 créatures
+- [ ] Compléter **Sortilèges** : liste de référence
 
 ## v2.0 — Export PDF print-ready
 

@@ -1,7 +1,7 @@
 ---
 title: Héros
 description: Création de personnage, expérience et progression sur 6 niveaux.
-order: 11
+order: 4
 status: wip
 ---
 
@@ -14,19 +14,17 @@ status: wip
 5. Noter son *Endurance* : `10 + (3 × CON)`
 6. Noter sa *Charge* → *SR* de *CON*.
 7. Noter sa *Bravoure* de départ à 1.
-8. Choisir (ou tirer) son *Instinct* — en secret avec le MJ uniquement.
-9. Choisir **2 *Atouts*** dans la liste générale.
-10. Définir son arc narratif et préciser ses liens avec les autres personnages.
-11. Choisir son *Équipement*.
+8. Choisir **2 *Atouts*** dans la liste générale.
+9. Définir son arc narratif et préciser ses liens avec les autres personnages.
+10. Choisir son *Équipement*.
 
 ## Expérience
 
-Vous gagnez de l'**XP** de deux manières :
+Vous gagnez de l'**XP** d'une seule manière :
 
 - **+1 XP** à chaque **échec critique** (1 sur le *dé du destin*).
-- **+3 XP** à la fin de chaque session si vous devinez correctement l'*Instinct* d'un autre joueur (une seule tentative par session, voir *Caractéristiques → Instinct*).
 
-> **Pourquoi ces deux sources ?** L'échec critique récompense la prise de risque et la quantité de jets (en moyenne 2-3 XP par session avec ~30 jets joués). La devinette d'*Instinct* récompense l'attention portée aux choix narratifs des autres (~1 XP en moyenne). Le tout converge vers **~3-4 XP par session par joueur**, calibré pour la progression ci-dessous.
+> L'échec critique récompense la prise de risque et la quantité de jets — en moyenne **~2–3 XP par session** avec une trentaine de jets joués, calibré pour la progression ci-dessous.
 
 ### Seuils d'XP par niveau
 

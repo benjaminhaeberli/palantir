@@ -1,7 +1,7 @@
 ---
 title: Glossaire
 description: Les termes essentiels pour jouer à Palantír RPG.
-order: 3
+order: 11
 status: stable
 ---
 
