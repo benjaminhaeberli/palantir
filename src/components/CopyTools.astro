@@ -1,0 +1,251 @@
+---
+/**
+ * Floating "copy for an LLM" widget — bottom-right corner, in the .fab-stack.
+ *
+ * Lets visitors grab the whole game in one click:
+ *   • Copier les règles  → tout le contenu (4 collections) en un seul Markdown
+ *   • Copier les tables  → deux formats : Markdown (.md) et JSON (.json)
+ *
+ * But : pouvoir coller le contenu localement / dans un LLM pour aider à créer
+ * son propre setting. Tout est assemblé au build ; le script client se contente
+ * d'appeler navigator.clipboard.writeText() sur le bon payload.
+ */
+import { getCollection } from 'astro:content';
+
+const sortByOrder = (a: { data: { order: number } }, b: { data: { order: number } }) =>
+  a.data.order - b.data.order;
+
+const [regles, conseilsMj, extensions, ressources] = await Promise.all([
+  getCollection('regles'),
+  getCollection('conseils-mj'),
+  getCollection('extensions'),
+  getCollection('ressources'),
+]);
+
+const parts = [
+  { groupTitle: 'Livre de base', entries: regles.sort(sortByOrder) },
+  { groupTitle: 'Livre du MJ', entries: conseilsMj.sort(sortByOrder) },
+  { groupTitle: 'Extensions officielles', entries: extensions.sort(sortByOrder) },
+  { groupTitle: 'Ressources & outils', entries: ressources.sort(sortByOrder) },
+];
+
+// Strip MDX-only noise so the Markdown reads cleanly for a human or an LLM:
+// drop `import … from …` lines and turn interactive components into a note.
+const cleanBody = (body: string) =>
+  body
+    .split('\n')
+    .filter(line => !/^\s*import\s.+\sfrom\s.+;?\s*$/.test(line))
+    .join('\n')
+    .replace(
+      /<RollableTable[^>]*\bdata=["']([^"']+)["'][^>]*\/>/g,
+      '> _(Table interactive « $1 » — voir « Copier les tables ».)_'
+    )
+    .replace(/<WoundTable[^>]*\/>/g, '> _(Table des blessures — voir « Copier les tables ».)_')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+
+// 1) Toutes les règles en un seul Markdown.
+let rulesMd = '# Palantír RPG — Contenu complet\n\n';
+rulesMd += 'Jeu de rôle OSR francophone. Document généré automatiquement depuis le site.\n';
+for (const part of parts) {
+  rulesMd += `\n# ${part.groupTitle}\n\n`;
+  for (const entry of part.entries) {
+    rulesMd += `## ${entry.data.title}\n\n`;
+    if (entry.data.description) rulesMd += `_${entry.data.description}_\n\n`;
+    rulesMd += `${cleanBody(entry.body ?? '')}\n\n`;
+  }
+}
+
+// 2) Toutes les tables aléatoires (src/data/tables/*.json) → Markdown + JSON.
+interface TableEntry {
+  name: string;
+  items?: string[];
+  description?: string;
+  roll?: string;
+}
+interface TableData {
+  title: string;
+  dieSize?: number;
+  source?: string;
+  entries: TableEntry[];
+}
+
+const tableModules = import.meta.glob<{ default: TableData }>('../data/tables/*.json', {
+  eager: true,
+});
+
+const tables = Object.entries(tableModules)
+  .map(([path, mod]) => ({
+    id: path.split('/').pop()!.replace(/\.json$/, ''),
+    data: mod.default,
+  }))
+  .sort((a, b) => a.id.localeCompare(b.id));
+
+// JSON : objet indexé par id de fichier, prêt à être parsé.
+const tablesJsonObj: Record<string, TableData> = {};
+for (const t of tables) tablesJsonObj[t.id] = t.data;
+const tablesJson = JSON.stringify(tablesJsonObj, null, 2);
+
+// Markdown : un tableau GFM par table.
+const cell = (s: string) => s.replace(/\|/g, '\\|').replace(/\n/g, ' ');
+let tablesMd = '# Palantír RPG — Tables aléatoires\n\n';
+for (const { data } of tables) {
+  const dieSize = data.dieSize ?? data.entries.length;
+  tablesMd += `## ${data.title} (1d${dieSize})\n\n`;
+  if (data.source) tablesMd += `_${data.source}_\n\n`;
+  tablesMd += '| Dé | Résultat | Détails |\n| --- | --- | --- |\n';
+  data.entries.forEach((e, i) => {
+    const die = e.roll ?? String(i + 1);
+    const details = e.items?.length ? e.items.join(', ') : (e.description ?? '');
+    tablesMd += `| ${die} | ${cell(e.name)} | ${cell(details)} |\n`;
+  });
+  tablesMd += '\n';
+}
+
+// Le contenu d'un <script type="application/json"> est du texte brut côté navigateur :
+// on neutralise seulement une éventuelle séquence `</script` (jamais présente en pratique).
+const guard = (s: string) => s.replace(/<\/(script)/gi, '<\\/$1');
+
+const payloads: Record<string, string> = {
+  'rules-md': rulesMd,
+  'tables-md': tablesMd,
+  'tables-json': tablesJson,
+};
+
+// Markdown mark (logo CommonMark), monochrome via currentColor.
+const mdIcon =
+  '<svg class="copy-tools__fmt-icon" viewBox="0 0 208 128" aria-hidden="true" focusable="false">' +
+  '<rect x="5" y="5" width="198" height="118" rx="10" ry="10" fill="none" stroke="currentColor" stroke-width="10"/>' +
+  '<path fill="currentColor" d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z"/>' +
+  '</svg>';
+---
+
+<div class="copy-tools" data-copy-tools>
+  <div class="copy-tools__panel" data-copy-panel hidden>
+    <div class="copy-tools__header">
+      <span class="copy-tools__heading">Copier pour un LLM</span>
+      <button
+        type="button"
+        class="copy-tools__close"
+        data-copy-close
+        aria-label="Fermer"
+      >×</button>
+    </div>
+
+    <button type="button" class="copy-tools__item" data-copy="rules-md">
+      <span class="copy-tools__fmt-icon-slot" set:html={mdIcon} />
+      <span class="copy-tools__item-label" data-copy-text>Copier les règles</span>
+      <span class="copy-tools__fmt">.md</span>
+    </button>
+
+    <button type="button" class="copy-tools__item" data-copy="tables-md">
+      <span class="copy-tools__fmt-icon-slot" set:html={mdIcon} />
+      <span class="copy-tools__item-label" data-copy-text>Copier les tables</span>
+      <span class="copy-tools__fmt">.md</span>
+    </button>
+
+    <button type="button" class="copy-tools__item" data-copy="tables-json">
+      <span class="copy-tools__fmt-icon copy-tools__fmt-icon--json" aria-hidden="true">{'{ }'}</span>
+      <span class="copy-tools__item-label" data-copy-text>Copier les tables</span>
+      <span class="copy-tools__fmt">.json</span>
+    </button>
+  </div>
+
+  <button
+    type="button"
+    class="copy-tools__toggle"
+    data-copy-toggle
+    aria-expanded="false"
+    aria-label="Copier le contenu du jeu"
+  >
+    <span class="copy-tools__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="11" height="11" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+    </span>
+    <span class="copy-tools__label">Copier</span>
+  </button>
+</div>
+
+{Object.entries(payloads).map(([key, value]) => (
+  <script type="application/json" data-copy-payload={key} set:html={guard(value)} />
+))}
+
+<script>
+  const root = document.querySelector('[data-copy-tools]');
+  if (root) {
+    const toggle = root.querySelector<HTMLButtonElement>('[data-copy-toggle]')!;
+    const panel = root.querySelector<HTMLElement>('[data-copy-panel]')!;
+    const closeBtn = root.querySelector<HTMLButtonElement>('[data-copy-close]')!;
+
+    const open = () => {
+      panel.hidden = false;
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.classList.add('is-open');
+    };
+    const close = () => {
+      panel.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.classList.remove('is-open');
+    };
+
+    toggle.addEventListener('click', () => (panel.hidden ? open() : close()));
+    closeBtn.addEventListener('click', close);
+    document.addEventListener('click', e => {
+      if (!root.contains(e.target as Node)) close();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') close();
+    });
+
+    const payloadFor = (key: string): string => {
+      const el = document.querySelector(`[data-copy-payload="${key}"]`);
+      return el?.textContent ?? '';
+    };
+
+    const copyText = async (text: string): Promise<boolean> => {
+      if (navigator.clipboard?.writeText) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch {
+          /* fall through to legacy fallback */
+        }
+      }
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        return ok;
+      } catch {
+        return false;
+      }
+    };
+
+    const flash = (btn: HTMLElement, ok: boolean) => {
+      const label = btn.querySelector<HTMLElement>('[data-copy-text]');
+      if (!label) return;
+      if (label.dataset.original === undefined) label.dataset.original = label.textContent ?? '';
+      btn.classList.add(ok ? 'is-copied' : 'is-error');
+      label.textContent = ok ? 'Copié !' : 'Échec — copie manuelle';
+      window.setTimeout(() => {
+        btn.classList.remove('is-copied', 'is-error');
+        label.textContent = label.dataset.original ?? '';
+      }, 1800);
+    };
+
+    root.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const ok = await copyText(payloadFor(btn.dataset.copy!));
+        flash(btn, ok);
+      });
+    });
+  }
+</script>

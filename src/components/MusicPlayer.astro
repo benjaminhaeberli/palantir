@@ -1,31 +1,24 @@
 ---
 /**
- * Floating YouTube music player — bottom-right corner.
+ * Floating YouTube music player — bottom-right corner, in the .fab-stack.
  *
- * Click "♪ Musique" to load + autoplay an embedded YouTube track.
- * Click again or the close button to stop and unload the iframe.
+ * Comportement (calqué sur CopyTools) :
+ *   • « ♪ Musique » ouvre un overlay AU-DESSUS du bouton et lance la lecture.
+ *   • La pause se fait directement dans les contrôles du player YouTube.
+ *   • Fermer l'overlay (×, clic extérieur, Échap) NE coupe PAS la musique :
+ *     l'iframe reste chargée et continue de jouer en arrière-plan.
+ *   • Un bouton « ■ » noir n'apparaît qu'une fois la lecture lancée, à droite
+ *     du bouton Musique : lui seul arrête réellement la lecture.
  *
- * To change the default track or use a playlist, edit DEFAULT_VIDEO_ID
- * or set type="playlist" with PLAYLIST_ID.
+ * Pour changer la piste : éditer DEFAULT_VIDEO_ID.
  */
 
-// Edit me — YouTube video ID (the part after v= in the URL).
+// Edit me — YouTube video ID (la partie après v= dans l'URL).
 const DEFAULT_VIDEO_ID = 'BE6JUt9LnCw';
 const TRACK_LABEL = 'Ambiance Palantír';
 ---
 
 <div class="music-player" data-music-player>
-  <button
-    type="button"
-    class="music-player__toggle"
-    data-music-toggle
-    aria-expanded="false"
-    aria-label="Activer la musique d'ambiance"
-  >
-    <span class="music-player__icon">♪</span>
-    <span class="music-player__label">Musique</span>
-  </button>
-
   <div class="music-player__panel" data-music-panel hidden>
     <div class="music-player__header">
       <span class="music-player__track">{TRACK_LABEL}</span>
@@ -33,10 +26,32 @@ const TRACK_LABEL = 'Ambiance Palantír';
         type="button"
         class="music-player__close"
         data-music-close
-        aria-label="Fermer le lecteur"
+        aria-label="Fermer (la musique continue)"
       >×</button>
     </div>
     <div class="music-player__iframe-slot" data-music-slot></div>
+  </div>
+
+  <div class="music-player__bar">
+    <button
+      type="button"
+      class="music-player__toggle"
+      data-music-toggle
+      aria-expanded="false"
+      aria-label="Ouvrir le lecteur de musique"
+    >
+      <span class="music-player__icon" aria-hidden="true">♪</span>
+      <span class="music-player__label">Musique</span>
+    </button>
+    <button
+      type="button"
+      class="music-player__stop"
+      data-music-stop
+      aria-label="Arrêter la musique"
+      hidden
+    >
+      <span aria-hidden="true">■</span>
+    </button>
   </div>
 </div>
 
@@ -45,10 +60,13 @@ const TRACK_LABEL = 'Ambiance Palantír';
   if (container) {
     const toggle = container.querySelector('[data-music-toggle]');
     const closeBtn = container.querySelector('[data-music-close]');
+    const stopBtn = container.querySelector('[data-music-stop]');
     const panel = container.querySelector('[data-music-panel]');
     const slot = container.querySelector('[data-music-slot]');
 
-    const start = () => {
+    const isPlaying = () => slot.childElementCount > 0;
+
+    const load = () => {
       slot.innerHTML = `<iframe
         width="280"
         height="60"
@@ -57,24 +75,48 @@ const TRACK_LABEL = 'Ambiance Palantír';
         allow="autoplay; encrypted-media"
         title="Musique d'ambiance"
       ></iframe>`;
-      panel.hidden = false;
-      toggle.setAttribute('aria-expanded', 'true');
+      stopBtn.hidden = false;
       toggle.classList.add('is-playing');
-      toggle.querySelector('.music-player__label').textContent = 'Stop';
     };
 
-    const stop = () => {
-      slot.innerHTML = ''; // unload iframe → stops playback
+    const openPanel = () => {
+      panel.hidden = false;
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.classList.add('is-open');
+    };
+
+    // Fermer l'overlay laisse l'iframe vivante → la musique continue.
+    const closePanel = () => {
       panel.hidden = true;
       toggle.setAttribute('aria-expanded', 'false');
+      toggle.classList.remove('is-open');
+    };
+
+    // Arrêt réel : on décharge l'iframe.
+    const stop = () => {
+      slot.innerHTML = '';
+      closePanel();
+      stopBtn.hidden = true;
       toggle.classList.remove('is-playing');
-      toggle.querySelector('.music-player__label').textContent = 'Musique';
     };
 
     toggle.addEventListener('click', () => {
-      if (toggle.classList.contains('is-playing')) stop();
-      else start();
+      if (panel.hidden) {
+        if (!isPlaying()) load();
+        openPanel();
+      } else {
+        closePanel();
+      }
     });
-    closeBtn.addEventListener('click', stop);
+
+    closeBtn.addEventListener('click', closePanel);
+    stopBtn.addEventListener('click', stop);
+
+    document.addEventListener('click', e => {
+      if (!container.contains(e.target)) closePanel();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closePanel();
+    });
   }
 </script>

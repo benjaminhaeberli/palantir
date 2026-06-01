@@ -874,6 +874,13 @@ img { max-width: 100%; height: auto; }
 .view-counter__label { color: var(--color-muted); }
 
 /* Music player. */
+.music-player { position: relative; }
+.music-player__bar {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
 .music-player__toggle {
   display: inline-flex;
   align-items: center;
@@ -889,15 +896,31 @@ img { max-width: 100%; height: auto; }
   cursor: pointer;
   transition: background 0.15s ease;
 }
-.music-player__toggle:hover { background: var(--color-ink); color: var(--color-bg); }
-.music-player__toggle.is-playing {
-  background: var(--color-ink);
-  color: var(--color-bg);
-}
+.music-player__toggle:hover,
+.music-player__toggle.is-open { background: var(--color-ink); color: var(--color-bg); }
 .music-player__icon { font-size: 1em; line-height: 1; }
 
+/* Bouton « stop » noir, visible seulement quand la musique est lancée. */
+.music-player__stop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em 0.75em;
+  background: var(--color-ink);
+  color: var(--color-bg);
+  border: 1px solid var(--color-border-strong);
+  font-size: 0.7rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.music-player__stop:hover { opacity: 0.85; }
+.music-player__stop[hidden] { display: none; }
+
 .music-player__panel {
-  margin-top: 0.5rem;
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  right: 0;
   width: 280px;
   background: var(--color-surface);
   border: 1px solid var(--color-border-strong);
@@ -931,6 +954,116 @@ img { max-width: 100%; height: auto; }
 
 @media (max-width: 760px) {
   .music-player__panel { width: calc(100vw - 2rem); max-width: 280px; }
+}
+
+/* Copy-for-LLM tools — pill toggle + panneau au-dessus (monochrome). */
+.copy-tools { position: relative; }
+.copy-tools__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.5em 0.9em;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.copy-tools__toggle:hover,
+.copy-tools__toggle.is-open {
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+.copy-tools__icon { display: inline-flex; line-height: 0; }
+
+.copy-tools__panel {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  right: 0;
+  width: 260px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  overflow: hidden;
+}
+.copy-tools__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4em 0.6em 0.4em 0.8em;
+  font-size: 0.72rem;
+  font-family: var(--font-heading);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border-bottom: 1px solid var(--color-border);
+}
+.copy-tools__close {
+  background: transparent;
+  border: 0;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-ink);
+  padding: 0 0.3em;
+}
+.copy-tools__close:hover { color: var(--color-accent-soft); }
+
+.copy-tools__item {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  width: 100%;
+  padding: 0.6em 0.8em;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--color-ink);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.copy-tools__item:last-child { border-bottom: 0; }
+.copy-tools__item:hover { background: var(--color-subtle); }
+.copy-tools__item-label { flex: 1 1 auto; }
+.copy-tools__item.is-copied,
+.copy-tools__item.is-error {
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+.copy-tools__item.is-copied .copy-tools__item-label,
+.copy-tools__item.is-error .copy-tools__item-label { font-weight: 700; }
+
+.copy-tools__fmt-icon-slot { display: inline-flex; line-height: 0; }
+.copy-tools__fmt-icon {
+  width: 20px;
+  height: auto;
+  flex: 0 0 auto;
+}
+.copy-tools__fmt-icon--json {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.95rem;
+  font-weight: 700;
+  width: 20px;
+  text-align: center;
+}
+.copy-tools__fmt {
+  flex: 0 0 auto;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+.copy-tools__item.is-copied .copy-tools__fmt,
+.copy-tools__item.is-error .copy-tools__fmt { color: var(--color-bg); }
+
+@media (max-width: 760px) {
+  .copy-tools__panel { width: calc(100vw - 2rem); max-width: 260px; }
 }
 
 /* Slightly tighter type inside columns for the print-book feel. */

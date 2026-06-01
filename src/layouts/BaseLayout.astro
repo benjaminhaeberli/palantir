@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import MusicPlayer from '../components/MusicPlayer.astro';
 import ViewCounter from '../components/ViewCounter.astro';
+import CopyTools from '../components/CopyTools.astro';
 
 interface Props {
   title: string;
@@ -47,6 +48,7 @@ const fullTitle = title === 'Palantír RPG' ? title : `${title} — Palantír RP
 
     <div class="fab-stack">
       <ViewCounter />
+      <CopyTools />
       <MusicPlayer />
     </div>
 
