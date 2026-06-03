@@ -10,7 +10,7 @@ status: stable
 À chaque fois que votre héros obtient l'un de ces états, son *attribut* le plus élevé (*du plus élevé au plus faible*) est **défavorisé** : tous les jets liés se font avec *désavantage* et un malus (1d6). Il est possible de cumuler les cinq états, dans ce cas tous vos *attributs* seront *défavorisés* :
 
 - **Blessé** : Si vous subissez une *Blessure* (*combat, chute, noyade, feu*).
-- **Épuisé** : Si votre *Charge* est supérieure au *SR* de votre *CON*.
+- **Épuisé** : Si votre *Charge* est supérieure au *SR* de votre *CON*, ou si vous n'avez pas effectué de *Repos long* depuis plus d'un jour.
 - **Affamé** : Si vous ne consommez pas de ration de la journée. Mangez une ration pour annuler cet état.
 - **Empoisonné** : Si du poison atteint votre corps (*arme enduite, dard d'araignée, ingurgitation, etc.*).
 - **Pessimiste** : Si votre *Bravoure* est réduite à zéro.

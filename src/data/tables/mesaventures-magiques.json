@@ -1,0 +1,18 @@
+{
+  "title": "Table des mésaventures magiques",
+  "dieSize": 12,
+  "entries": [
+    { "name": "Reflet brisé", "description": "Le sort se retourne contre vous ! Comment l'effet vous affecte-t-il ?" },
+    { "name": "Main tremblante", "description": "Vous ciblez un allié au lieu de votre cible initiale. Que va-t-il en penser ?" },
+    { "name": "Maladresse mystique", "description": "Un objet mineur en votre possession disparaît dans un tourbillon d'énergie. Où est-il passé ?" },
+    { "name": "Rupture d'équilibre", "description": "Un vertige soudain vous prend : désavantage à votre prochaine action." },
+    { "name": "Une dette a été contractée…", "description": "Un prix a été payé, consciemment ou non. Qui viendra réclamer son dû ?" },
+    { "name": "Un regard s'est posé sur vous…", "description": "Quelqu'un ou quelque chose a pris conscience de votre tentative. Une menace ? Une opportunité ?" },
+    { "name": "La magie vous a marqué…", "description": "Une trace subtile ou évidente persiste : une brûlure, un symbole, un murmure. Qui la remarquera en premier ?" },
+    { "name": "L'effet a dérapé…", "description": "Le sort ne fonctionne pas comme prévu. Quelle partie a mal tourné et qui en subit les conséquences ?" },
+    { "name": "Quelque chose a été échangé…", "description": "Un souvenir, un lien, un fragment de votre être a été remplacé. Était-ce un troc équitable ou une perte cruelle ?" },
+    { "name": "Une brèche s'est ouverte…", "description": "Dans l'esprit, dans le monde, dans un lien oublié. Quelqu'un ou quelque chose en profitera-t-il ?" },
+    { "name": "Le passé murmure…", "description": "Une connaissance ancienne resurgit, mais sous une forme fragmentée ou biaisée. Vérité ou piège ?" },
+    { "name": "L'oubli s'installe…", "description": "Un nom, un événement, une intention s'efface de votre mémoire ou de celle des autres. Quelles seront les conséquences ?" }
+  ]
+}

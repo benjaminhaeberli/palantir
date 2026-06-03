@@ -19,7 +19,18 @@ Le nom **Palantír RPG** et le logo officiel sont réservés. Voir [`LICENSE.md`
 
 ---
 
-## Dev — modifier ou auto-héberger
+## Contribuer aux règles
+
+Les contributions sont les bienvenues — corrections, clarifications, nouvelles extensions. Voir [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md) pour le processus détaillé.
+
+En résumé :
+- **Typo / coquille** → PR directe
+- **Clarification de règle** → PR avec justification
+- **Nouvelle mécanique** → Issue d'abord, PR ensuite
+
+---
+
+## Avis aux développeurs
 
 Vous voulez adapter les règles à votre propre univers, corriger une typo ou héberger votre propre version du site ? Les sources sont là pour ça.
 
@@ -89,17 +100,6 @@ Le déploiement sur GitHub Pages se fait automatiquement à chaque push sur `mai
 | Content Collections + MDX | Contenu structuré en Markdown |
 | [Pagefind](https://pagefind.app/) | Recherche full-text côté client |
 | GitHub Pages | Hébergement |
-
----
-
-## Contribuer aux règles
-
-Les contributions sont les bienvenues — corrections, clarifications, nouvelles extensions. Voir [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md) pour le processus détaillé.
-
-En résumé :
-- **Typo / coquille** → PR directe
-- **Clarification de règle** → PR avec justification
-- **Nouvelle mécanique** → Issue d'abord, PR ensuite
 
 ---
 

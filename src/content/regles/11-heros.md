@@ -7,35 +7,35 @@ status: wip
 
 ## Création de personnage
 
-1. Choisir son *Peuple*
-2. Choisir deux *Historiques*
-3. Choisir ses *Traits* et *Désirs* — un de chaque qui lui correspond, un de chaque qui lui est étranger (voir *Caractéristiques → Traits & Désirs*).
-4. Répartir 6 points parmi les cinq *attributs*. Maximum 2 par attribut, puis calculer le *SR* de chacun : `10 + (2 × attribut)`.
-5. Noter son *Endurance* : `10 + (3 × CON)`
-6. Noter sa *Charge* → *SR* de *CON*.
-7. Noter sa *Bravoure* de départ à 1.
-8. Choisir **2 *Atouts*** dans la liste générale.
+1. Choisir son _Peuple_
+2. Choisir deux _Historiques_
+3. Choisir ses _Traits_ et _Désirs_ — un de chaque qui lui correspond, un de chaque qui lui est étranger (voir _Caractéristiques → Traits & Désirs_).
+4. Répartir 6 points parmi les cinq _attributs_. Maximum 2 par attribut, puis calculer le _SR_ de chacun : `10 + (2 × attribut)`.
+5. Noter son _Endurance_ : `10 + (3 × CON)`
+6. Noter sa _Charge_ → _SR_ de _CON_.
+7. Noter sa _Bravoure_ de départ à 1.
+8. Choisir **2 _Atouts_** dans la liste générale.
 9. Définir son arc narratif et préciser ses liens avec les autres personnages.
-10. Choisir son *Équipement*.
+10. Choisir son _Équipement_.
 
 ## Expérience
 
 Vous gagnez de l'**XP** d'une seule manière :
 
-- **+1 XP** à chaque **échec critique** (1 sur le *dé du destin*).
+- **+1 XP** à chaque **échec critique** (1 sur le _dé du destin_).
 
 > L'échec critique récompense la prise de risque et la quantité de jets — en moyenne **~2–3 XP par session** avec une trentaine de jets joués, calibré pour la progression ci-dessous.
 
 ### Seuils d'XP par niveau
 
 | Niveau | XP cumulés | Sessions estimées |
-|---|---|---|
-| 1 | 0 | — *(création)* |
-| 2 | 5 | ~1-2 |
-| 3 | 12 | ~3-4 |
-| 4 | 22 | ~6-7 |
-| 5 | 35 | ~10 |
-| 6 | 50 | ~14 |
+| ------ | ---------- | ----------------- |
+| 1      | 0          | — _(création)_    |
+| 2      | 5          | ~1-2              |
+| 3      | 12         | ~3-4              |
+| 4      | 22         | ~6-7              |
+| 5      | 35         | ~10               |
+| 6      | 50         | ~14               |
 
 > Calibrage basé sur ~3,5 XP/session/joueur. **One-shot** (3-4 sessions) → niveau 3. **Campagne courte** (8-10 sessions) → niveau 4-5. **Campagne longue** (15+ sessions) → niveau 6.
 
@@ -43,13 +43,13 @@ Vous gagnez de l'**XP** d'une seule manière :
 
 À chaque montée de niveau, le héros gagne **+1 dans un attribut** au choix — **sans plafond**. Pousser une caractéristique à l'extrême est risqué (le héros devient unidimensionnel) mais peut produire des personnages mémorables. Les autres gains du palier :
 
-| Niveau | Gains à ce palier | PA / tour | Atouts cumulés |
-|---|---|---|---|
-| 1 | — *(création)* | 1 | 2 |
-| 2 | +1 attribut, **+1 PA**, **+1 atout** | 2 | 3 |
-| 3 | +1 attribut, **+1 atout** | 2 | 4 |
-| 4 | +1 attribut, **+1 PA** | 3 | 4 |
-| 5 | +1 attribut, **+1 atout** | 3 | 5 |
-| 6 | +1 attribut, **+1 PA**, **+1 atout** | 4 | 6 |
+| Niveau | Gains à ce palier                    | PA / tour | Atouts cumulés |
+| ------ | ------------------------------------ | --------- | -------------- |
+| 1      | — _(création)_                       | 1         | 2              |
+| 2      | +1 attribut, **+1 PA**, **+1 atout** | 2         | 3              |
+| 3      | +1 attribut, **+1 atout**            | 2         | 4              |
+| 4      | +1 attribut, **+1 PA**               | 3         | 4              |
+| 5      | +1 attribut, **+1 atout**            | 3         | 5              |
+| 6      | +1 attribut, **+1 PA**, **+1 atout** | 4         | 6              |
 
-> **Pas de plafond d'attribut.** Au-delà de 4 (5d6 + 1d12 contre SR 20+), les jets deviennent presque garantis mais aussi peu lisibles ; et un héros tout en *FOR* est intéressant *parce qu'*il échoue lamentablement aux jets sociaux. À utiliser à vos risques et plaisirs.
+> **Pas de plafond d'attribut.** Au-delà de 4 (5d6 + 1d12 contre SR 20+), les jets deviennent presque garantis mais aussi peu lisibles ; et un héros tout en _FOR_ est intéressant parce qu'il échoue lamentablement aux jets sociaux. À utiliser à vos risques et plaisirs.

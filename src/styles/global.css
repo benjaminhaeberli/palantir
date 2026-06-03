@@ -66,9 +66,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 { font-size: 2.4rem; margin-top: 0; }
-h2 { font-size: 1.7rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.3em; }
+h2 { font-size: 1.7rem; margin-top: 0rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.3em; }
 h3 { font-size: 1.3rem; }
-h4 { font-size: 1.1rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-muted); }
+h4 { font-size: 1.0rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-muted); }
 
 p { margin: 0 0 1em; }
 
@@ -466,6 +466,53 @@ img { max-width: 100%; height: auto; }
   justify-content: center;
 }
 
+/* Colophon — crédits & remerciements en fin de page (logique « fin de livre »). */
+.colophon {
+  max-width: 760px;
+  margin: var(--space-12) 0;
+  padding-top: var(--space-8);
+  border-top: 2px solid var(--color-border-strong);
+}
+.colophon__version {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-bottom: var(--space-2);
+}
+.colophon__title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  margin: 0 0 var(--space-6);
+}
+.colophon__roles {
+  margin: 0 0 var(--space-8);
+}
+.colophon__roles div {
+  margin-bottom: var(--space-3);
+}
+.colophon__roles dt {
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.colophon__roles dd {
+  margin: 0;
+}
+.colophon__thanks h2 {
+  font-size: 1.4rem;
+  margin-bottom: var(--space-4);
+}
+.colophon__thanks p {
+  max-width: 540px;
+  margin: 0 0 var(--space-3);
+  font-style: italic;
+  color: var(--color-muted);
+}
+
 /* Book divider — visually breaks the long doc between parts. */
 .book-divider {
   margin: var(--space-12) 0 var(--space-8);
@@ -495,7 +542,7 @@ img { max-width: 100%; height: auto; }
   padding-top: var(--space-12);
   padding-bottom: var(--space-12);
   scroll-margin-top: 1rem;
-  max-width: 70rem;
+  max-width: 40rem;
   margin: 0 auto;
 }
 .chapter + .chapter { border-top: 1px solid var(--color-border); }
@@ -504,14 +551,11 @@ img { max-width: 100%; height: auto; }
   margin: 0 0 0.3em;
 }
 
-/* 2-column reading body — Knave/Shadowdark A5 vibe.
-   The h1 (chapter title) and page-meta stay full-width.
-   H2 headings span both columns and act as section dividers — content between
-   two h2s flows in 2 columns, but the columns reset at each h2. */
+/* Single-column reading body. Tables, the wound table and h2 dividers
+   still span the full width via `column-span: all` (a no-op here, but kept
+   harmless in case the multi-column layout is reinstated later). */
 .chapter__body {
-  column-count: 2;
-  column-gap: 2.5rem;
-  column-rule: 1px solid var(--color-border);
+  column-count: 1;
   margin-top: var(--space-6);
   margin-bottom: var(--space-6);
 }
@@ -706,7 +750,7 @@ img { max-width: 100%; height: auto; }
   padding: 1em 1.5em 1.2em 2.6em;
   font-size: 0.92em;
   line-height: 1.4;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: auto;
   flex: 1 1 auto;
   column-width: 17rem;
@@ -751,7 +795,7 @@ img { max-width: 100%; height: auto; }
   width: 100%;
   margin: 0;
   border-collapse: collapse;
-  font-size: 0.95em;
+  font-size: 0.85em;
 }
 .wound-table__table th,
 .wound-table__table td {
@@ -774,7 +818,7 @@ img { max-width: 100%; height: auto; }
 .wt-cell {
   display: block;
   width: 100%;
-  padding: 0.6em 0.7em;
+  padding: 0.5em 0.6em;
   background: transparent;
   border: 0;
   font: inherit;
@@ -831,7 +875,7 @@ img { max-width: 100%; height: auto; }
 
 @media (max-width: 760px) {
   .wound-table__result { grid-template-columns: 1fr; }
-  .wound-table__table { font-size: 0.85em; }
+  .wound-table__table { font-size: 0.78em; }
 }
 
 /* Floating widgets stack (music + counter) bottom-right. */

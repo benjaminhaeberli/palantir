@@ -1,0 +1,12 @@
+{
+  "title": "Table de folie",
+  "dieSize": 6,
+  "entries": [
+    { "name": "Suicide désespéré", "description": "Le héros se donne la mort, incapable de supporter la douleur qui l'assaille." },
+    { "name": "Ermite dément", "description": "Le héros s'isole du monde, vivant en reclus, perdu dans ses propres hallucinations." },
+    { "name": "Amnésie totale", "description": "Le héros oublie tout de son passé, ne reconnaissant plus ses compagnons ni même son propre nom." },
+    { "name": "Homicide", "description": "Le héros, devenu fou, prévoit de tuer un de ses anciens alliés, persuadé qu'il s'agit d'un ennemi." },
+    { "name": "Pacte obscur", "description": "Le héros conclut un pacte avec une entité maléfique, abandonnant son humanité pour obtenir un pouvoir destructeur." },
+    { "name": "Fusion avec l'ombre", "description": "Le héros se dissout dans les ténèbres qui l'ont rongé, disparaissant à jamais sans laisser de trace." }
+  ]
+}
