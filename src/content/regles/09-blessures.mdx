@@ -4,36 +4,35 @@ description: Jet de blessure, table interactive des situations, premiers soins e
 order: 14
 status: stable
 ---
-import RollableTable from '../../components/RollableTable.astro';
-import WoundTable from '../../components/WoundTable.astro';
+
+import RollableTable from "../../components/RollableTable.astro";
+import WoundTable from "../../components/WoundTable.astro";
 
 ## Jet de blessure
 
-Durant un périple périlleux, un héros peut parfois se blesser. Pour déterminer la gravité de celle-ci, il doit effectuer un *jet de blessure (CON)*.
+Durant un périple périlleux, un héros peut parfois se blesser. Pour déterminer la gravité de la blessure, il doit effectuer un _jet de blessure (CON)_ que le MJ doit arbitrer selon la _Table des blessures_ ci-dessous. Selon la situation dans la fiction, le **MJ** peut lui imposer l'état _Blessé_ malgré un jet réussi, ainsi qu'une **convalescence**, de `1d6` jours par exemple.
 
-- En cas de **réussite critique**, le héros subit la moitié de la perte d'endurance.
-- En cas de **réussite**, le héros subit la totalité de la perte d'endurance.
-- En cas d'**échec**, le héros est *Blessé*.
+- En cas d'**échec**, le héros est _Blessé_.
 
 ## Table des blessures
-
-Renseignez votre CON, puis cliquez sur la situation pour faire le jet, ou sur les dégâts pour les lancer.
 
 <WoundTable />
 
 ## Premiers soins
 
-Un héros peut prodiguer des **Premiers soins** à un compagnon *Blessé* ou *Inconscient* avec un jet de *ESP* ou *DEX*. En cas de **réussite** :
+Un héros peut prodiguer des **Premiers soins** à un compagnon _Blessé_ ou _Inconscient_ avec un jet de _ESP_ ou _DEX_. En cas de **réussite** :
 
-- sur un compagnon *Blessé* : il lui enlève l'état *Blessé* (une *Blessure*) **et** lui fait récupérer `1d6` points d'*Endurance* ;
-- sur un compagnon *Inconscient* déjà stabilisé : il le **ranime** — l'état *Inconscient* est levé, une *Blessure* est enlevée, et le héros revient à `1d6` points d'*Endurance*.
+- sur un compagnon _Blessé_ : il lui enlève l'état _Blessé_ (une _Blessure_) **et** lui fait récupérer `1d6` points d'_Endurance_ ;
+- sur un compagnon _Inconscient_ déjà stabilisé : il le **ranime** — l'état _Inconscient_ est levé, une _Blessure_ est enlevée, et le héros revient à `1d6` points d'_Endurance_.
 
-Un héros ne peut **recevoir** des *Premiers soins* qu'une fois par *repos long* (même en cas d'échec, il faut alors attendre le lendemain), et ne peut en **prodiguer** qu'une fois par *repos long* également.
+Si la _Blessure_ impose une _convalescence_, les _Premiers soins_ ne peuvent **pas** y mettre fin : le compagnon récupère `1d6` points d'_Endurance_ (et est ranimé s'il était _Inconscient_), mais il **reste _Blessé_** jusqu'au terme de sa _convalescence_.
+
+Un héros ne peut **recevoir** des _Premiers soins_ qu'une fois par _repos long_ (même en cas d'échec, il faut alors attendre le lendemain), et ne peut en **prodiguer** qu'une fois par _repos long_ également.
 
 ## Inconscient
 
-Si l'*Endurance* d'un héros tombe à zéro, ou s'il subit une *Blessure* alors qu'il est déjà *Blessé* ou *Empoisonné*, il s'effondre, *Inconscient* : il ne peut plus agir. S'il est attaqué alors qu'il est *Inconscient*, ou s'il n'est pas **stabilisé** dans les `1d4` tours, il lance `1d12` sur la *Table du dernier espoir*.
+Si l'_Endurance_ d'un héros tombe à zéro, ou s'il subit une _Blessure_ alors qu'il est déjà _Blessé_ ou _Empoisonné_, il s'effondre, _Inconscient_ : il ne peut plus agir et lance aussitôt `1d12` sur la _Table du dernier espoir_.
 
 <RollableTable data="dernier-espoir" />
 
-Un héros qui survit à ce jet ne se relève pas pour autant : il **reste au sol, inconscient mais vivant** — il respire à nouveau. Il ne reprend conscience que lorsqu'un compagnon le **ranime** par des *Premiers soins* (voir ci-dessus). Sans soins, il demeure hors de combat **jusqu'au prochain repos long**.
+Un héros qui survit à ce jet ne se relève pas pour autant : il **reste au sol, inconscient mais vivant** — il respire à nouveau. Il ne reprend conscience que lorsqu'un compagnon le **ranime** par des _Premiers soins_ (voir ci-dessus). Sans soins, il demeure hors de combat **jusqu'au prochain repos long**.

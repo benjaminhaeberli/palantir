@@ -3,14 +3,9 @@
   "dieSize": 12,
   "entries": [
     {
-      "roll": "1",
+      "roll": "1-3",
       "name": "Mort",
       "description": "Le héros meurt et le joueur peut créer un nouveau personnage du même niveau."
-    },
-    {
-      "roll": "2-3",
-      "name": "Abattu",
-      "description": "Le héros perd un point d'attribut définitivement (à choix)."
     },
     {
       "roll": "4-5",

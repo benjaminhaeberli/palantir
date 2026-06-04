@@ -36,7 +36,7 @@ Pour éviter les complications inutiles, il suffit d'ajouter quelques points d'*
 
 ### Vulnérabilité et résistance
 
-Une *vulnérabilité* signifie que les attaquants bénéficient d'un *Avantage* sur leur jet de dégâts ; une *résistance* signifie qu'ils subissent un *Désavantage*. Vulnérabilités courantes : feu, givre, foudre, arme du Chaos, etc.
+Une *vulnérabilité* signifie que la créature subit le **double** des dégâts du type concerné ; une *résistance*, qu'elle n'en subit que la **moitié** (*arrondie au supérieur*). C'est le **MJ** qui applique discrètement ce calcul : le joueur ne sait pas si sa cible est vulnérable ou résistante. Vulnérabilités courantes : feu, givre, foudre, arme du Chaos, etc.
 
 ### Moral
 
