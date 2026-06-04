@@ -261,6 +261,28 @@ img { max-width: 100%; height: auto; }
     margin-bottom: var(--space-4);
   }
   h1 { font-size: 1.9rem; }
+
+  /* Hide fixed vertical dividers */
+  .app--book::before,
+  .app--book::after { display: none; }
+
+  /* Hide sidebar — replaced by mobile menu overlay */
+  .app--book .app__sidebar { display: none; }
+
+  /* Breathing room for main content without sidebar */
+  .app--book .app__main { padding: 0 var(--space-4); }
+
+  /* Hide desktop nav, show hamburger */
+  .site-header__nav--desktop { display: none; }
+  .site-header__hamburger { display: flex; }
+
+  /* Inline chapter TOC */
+  .chapter-toc {
+    display: block;
+    border: 1px solid var(--color-border);
+    margin-bottom: var(--space-6);
+    padding: var(--space-3) var(--space-4);
+  }
 }
 
 /* Header — thin, fixed at top, parchment with a hard black border. */
@@ -1115,3 +1137,172 @@ img { max-width: 100%; height: auto; }
 .toc-card:hover { border-color: var(--color-accent-soft); color: inherit; }
 .toc-card h3 { margin: 0 0 var(--space-2); font-size: 1.1rem; }
 .toc-card p { margin: 0; color: var(--color-muted); font-size: 0.95em; }
+
+/* === Hamburger button (hidden on desktop) === */
+.site-header__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+  padding: 6px 7px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.hamburger__line {
+  display: block;
+  height: 1px;
+  background: var(--color-ink);
+}
+
+/* === Mobile menu overlay === */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--color-bg);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.mobile-menu.is-open { display: block; }
+
+.mobile-menu__inner {
+  padding: var(--space-6) var(--space-4) var(--space-8);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.mobile-menu__brand {
+  font-family: var(--font-heading);
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  text-decoration: none;
+  line-height: 1;
+}
+.mobile-menu__brand span { color: var(--color-accent); }
+
+.mobile-menu__close {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+  padding: 6px 7px;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+}
+.mobile-menu__close-line {
+  display: block;
+  position: absolute;
+  left: 7px;
+  right: 7px;
+  height: 1px;
+  background: var(--color-ink);
+}
+.mobile-menu__close-line:first-child { transform: rotate(45deg); }
+.mobile-menu__close-line:last-child  { transform: rotate(-45deg); }
+
+.mobile-menu__tagline {
+  font-style: italic;
+  color: var(--color-muted);
+  margin: 0 0 var(--space-3);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.mobile-menu__github {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  text-decoration: none;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+.mobile-menu__github:hover { color: var(--color-ink); }
+
+.mobile-menu__nav { flex: 1; }
+
+.mobile-menu__group { margin-bottom: var(--space-6); }
+
+.mobile-menu__group-title {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: 0 0 var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+  border-top: none;
+}
+
+.mobile-menu__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.mobile-menu__list li { margin: 0; }
+
+.mobile-menu__link {
+  display: block;
+  padding: 0.5em 0.6em;
+  color: var(--color-ink);
+  text-decoration: none;
+  font-size: 1.05rem;
+  border-left: 2px solid transparent;
+  border-radius: var(--radius);
+}
+.mobile-menu__link:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-left-color: var(--color-accent);
+}
+
+/* === Inline chapter TOC (mobile only) === */
+.chapter-toc { display: none; }
+
+.chapter-toc__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.chapter-toc__item { margin: 0; }
+.chapter-toc__item a {
+  display: block;
+  padding: 0.3em var(--space-2);
+  color: var(--color-muted);
+  text-decoration: none;
+  font-size: 0.95em;
+  border-left: 2px solid transparent;
+}
+.chapter-toc__item a:hover {
+  color: var(--color-ink);
+  border-left-color: var(--color-accent);
+}
+.chapter-toc__item--depth-3 a {
+  padding-left: var(--space-6);
+  font-size: 0.88em;
+}

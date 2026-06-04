@@ -1,0 +1,99 @@
+---
+import { getCollection } from 'astro:content';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const [regles, conseilsMj, extensions, ressources] = await Promise.all([
+  getCollection('regles'),
+  getCollection('conseils-mj'),
+  getCollection('extensions'),
+  getCollection('ressources'),
+]);
+
+const sortByOrder = (a: { data: { order: number } }, b: { data: { order: number } }) =>
+  a.data.order - b.data.order;
+
+const groups = [
+  { title: 'Livre de base', items: regles.sort(sortByOrder) },
+  { title: 'Livre du MJ', items: conseilsMj.sort(sortByOrder) },
+  { title: 'Extensions', items: extensions.sort(sortByOrder) },
+  { title: 'Ressources', items: ressources.sort(sortByOrder) },
+];
+---
+
+<div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menu de navigation">
+  <div class="mobile-menu__inner">
+    <div class="mobile-menu__top">
+      <a class="mobile-menu__brand" href={`${base}/`}>Palantír<span>·</span>RPG</a>
+      <button class="mobile-menu__close" data-hamburger-close aria-label="Fermer le menu" type="button">
+        <span class="mobile-menu__close-line"></span>
+        <span class="mobile-menu__close-line"></span>
+      </button>
+    </div>
+    <p class="mobile-menu__tagline">Héroïsme et bravoure, armés de 1d12 face au destin.</p>
+    <a class="mobile-menu__github" href="https://github.com/benjaminhaeberli/palantir" target="_blank" rel="noopener">GitHub</a>
+    <nav class="mobile-menu__nav" aria-label="Chapitres">
+      {groups.map(group => (
+        <div class="mobile-menu__group">
+          <h2 class="mobile-menu__group-title">{group.title}</h2>
+          <ul class="mobile-menu__list">
+            {group.items.map(item => (
+              <li>
+                <a href={`${base}#${item.id}`} class="mobile-menu__link" data-mobile-menu-link>
+                  {item.data.title}
+                  {item.data.status === 'wip' && <span class="badge badge--wip">WIP</span>}
+                  {item.data.status === 'draft' && <span class="badge badge--draft">Draft</span>}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </nav>
+  </div>
+</div>
+
+<script>
+  const setup = () => {
+    const menu = document.getElementById('mobile-menu');
+    const hamburger = document.querySelector<HTMLButtonElement>('[data-hamburger]');
+    const closeBtn = document.querySelector<HTMLButtonElement>('[data-hamburger-close]');
+    if (!menu || !hamburger) return;
+
+    const open = () => {
+      menu.classList.add('is-open');
+      menu.setAttribute('aria-hidden', 'false');
+      hamburger.setAttribute('aria-expanded', 'true');
+      hamburger.setAttribute('aria-label', 'Fermer le menu');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const close = () => {
+      menu.classList.remove('is-open');
+      menu.setAttribute('aria-hidden', 'true');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+      document.body.style.overflow = '';
+    };
+
+    hamburger.addEventListener('click', () => {
+      menu.classList.contains('is-open') ? close() : open();
+    });
+
+    closeBtn?.addEventListener('click', close);
+
+    menu.querySelectorAll('[data-mobile-menu-link]').forEach(link => {
+      link.addEventListener('click', close);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) close();
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup);
+  } else {
+    setup();
+  }
+</script>
