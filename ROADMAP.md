@@ -19,10 +19,6 @@ Roadmap vivante du projet. Mise à jour au fil des versions.
 - [ ] Compléter le glossaire et le mettre dans une modal ou en draw qui s'ouvre depuis un bouton sur la sidebar de droite jsp, avec tous les termes spécifiques par exemple "convalescence" (dans les blessures) et ajouter un lien vers les pages concernées
 - [ ] Ajouter un index au début (comme dans un livre -> plus complet que la sidebar car on mets tous les sous-chapitres, si possibles dynamiquement pour éviter de devoir le tenir à jour H24 je sais pas (avec les H1, H2 ?))
 - [ ] Liens [`ROADMAP`](https://github.com/benjaminhaeberli/palantir/blob/develop/ROADMAP.md) avec icône "lien externe" et rajouter icône de GITHUB à côté du lien GITHUB (icon library déjà chargée ? sinon lucide-icons?)
-- [ ] Page "Contribuer" pointant vers `CONTRIBUTING.md`
-- [ ] Rendre le site responsive pour mobile
-
-## v1.1 — Compléter les sections WIP
 
 - [x] Simplifier **Atouts** : 8 atouts avec effet de base + effet renforcé (PB)
 - [x] Compléter **Combat** : actions non-offensives, dégâts 1d6 uniformes, coup critique = blessure
@@ -30,7 +26,13 @@ Roadmap vivante du projet. Mise à jour au fil des versions.
 - [ ] Compléter **Équipement** : liste complète d'armes/armures avec propriétés
 - [ ] Compléter **Mésaventures** : tables inspirées de Knave/Shadowdark
 - [ ] Compléter **Bestiaire** : étendre à 20–30 créatures
-- [ ] Compléter **Sortilèges** : liste de référence
+- [ ] Compléter **Sortilèges** : système de magie freeform
+- [ ] Rendre le site responsive pour mobile
+
+## v1.x — Améliorations diverses
+
+- [ ] ⁠Ajouter un système de versioning des règles (alpha ou beta ou v1 jsp voir semanting versioning) pour débuter) où je travaille à chaque fois sur develop pour avancer quand on ramène sur main on rajoute un numéro de version. Et mettre un petit sélecteur de numéro de version (avec date de publication entre parenthèses et du plus récent au plus vieux)
+- [ ] Page "Contribuer" pointant vers `CONTRIBUTING.md`
 
 ## v2.0 — Export PDF print-ready
 
