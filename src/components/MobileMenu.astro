@@ -60,12 +60,17 @@ const groups = [
     const closeBtn = document.querySelector<HTMLButtonElement>('[data-hamburger-close]');
     if (!menu || !hamburger) return;
 
+    const FOCUSABLE = 'a[href], button:not([disabled])';
+
     const open = () => {
       menu.classList.add('is-open');
       menu.setAttribute('aria-hidden', 'false');
       hamburger.setAttribute('aria-expanded', 'true');
       hamburger.setAttribute('aria-label', 'Fermer le menu');
       document.body.style.overflow = 'hidden';
+      menu.scrollTop = 0;
+      // Move focus into the dialog so keyboard users land inside it.
+      closeBtn?.focus();
     };
 
     const close = () => {
@@ -74,6 +79,8 @@ const groups = [
       hamburger.setAttribute('aria-expanded', 'false');
       hamburger.setAttribute('aria-label', 'Ouvrir le menu');
       document.body.style.overflow = '';
+      // Return focus to the control that opened the menu.
+      hamburger.focus();
     };
 
     hamburger.addEventListener('click', () => {
@@ -87,7 +94,27 @@ const groups = [
     });
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && menu.classList.contains('is-open')) close();
+      if (!menu.classList.contains('is-open')) return;
+      if (e.key === 'Escape') {
+        close();
+        return;
+      }
+      // Trap Tab / Shift+Tab inside the open dialog.
+      if (e.key === 'Tab') {
+        const items = Array.from(
+          menu.querySelectorAll<HTMLElement>(FOCUSABLE)
+        ).filter(el => el.offsetParent !== null);
+        if (!items.length) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     });
   };
 
