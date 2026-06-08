@@ -3,6 +3,7 @@ import '../styles/global.css';
 import MusicPlayer from '../components/MusicPlayer.astro';
 import ViewCounter from '../components/ViewCounter.astro';
 import CopyTools from '../components/CopyTools.astro';
+import MobileMenu from '../components/MobileMenu.astro';
 
 interface Props {
   title: string;
@@ -31,13 +32,27 @@ const fullTitle = title === 'Palantír RPG' ? title : `${title} — Palantír RP
         <a class="site-header__brand" href={`${base}/`}>
           Palantír<span>·</span>RPG
         </a>
-        <nav class="site-header__nav" aria-label="Liens externes">
+        <nav class="site-header__nav site-header__nav--desktop" aria-label="Liens externes">
           <a href={`${base}#introduction`}>Le jeu</a>
           <a href="https://github.com/benjaminhaeberli/palantir" target="_blank" rel="noopener">GitHub</a>
         </nav>
+        <button
+          class="site-header__hamburger"
+          data-hamburger
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          type="button"
+        >
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+        </button>
       </div>
     </header>
     <slot />
+
+    <MobileMenu />
 
     <footer class="site-footer">
       <p>
@@ -53,39 +68,16 @@ const fullTitle = title === 'Palantír RPG' ? title : `${title} — Palantír RP
     </div>
 
     <script>
-      // Unified dice-rolling logic for the whole site:
-      //  (a) Auto-inject "Lancer 1dN" before any <ol> in chapter bodies whose
-      //      item count matches a standard die size (and which isn't inside a
-      //      <RollableTable> component, which has its own button).
-      //  (b) Wire up RollableTable buttons (data-rollable-roll="<id>") to roll
-      //      against the matching [data-rollable-id] list.
-      const DIE_SIZES = new Set([4, 6, 8, 10, 12, 20, 100]);
+      // Dice-rolling logic for the whole site: wire up RollableTable buttons
+      // (data-rollable-roll="<id>") to roll against the matching
+      // [data-rollable-id] list. Random tables use explicit <RollableTable>
+      // components — plain ordered lists are never auto-rolled.
 
       const rollAndHighlight = (items: HTMLLIElement[]) => {
         items.forEach(li => li.classList.remove('is-rolled'));
         if (!items.length) return;
         const i = Math.floor(Math.random() * items.length);
         items[i].classList.add('is-rolled');
-      };
-
-      const setupAutoRollers = () => {
-        document.querySelectorAll<HTMLOListElement>('.chapter__body ol').forEach(list => {
-          if (list.closest('.rollable-table')) return; // managed by RollableTable
-          const items = Array.from(list.children).filter(
-            (c): c is HTMLLIElement => c.tagName === 'LI'
-          );
-          const n = items.length;
-          if (!DIE_SIZES.has(n)) return;
-          if (list.previousElementSibling?.classList.contains('die-roll-btn')) return;
-
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'die-roll-btn';
-          btn.textContent = `Lancer 1d${n}`;
-          btn.setAttribute('aria-label', `Tirer un résultat aléatoire sur 1d${n}`);
-          btn.addEventListener('click', () => rollAndHighlight(items));
-          list.before(btn);
-        });
       };
 
       const parseRange = (raw: string): [number, number] | null => {
@@ -179,7 +171,6 @@ const fullTitle = title === 'Palantír RPG' ? title : `${title} — Palantír RP
       };
 
       const setup = () => {
-        setupAutoRollers();
         setupRollableTables();
       };
 

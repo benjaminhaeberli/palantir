@@ -1,0 +1,12 @@
+{
+  "title": "Table de panique",
+  "dieSize": 6,
+  "entries": [
+    { "name": "Attaque frénétique", "description": "Vous vous jetez sur votre allié le plus proche, le confondant avec un ennemi pendant 1d6 tours." },
+    { "name": "Destruction compulsive", "description": "Vous brûlez ou détruisez tout objet à portée de main pendant 1d6 tours, persuadé que tout votre équipement est maudit." },
+    { "name": "Désespoir", "description": "Tout vous semble insurmontable, vous perdez la totalité de votre Bravoure et obtenez l'état Pessimiste." },
+    { "name": "Fuite paniquée", "description": "Vous prenez la fuite pendant 1d6 tours, abandonnant vos compagnons à leur sort et ne pensant plus qu'à sauver votre peau." },
+    { "name": "Mutilation", "description": "Votre esprit vous joue des tours et vous vous blessez en tentant de combattre une ombre imaginaire. Vous obtenez l'état Blessé." },
+    { "name": "Crise cardiaque", "description": "Vous ressentez une douleur intense au cœur, comme si l'angoisse vous écrasait. Vous êtes incapable de toute action ou mouvement, restant immobilisé par la douleur pendant 1d6 tours, même en cas de danger imminent." }
+  ]
+}

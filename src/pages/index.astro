@@ -71,21 +71,67 @@ const tocChapters = renderedSections.flatMap(s =>
             <p class="book-divider__eyebrow">Partie</p>
             <h2 class="book-divider__title">{section.groupTitle}</h2>
           </header>
-          {section.rendered.map(({ entry, Content }) => (
-            <article class="chapter" id={entry.id} data-chapter-id={entry.id}>
-              <h1 class="chapter__title">
-                {entry.data.title}
-                {entry.data.status === 'wip' && <span class="badge badge--wip">WIP</span>}
-                {entry.data.status === 'draft' && <span class="badge badge--draft">Draft</span>}
-              </h1>
-              {entry.data.description && <p class="page-meta">{entry.data.description}</p>}
-              <div class="chapter__body">
-                <Content />
-              </div>
-            </article>
-          ))}
+          {section.rendered.map(({ entry, Content, headings }) => {
+            const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+            return (
+              <article class="chapter" id={entry.id} data-chapter-id={entry.id}>
+                <h1 class="chapter__title">
+                  {entry.data.title}
+                  {entry.data.status === 'wip' && <span class="badge badge--wip">WIP</span>}
+                  {entry.data.status === 'draft' && <span class="badge badge--draft">Draft</span>}
+                </h1>
+                {entry.data.description && <p class="page-meta">{entry.data.description}</p>}
+                {tocHeadings.length > 0 && (
+                  <nav class="chapter-toc" aria-label={`Sommaire — ${entry.data.title}`}>
+                    <ul class="chapter-toc__list">
+                      {tocHeadings.map(h => (
+                        <li class={`chapter-toc__item chapter-toc__item--depth-${h.depth}`}>
+                          <a href={`#${h.slug}`}>{h.text}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                )}
+                <div class="chapter__body">
+                  <Content />
+                </div>
+              </article>
+            );
+          })}
         </>
       ))}
+
+      <section id="credits" class="colophon" data-chapter-id="credits">
+        <div class="colophon__credits">
+          <p class="colophon__version">v1.0.0-alpha</p>
+          <p class="colophon__title">Palantír RPG © Benjamin Haeberli, 2025</p>
+          <dl class="colophon__roles">
+            <div>
+              <dt>Écrit par</dt>
+              <dd>Benjamin Haeberli</dd>
+            </div>
+            <div>
+              <dt>Illustrations</dt>
+              <dd>XXX</dd>
+            </div>
+            <div>
+              <dt>Site internet &amp; mise en page</dt>
+              <dd>Benjamin Haeberli</dd>
+            </div>
+            <div>
+              <dt>Relectures et corrections</dt>
+              <dd>XXX</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="colophon__thanks">
+          <h2>Remerciements</h2>
+          <p>Merci à mon père pour m'avoir transmis son amour de la musique, dans laquelle je puise énormément d'inspiration.</p>
+          <p>Merci à Darius, Francis et Julien avec qui j'ai découvert le jeu de rôle et partagé mes meilleures parties.</p>
+          <p>Merci à Zachary pour nos aventures sur Arc Raiders.</p>
+          <p>Merci à J.R.R Tolkien, dont l'univers me fascine encore et toujours.</p>
+        </div>
+      </section>
     </main>
 
     <aside class="app__toc">

@@ -1,0 +1,73 @@
+---
+title: Sorcellerie
+description: Sortilèges en verbe + forme, Ampleur, Δ de Sorcellerie et mésaventures magiques.
+order: 3
+status: wip
+---
+
+import RollableTable from "../../components/RollableTable.astro";
+
+La sorcellerie passe par l'utilisation de **catalyseurs** (_parchemin, baguettes magiques, fioles d'élixir_). Un catalyseur permet de lancer un _sortilège_, de manière illimitée ou limitée par le MJ (_nombre d'utilisations ou dé d'usage, par exemple_).
+
+Plutôt qu'une liste de sorts figés, un _sortilège_ se décrit librement comme **un Verbe appliqué à une Forme** — _altérer le feu_, _percevoir les esprits_, _créer de l'eau_. Le joueur énonce son intention, le MJ en juge l'**Ampleur**, puis un jet d'_ESP_ tranche.
+
+## Les cinq Verbes
+
+Tout _sortilège_ s'articule autour d'un **Verbe**, l'action exercée sur le monde :
+
+- **Percevoir** — déceler, sonder, lire ce qui est caché.
+- **Créer** — faire surgir matière, énergie ou phénomène.
+- **Altérer** — transformer, déplacer, amplifier ou affaiblir.
+- **Contrôler** — diriger, commander, contraindre ce qui existe déjà.
+- **Détruire** — briser, consumer, dissiper, anéantir.
+
+## Les Formes
+
+La **Forme** est ce sur quoi le Verbe agit. Elle reste **libre** : la table décide de ce que la magie peut toucher dans son univers. À la création, un sorcier note **2 à 3 Formes** qu'il maîtrise.
+
+Pour une fantasy classique et sobre, voici une liste suggérée (inspirée d'Ars Magica, adaptée en français) :
+
+- **Bête** — animaux et créatures.
+- **Eau** — liquides, pluie, glace.
+- **Air** — vents, foudre, ciel.
+- **Corps** — chair des êtres vivants.
+- **Végétal** — plantes, bois, racines.
+- **Feu** — flammes, chaleur, lumière.
+- **Illusion** — images, sons, apparences trompeuses.
+- **Esprit** — pensées, émotions, défunts.
+- **Terre** — pierre, métal, minéraux.
+- **Énergie** — la magie elle-même, brute.
+
+## L'Ampleur
+
+L'**Ampleur** (1 à 4) mesure l'ambition de l'effet. Elle fixe à la fois le **seuil de réussite (SR)** du jet d'_ESP_ et le **coût en Δ**. Plus un sort plie le monde, plus il est dur à réussir et plus il épuise.
+
+| Ampleur | Exemples d'effet | SR (jet d'_ESP_) | Coût en Δ | Dégâts |
+| --- | --- | --- | --- | --- |
+| **1 — Mineure** | Ce qu'une personne ferait avec du temps et des outils : allumer une bougie, crocheter une serrure, faire vaciller une flamme, deviner une émotion. | 12 | aucun (ou Δ une fois par scène) | — |
+| **2 — Notable** | Au-delà de l'humain mais circonscrit : une flamme jaillit de la main, refermer une plaie, parler brièvement à un mort, lever le brouillard. | 14 | lance ton **Δ de Sorcellerie** | jusqu'à **1d6** |
+| **3 — Majeure** | Un effet ample et net : mur de flammes, soigner une _Blessure_, charmer une foule, déchaîner un vent violent. | 16 | lance le Δ **deux fois, garde le pire** | jusqu'à **2d6** |
+| **4 — Prodige** | Plier le réel : tempête, terreur de masse, briser les portes d'une forteresse, rappeler un mort. Exige un **travail dans la fiction** (grand rituel, sacrifice, lieu de pouvoir), discuté entre le joueur et le MJ. | 18+ | lance le Δ **deux fois, garde le pire**, _et_ le jet d'_ESP_ se fait avec **désavantage** | massifs, à l'appréciation du MJ |
+
+> _L'Ampleur 1 est purement utilitaire : un sortilège mineur ne fait pas plus de dégâts qu'un geste ordinaire. Le « travail dans la fiction » de l'Ampleur 4 reste volontairement ouvert : c'est au joueur de proposer ce qu'il met en jeu, et au MJ de l'accepter ou de le négocier._
+
+## Le Δ de Sorcellerie
+
+La puissance se paie avec un **dé d'usage Δ**. Par défaut, chaque sorcier en possède un, le **Δ de Sorcellerie** (_valeur initiale Δ8_), réserve personnelle de pouvoir.
+
+Comme tout dé d'usage, il est rétrogradé sur un résultat de **1-2** (_Δ8 → Δ6 → Δ4 → épuisé_). Une fois **épuisé**, plus aucun _sortilège_ ne peut être lancé jusqu'au prochain **repos long**.
+
+> **Variante — l'objet qui se consume** : le MJ peut placer le Δ non sur le sorcier mais sur un **objet magique** (bâton, gemme, grimoire) qui se consume à chaque usage. Δ épuisé = l'objet devient inerte ou tombe en poussière.
+
+> **Variante — univers sombre** : si vous jouez avec l'extension [_Espoir et tourment_](#espoir-et-tourment), remplacez le Δ de Sorcellerie par l'**Espoir Δ**. Forcer la magie ronge alors directement la part d'ombre, et un mage qui s'épuise devient _Tourmenté_.
+
+## Échec et mésaventures
+
+Un jet d'_ESP_ est nécessaire pour lancer un _sortilège_.
+
+- En cas d'**échec**, lancez 1d12 sur la _Table des mésaventures magiques_.
+- En cas d'**échec critique**, le catalyseur est détruit ou inutilisable (_à l'appréciation du MJ_).
+
+## Tables annexes
+
+<RollableTable data="mesaventures-magiques" />

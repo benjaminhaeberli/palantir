@@ -46,6 +46,14 @@ const linkFor = (id: string) => `${base}#${id}`;
       </ul>
     </div>
   ))}
+
+  <div class="sidebar-group">
+    <ul class="sidebar-list">
+      <li>
+        <a href={linkFor('credits')} data-sidebar-link="credits">Crédits</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <script>
