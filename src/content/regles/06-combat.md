@@ -1,7 +1,7 @@
 ---
 title: Combat
 description: Initiative libre, actions, dégâts et défense.
-order: 13
+order: 6
 status: wip
 ---
 

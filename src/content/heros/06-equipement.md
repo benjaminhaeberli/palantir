@@ -1,7 +1,7 @@
 ---
 title: Équipement
 description: Monnaie, raretés, armes, armures et règles de Charge.
-order: 8
+order: 6
 status: stable
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Atouts
 description: Capacités spéciales du héros — création libre en session 0, illustrée par des exemples en 4 catégories.
-order: 7
+order: 5
 status: stable
 ---
 

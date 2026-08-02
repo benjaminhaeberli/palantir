@@ -13,7 +13,11 @@ Roadmap vivante du projet. Mise à jour au fil des versions.
 - [ ] Recherche Pagefind branchée en UI (composant `Search.astro`)
 - [x] Acheter et brancher le domaine `palantir-rpg.com` (CNAME GitHub Pages)
 - [ ] Première passe de relecture sur l'ensemble du contenu
-- [ ] Fusionner les Historiques et les Traits et Désirs
+- [x] Refonte du système de résolution : suppression de l'addition, comptage de succès sur les d6 (harnais de calibrage dans `tools/probabilites.py`)
+- [x] Fusionner les Historiques et les Traits et Désirs
+- [x] Découper le livre en trois : Livre des Règles, Livre du héros, Livre du MJ
+- [ ] **Playtest de la refonte** : une séance à niveau 1 et une à niveau 5 — temps de résolution d'un jet, PB réellement accumulés, puis repasser *Règles générales* et *Historiques* en `status: stable`
+- [ ] Assumer le cadre **fantasy médiévale** (le contenu l'est déjà : Peuples, bestiaire, équipement, métiers) et ajouter un chapitre « Adapter Palantír à votre univers » distinguant ce qui tient au décor de ce qui est universel
 - [ ] Ajouter un système de Blessure permanente (échec critique sur jet CON) avec une table aléatoire dédiée (perd 1 point d'attribut ? ou gagne un atout négatif pour que ce soit libre, plus narratif ?)
 - [ ] Vérification par Claude (orthographe, cohérence des règles et des termes comme "héros/personnages/PJ/joueurs", simulation de combats avec des héros et adversaires de différents niveau pour voir s'il faut ajuster les dégâts des adversaires)
 - [ ] Compléter le glossaire et le mettre dans une modal ou en draw qui s'ouvre depuis un bouton sur la sidebar de droite jsp, avec tous les termes spécifiques par exemple "convalescence" (dans les blessures) et ajouter un lien vers les pages concernées
@@ -27,7 +31,8 @@ Roadmap vivante du projet. Mise à jour au fil des versions.
 - [ ] Compléter **Mésaventures** : tables inspirées de Knave/Shadowdark
 - [ ] Compléter **Bestiaire** : étendre à 20–30 créatures
 - [ ] Compléter **Sortilèges** : système de magie freeform
-- [ ] Rendre le site responsive pour mobile
+- [x] Rendre le site responsive pour mobile
+- [ ] Réutiliser les **portées de métier** pour les PNJ : un PNJ se résume à son métier (avantage borné) + son équipement, sans avoir à lui écrire des statistiques
 
 ## v1.x — Améliorations diverses
 

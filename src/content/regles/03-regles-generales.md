@@ -1,7 +1,7 @@
 ---
 title: Règles générales
 description: Tours, points d'action, dés d'usage, distances et jets d'attributs.
-order: 10
+order: 3
 status: wip
 ---
 
@@ -57,9 +57,11 @@ L'_avantage_ est environ **deux fois plus puissant** qu'un dé supplémentaire, 
 
 ### Accumuler de la bravoure
 
-Chaque 6 obtenu sur vos _dés de bravoure_ inspire vos compagnons et vous permet de donner 1 _point de Bravoure_ ou **PB** à l'un d'entre eux. Ceux-ci sont cumulables.
+Un jet dont les _dés de bravoure_ montrent **au moins un 6** inspire vos compagnons : vous donnez **1 _point de Bravoure_** ou **PB** à l'un d'entre eux. Peu importe le nombre de 6 — **un jet n'inspire qu'une fois**, il n'y a jamais rien à compter.
 
 Un 6 fait donc les deux à la fois : il **sauve votre jet** et il **inspire un compagnon**.
+
+Votre réserve est plafonnée à **`5 + votre niveau`** — de 6 PB au niveau 1 à 11 au niveau 6. Au-delà, donnez le surplus à un compagnon ou perdez-le : la _Bravoure_ circule, elle ne se thésaurise pas.
 
 La _Bravoure_ est dépensée pour _Forcer le destin_ et pour utiliser certains _atouts_. Si elle tombe à zéro, votre héros est _Pessimiste_.
 

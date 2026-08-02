@@ -17,6 +17,11 @@ const regles = defineCollection({
   schema: docSchema,
 });
 
+const heros = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/heros', generateId: cleanId }),
+  schema: docSchema,
+});
+
 const conseilsMj = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/conseils-mj', generateId: cleanId }),
   schema: docSchema,
@@ -32,4 +37,4 @@ const ressources = defineCollection({
   schema: docSchema,
 });
 
-export const collections = { regles, 'conseils-mj': conseilsMj, extensions, ressources };
+export const collections = { regles, heros, 'conseils-mj': conseilsMj, extensions, ressources };

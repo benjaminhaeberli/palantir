@@ -775,6 +775,11 @@ img { max-width: 100%; height: auto; }
 .rollable-table__desc {
   color: var(--color-muted);
 }
+/* Portée de l'avantage : en noir, c'est la partie mécanique de l'entrée. */
+.rollable-table__adv {
+  color: var(--color-ink);
+  font-style: italic;
+}
 .rollable-table__range {
   display: inline-block;
   min-width: 2.6em;

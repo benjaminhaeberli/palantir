@@ -1,0 +1,61 @@
+---
+title: Historiques
+description: Métier, domaine de connaissance, caractère, désirs et but narratif — qui est votre héros au-delà des chiffres.
+order: 4
+status: wip
+---
+
+import RollableTable from "../../components/RollableTable.astro";
+
+Les _Attributs_ disent ce que votre héros **sait faire**. Les _Historiques_ disent **qui il est** : d'où il vient, ce qui l'anime, et ce qu'il poursuit.
+
+## Le passé du héros
+
+Chaque héros choisit (ou tire au hasard) **deux _Historiques_**, dont **au plus un métier**. Chacun apporte des **contacts** et des **liens narratifs** à intégrer à la _session zéro_, et prend l'une des deux formes suivantes :
+
+| Forme                                                                  | Portée                                 | Bonus        |
+| ---------------------------------------------------------------------- | -------------------------------------- | ------------ |
+| **Métier** — _Forgeron, Herboriste, Contrebandier_                     | Étroite : le savoir-faire d'un artisan | **avantage** |
+| **Domaine de connaissance** — _Guérison, Navigation, Ruines anciennes_ | Large : tout un champ du savoir        | **+1d6**     |
+
+C'est le principe général du jeu appliqué à votre passé : **un dé couvre un geste, un avantage couvre un domaine** (voir _Règles générales → Difficulté_). Plus votre Historique est large, plus son bonus est modeste — et inversement.
+
+Vous prenez donc **un métier et un domaine**, ou **deux domaines**. Jamais deux métiers : l'_avantage_ est déjà la récompense la plus forte du jeu, et votre _Peuple_ comme vos _Atouts_ vous en accordent d'autres.
+
+**Chaque métier porte sa propre portée**, écrite dans la table : le _Pêcheur_ a l'avantage pour *pêcher, lire l'eau, réparer un filet* — pas pour autre chose. Il vous fournit en plus son **équipement de départ thématique**.
+
+> **Aucun métier ne donne l'avantage au combat.** C'est délibéré, et cela se lit dans les portées elles-mêmes : le _Chasseur_ piste le gibier et le dépèce, le _Soldat_ monte un camp et reconnaît une troupe, l'_Assassin_ approche sans bruit et prépare un poison. Des années de métier donnent de la maîtrise, pas un meilleur coup d'épée — la valeur au combat vient des _Attributs_ et des _Atouts_.
+
+> **Exemple** : Bran prend _Forgeron_ (avantage pour travailler le métal, juger une lame, tenir une forge) et le domaine _Savoir ancien_ (+1d6 pour déchiffrer une inscription, situer un peuple oublié, reconnaître une architecture). Le premier tranche rarement mais fort, le second sert souvent mais discrètement.
+
+<RollableTable data="careers" />
+
+<RollableTable data="backgrounds" />
+
+Vous pouvez piocher sur ces tables, en combiner, ou **inventer le vôtre** — c'est même recommandé pour coller à votre univers. Un Historique inventé annonce simplement sa forme et sa portée : un métier énonce les trois ou quatre gestes qu'il couvre, un domaine nomme son champ de savoir. Aucun des deux ne couvre le fait de se battre.
+
+## Le présent du héros
+
+Ce qui l'anime maintenant. Trois choses **purement narratives** : elles n'accordent aucun bonus mécanique, mais ce sont elles qui font vivre le personnage. _Caractère_, _Désirs_ et _But_ forment une identité stable mais pas figée : ils **peuvent évoluer en cours de campagne** lorsqu'un joueur souhaite ouvrir un nouvel arc pour son héros, à valider avec le MJ.
+
+### Caractère
+
+Sa manière d'être. Choisissez-en **deux** : **un qui le décrit** et **un qui ne lui correspond pas du tout**.
+
+Le second est le plus précieux. C'est lui qui produit les beaux moments, quand la situation pousse le héros vers ce qu'il rejette.
+
+<RollableTable data="personalities" />
+
+### Désirs
+
+Ce qui le meut, en profondeur et sur la durée. Choisissez **un _Désir_ qui l'anime** et **un _Désir_ qui lui est étranger**.
+
+<RollableTable data="desires" />
+
+### But narratif
+
+Ce qu'il poursuit **dans cette campagne-ci**. Contrairement au _Désir_, qui est un moteur permanent, le _But_ est un objectif concret, **public** — la table doit le connaître pour pouvoir l'enrichir — et il se **remplace** une fois atteint ou abandonné.
+
+> _Le Désir dit « la Vengeance le dévore ». Le But dit « retrouver l'homme qui a brûlé sa ferme ». Le premier survivra à la campagne, le second non._
+
+<RollableTable data="goals" />

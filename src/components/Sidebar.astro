@@ -3,8 +3,9 @@ import { getCollection } from 'astro:content';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const [regles, conseilsMj, extensions, ressources] = await Promise.all([
+const [regles, heros, conseilsMj, extensions, ressources] = await Promise.all([
   getCollection('regles'),
+  getCollection('heros'),
   getCollection('conseils-mj'),
   getCollection('extensions'),
   getCollection('ressources'),
@@ -14,7 +15,8 @@ const sortByOrder = (a: { data: { order: number } }, b: { data: { order: number 
   a.data.order - b.data.order;
 
 const groups = [
-  { title: 'Livre de base', collection: 'regles', items: regles.sort(sortByOrder) },
+  { title: 'Livre des Règles', collection: 'regles', items: regles.sort(sortByOrder) },
+  { title: 'Livre du héros', collection: 'heros', items: heros.sort(sortByOrder) },
   { title: 'Livre du MJ', collection: 'conseils-mj', items: conseilsMj.sort(sortByOrder) },
   { title: 'Extensions', collection: 'extensions', items: extensions.sort(sortByOrder) },
   { title: 'Ressources', collection: 'ressources', items: ressources.sort(sortByOrder) },

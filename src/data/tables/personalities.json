@@ -1,6 +1,7 @@
 {
-  "title": "Traits de personnalité",
-  "dieSize": 20,
+  "title": "Caractère",
+  "dieSize": 30,
+  "source": "Fusion des traits de personnalité et des Traits de la fiche de héros.",
   "entries": [
     { "name": "Stoïque", "description": "silence et fermeté" },
     { "name": "Sanguin", "description": "explosif, généreux" },
@@ -11,16 +12,26 @@
     { "name": "Hâbleur", "description": "exagère ses exploits" },
     { "name": "Discret", "description": "préfère l'ombre et le silence" },
     { "name": "Vif d'esprit", "description": "répliques rapides, jeux de mots" },
-    { "name": "Lent à la colère", "description": "patient mais terrible quand provoqué" },
+    { "name": "Lent à la colère", "description": "patient, mais terrible quand on le pousse" },
     { "name": "Curieux", "description": "fouille tout, pose des questions" },
     { "name": "Méfiant", "description": "suppose toujours le piège" },
     { "name": "Loyal", "description": "soutient ses amis sans condition" },
     { "name": "Pragmatique", "description": "résultats avant principes" },
     { "name": "Romantique", "description": "voit du sens partout" },
     { "name": "Superstitieux", "description": "touche du bois, croise les doigts" },
-    { "name": "Goguenard", "description": "moque les autorités" },
     { "name": "Sentimental", "description": "pleure pour un rien" },
-    { "name": "Réservé", "description": "n'aime pas se confier" },
-    { "name": "Bavard", "description": "parle pour combler les silences" }
+    { "name": "Bavard", "description": "parle pour combler les silences" },
+    { "name": "Courageux", "description": "avance quand les autres reculent" },
+    { "name": "Bienveillant", "description": "cherche le bon chez chacun" },
+    { "name": "Honnête", "description": "dit vrai même quand ça coûte" },
+    { "name": "Honorable", "description": "tient parole, refuse les coups bas" },
+    { "name": "Persévérant", "description": "recommence sans se plaindre" },
+    { "name": "Protecteur", "description": "se place devant les plus faibles" },
+    { "name": "Impulsif", "description": "agit d'abord, réfléchit ensuite" },
+    { "name": "Têtu", "description": "ne lâche jamais une idée" },
+    { "name": "Rusé", "description": "préfère le détour à la force" },
+    { "name": "Empathique", "description": "devine ce que l'autre ressent" },
+    { "name": "Téméraire", "description": "le danger l'attire" },
+    { "name": "Charismatique", "description": "on l'écoute sans savoir pourquoi" }
   ]
 }

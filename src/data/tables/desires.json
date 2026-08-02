@@ -1,0 +1,27 @@
+{
+  "title": "Désirs",
+  "dieSize": 20,
+  "source": "Le moteur profond du héros — à distinguer du But narratif, qui est l'objectif de la campagne.",
+  "entries": [
+    { "name": "Appartenance", "description": "être des leurs, enfin quelque part" },
+    { "name": "Gloire", "description": "que son nom traverse les âges" },
+    { "name": "Harmonie", "description": "que les choses tiennent ensemble" },
+    { "name": "Honneur", "description": "mériter le regard des siens" },
+    { "name": "Justice", "description": "que chacun ait son dû" },
+    { "name": "Savoir", "description": "comprendre, coûte que coûte" },
+    { "name": "Amour", "description": "aimer et être aimé en retour" },
+    { "name": "Pouvoir", "description": "ne plus jamais subir" },
+    { "name": "Frissons", "description": "sentir qu'on est vivant" },
+    { "name": "Richesse", "description": "l'abondance après le manque" },
+    { "name": "Sagesse", "description": "voir clair là où les autres s'agitent" },
+    { "name": "Liberté", "description": "ne rien devoir à personne" },
+    { "name": "Vengeance", "description": "une dette de sang à solder" },
+    { "name": "Héritage", "description": "laisser quelque chose derrière soi" },
+    { "name": "Aventure", "description": "l'horizon plutôt que le foyer" },
+    { "name": "Sécurité", "description": "que plus rien ne puisse arriver" },
+    { "name": "Contrôle", "description": "que rien n'échappe à sa main" },
+    { "name": "Foi", "description": "servir plus grand que soi" },
+    { "name": "Influence", "description": "peser sur le cours des choses" },
+    { "name": "Survie", "description": "tenir un jour de plus" }
+  ]
+}

@@ -1,21 +1,21 @@
 ---
 title: Héros
 description: Création de personnage, expérience et progression sur 6 niveaux.
-order: 4
+order: 2
 status: wip
 ---
 
 ## Création de personnage
 
 1. Choisir son _Peuple_
-2. Choisir deux _Historiques_
-3. Choisir ses _Traits_ et _Désirs_ — un de chaque qui lui correspond, un de chaque qui lui est étranger (voir _Caractéristiques → Traits & Désirs_).
+2. Choisir deux _Historiques_ — **un métier** (_avantage_) et **un domaine de connaissance** (+1d6), ou **deux domaines**. Jamais deux métiers, et aucun des deux ne joue en combat.
+3. Choisir son _Caractère_, ses _Désirs_ et son _But narratif_ — un de chaque qui lui correspond, un de chaque qui lui est étranger (voir _Historiques → Le présent du héros_).
 4. Répartir 6 points parmi les cinq _attributs_. Maximum 2 par attribut. La valeur d'un attribut est le nombre de _dés de bravoure_ qu'il fait lancer.
 5. Noter son _Endurance_ : `10 + (3 × CON)`
 6. Noter sa _capacité de charge_ : `10 + (2 × CON)`
-7. Noter sa _Bravoure_ de départ à 1.
+7. Noter sa _Bravoure_ de départ à 1, et son plafond : `5 + niveau`.
 8. Choisir **2 _Atouts_** dans la liste générale.
-9. Définir son arc narratif et préciser ses liens avec les autres personnages.
+9. Préciser ses liens avec les autres personnages.
 10. Choisir son _Équipement_.
 
 ## Expérience

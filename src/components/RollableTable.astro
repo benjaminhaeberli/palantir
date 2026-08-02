@@ -19,6 +19,7 @@ interface Entry {
   name: string;
   items?: string[];
   description?: string;
+  advantage?: string; // portée de l'avantage accordé (métiers)
   roll?: string; // "1", "2-3", "6-11"…
 }
 
@@ -93,7 +94,9 @@ const tableId = data;
       {json.entries.map((entry, i) => (
         <li data-roll-index={i} data-roll-range={entry.roll ?? ''}>
           {entry.roll && (<><span class="rollable-table__range">{entry.roll}</span> · </>)}
-          <strong>{entry.name}</strong>{entry.items && entry.items.length > 0 && (
+          <strong>{entry.name}</strong>{entry.advantage && (
+            <> — <span class="rollable-table__adv">avantage : {entry.advantage}</span></>
+          )}{entry.items && entry.items.length > 0 && (
             <> — <span class="rollable-table__items">{entry.items.join(', ')}</span></>
           )}{entry.description && <> — <span class="rollable-table__desc">{entry.description}</span></>}
         </li>
