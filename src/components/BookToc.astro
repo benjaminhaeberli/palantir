@@ -109,10 +109,15 @@ const items = chapters.map(c => ({
       });
 
       // Auto-scroll the TOC column to keep the active link visible.
-      const aRect = active.link.getBoundingClientRect();
-      const tRect = toc.getBoundingClientRect();
-      if (aRect.top < tRect.top + 20 || aRect.bottom > tRect.bottom - 20) {
-        active.link.scrollIntoView({ block: 'nearest' });
+      // Garde-fou : si la colonne TOC est masquée (< 1100 px) ou hors écran,
+      // scrollIntoView() remonte jusqu'au document et déplace la page entière —
+      // ce qui collait le lecteur en bas de page à chaque scroll.
+      if (toc.offsetParent !== null) {
+        const aRect = active.link.getBoundingClientRect();
+        const tRect = toc.getBoundingClientRect();
+        if (aRect.top < tRect.top + 20 || aRect.bottom > tRect.bottom - 20) {
+          active.link.scrollIntoView({ block: 'nearest' });
+        }
       }
 
       lastActiveId = activeId;

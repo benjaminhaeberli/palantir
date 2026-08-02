@@ -253,13 +253,23 @@ img { max-width: 100%; height: auto; }
 }
 
 @media (max-width: 1100px) {
-  .app { grid-template-columns: var(--sidebar-w) 1fr; }
-  .app__toc { display: none; }
+  /* Two columns only: sidebar + contenu. `.app--book` doit être répété partout
+     ici, sinon les règles plus spécifiques du mode livre (.app--book .app__toc,
+     display: flex) l'emportent : la colonne disparaît de la grille mais l'aside
+     reste affiché et retombe dans une ligne implicite SOUS le contenu, ce qui
+     ajoutait une zone vide d'une hauteur de viewport en bas de page. */
+  .app,
+  .app--book { grid-template-columns: var(--sidebar-w) minmax(0, 1fr); }
+  .app__toc,
+  .app--book .app__toc { display: none; }
+  /* Plus de colonne TOC → plus de filet vertical à droite. */
+  .app--book::after { display: none; }
 }
 
 @media (max-width: 760px) {
+  .app,
+  .app--book { grid-template-columns: minmax(0, 1fr); }
   .app {
-    grid-template-columns: 1fr;
     padding: var(--space-4);
   }
   .app__sidebar {
