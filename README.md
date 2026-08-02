@@ -2,7 +2,7 @@
 
 > Héroïsme et bravoure, armés de 1d12 face au destin.
 
-**Palantír RPG** est un système de jeu de rôle OSR générique, francophone et open source. Minimaliste et modulable : 5 attributs, une mécanique centrale (1d12 + dés de bravoure), pas de classes. Conçu pour être joué en quelques minutes d'explication et adapté à n'importe quel univers médiéval-fantastique.
+**Palantír RPG** est un jeu de rôle OSR de fantasy médiévale, francophone et open source. Minimaliste : 5 attributs, une mécanique centrale (1d12 + dés de bravoure, jamais d'addition), pas de classes. Conçu pour être expliqué en quelques minutes — et pour être adapté : le contenu est médiéval, le moteur ne l'est pas.
 
 - **Site officiel** : [palantir-rpg.com](https://palantir-rpg.com) — les règles complètes, lisibles en ligne
 - **Licence** : [CC BY 4.0](LICENSE.md) — libre d'utilisation, y compris commerciale, avec attribution

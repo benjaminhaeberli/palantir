@@ -7,7 +7,7 @@ status: wip
 
 Inspirations : attitudes en combat (*Shadowdark*), statistiques à la volée (*Black Sword Hack*).
 
-Point d'action : **2 par défaut**, plus si besoin pour des créatures très puissantes.
+**1 attaque = 1 PA.** Une créature dépense ses **points d'action** exactement comme un héros : un bandit en a 1, un ours 2, un dragon 3. Elle peut aussi les employer autrement — saisir, fuir, hurler un ordre. Comme les héros, elle franchit **une catégorie de distance gratuitement** à chaque tour, et paie 1 _PA_ par catégorie supplémentaire.
 
 ## Attaque
 
@@ -30,6 +30,8 @@ Une créature meurt quand son *Endurance* tombe à **0**, ou quand elle accumule
 | 5 | 25 | 8 |
 | 6 | 30 | 9 |
 
+Le **niveau** dit ce qu'une créature encaisse et ce qu'elle inflige. Ses **PA** se choisissent à part, selon sa façon de se battre : **1** pour une créature ordinaire, **2** pour une rapide ou une féroce, **3** pour une colossale. Les deux réglages sont indépendants — un gobelin de niveau 1 à 2 PA harcèle sans encaisser, un troll de niveau 5 à 2 PA fait les deux.
+
 ### Adversaires en armure
 
 Pour éviter les complications inutiles, il suffit d'ajouter quelques points d'*Endurance* : 2 (armure légère), 3 (armure moyenne) ou 4 (armure complète ou équivalente).
@@ -47,47 +49,47 @@ Une *vulnérabilité* signifie que la créature subit le **double** des dégâts
 ---
 
 **Bandit** — Niveau 1
-Endurance 5 | 1 attaque | Dégâts 4
+Endurance 5 | 1 PA | Dégâts 4
 *Lâche* — fuit ou négocie sa reddition dès qu'il tombe sous 3 END.
 
 ---
 
 **Gobelin** — Niveau 1
-Endurance 5 | 2 attaques | Dégâts 4
+Endurance 5 | 2 PA | Dégâts 4
 *Sournois* — avantage sur ses attaques tant qu'un allié est adjacent à sa cible.
 
 ---
 
 **Loup** — Niveau 2
-Endurance 10 | 1 attaque | Dégâts 5
+Endurance 10 | 1 PA | Dégâts 5
 *Meute* — avantage sur ses attaques si au moins un autre loup est engagé dans le même combat.
 
 ---
 
 **Soldat** — Niveau 3
-Endurance 15 (+2 armure légère) | 1 attaque | Dégâts 6
+Endurance 15 (+2 armure légère) | 1 PA | Dégâts 6
 *Discipliné* — ne fuit jamais tant que son chef est en vie.
 
 ---
 
 **Ours** — Niveau 4
-Endurance 20 | 2 attaques | Dégâts 7
-*Furie* — si son Endurance tombe sous la moitié, il gagne une 3e attaque ce tour et les suivants.
+Endurance 20 | 2 PA | Dégâts 7
+*Furie* — si son Endurance tombe sous la moitié, il gagne un 3e PA ce tour et les suivants.
 
 ---
 
 **Troll des marais** — Niveau 5
-Endurance 25 | 2 attaques | Dégâts 8
+Endurance 25 | 2 PA | Dégâts 8
 *Régénération* — récupère 3 END au début de chaque tour. La régénération est annulée ce tour si la créature a subi des dégâts de feu ou d'acide.
 
 ---
 
 **Chevalier Maudit** — Niveau 5
-Endurance 25 (+4 armure lourde) | 2 attaques | Dégâts 8
+Endurance 25 (+4 armure lourde) | 2 PA | Dégâts 8
 *Implacable* — ignore l'état *Épuisé* et ne fuit jamais, quelles que soient les pertes.
 
 ---
 
 **Dragon** — Niveau 6
-Endurance 30 | 3 attaques | Dégâts 9
+Endurance 30 | 3 PA | Dégâts 9
 *Résistant au feu.* *Souffle de feu* — au lieu d'attaquer normalement, le dragon peut déclencher une zone de feu (distance Proche) : chaque héros présent fait un jet de DEX ou subit 3d6 dégâts. Utilisable 1×/combat.

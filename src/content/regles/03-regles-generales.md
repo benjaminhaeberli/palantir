@@ -7,11 +7,13 @@ status: wip
 
 ## Tours
 
-Un **tour** correspond à une séquence de jeu durant laquelle un _héros_ peut effectuer l'équivalent de deux _Points d'action (PA)_. En temps de jeu, un tour peut représenter quelques secondes (_en combat ou course-poursuite_) comme quelques heures (_exploration d'une ville_), au choix du MJ.
+Un **tour** correspond à une séquence de jeu durant laquelle chaque protagoniste agit une fois. En temps de jeu, un tour peut représenter quelques secondes (_en combat ou course-poursuite_) comme quelques heures (_exploration d'une ville_), au choix du MJ.
 
 ### Points d'action (PA)
 
-Les héros et leurs adversaires disposent d'un nombre de _points d'action_ limité par _tour_, qui peut augmenter avec _l'Expérience_, mais aussi grâce à certains artefacts ou sortilèges.
+Chaque action coûte un **point d'action**. Un héros en dispose d'un nombre limité par _tour_ : **1 au premier niveau**, jusqu'à 4 au sixième (voir _Héros → Tableau de progression_). Certains artefacts et sortilèges peuvent en accorder davantage.
+
+Une créature dispose d'autant de _PA_ que son nombre d'attaques (voir _Bestiaire_).
 
 ## Distances
 
@@ -19,8 +21,16 @@ Que ce soit pour arbitrer un combat, une course-poursuite ou déclencher des pi�
 
 - **Contact** — moins de 2 m — 1 case
 - **Proche** — jusqu'à 10 m — 5 cases
-- **Distant** — jusqu'à 20 m — 20 cases
+- **Distant** — jusqu'à 20 m — 10 cases
 - **Lointain** — plus de 20 m
+
+### Se déplacer
+
+Passer d'une catégorie de distance à la suivante — _Lointain → Distant → Proche → Contact_, ou l'inverse — est **gratuit une fois par tour**. Chaque catégorie franchie au-delà coûte **1 PA**.
+
+Se repositionner à l'intérieur d'une même catégorie ne coûte rien et ne demande aucun décompte : tant qu'on reste à portée, on bouge librement.
+
+> **Exemple** : un héros à distance _Distante_ d'un archer peut le rejoindre au _Contact_ en deux catégories — la première est gratuite, la seconde lui coûte 1 PA. Un héros de niveau 1 y laisse donc tout son tour, là où un vétéran à 3 PA peut charger et frapper deux fois.
 
 ## Système de résolution
 
@@ -57,11 +67,13 @@ L'_avantage_ est environ **deux fois plus puissant** qu'un dé supplémentaire, 
 
 ### Accumuler de la bravoure
 
-Un jet dont les _dés de bravoure_ montrent **au moins un 6** inspire vos compagnons : vous donnez **1 _point de Bravoure_** ou **PB** à l'un d'entre eux. Peu importe le nombre de 6 — **un jet n'inspire qu'une fois**, il n'y a jamais rien à compter.
+Un jet dont les _dés de bravoure_ montrent **au moins un 6** vous galvanise : vous gagnez **1 _point de Bravoure_** ou **PB**. Peu importe le nombre de 6 — **un jet n'en rapporte qu'un seul**, il n'y a jamais rien à compter.
 
-Un 6 fait donc les deux à la fois : il **sauve votre jet** et il **inspire un compagnon**.
+Un 6 fait donc les deux à la fois : il **sauve votre jet** et il **nourrit votre Bravoure**.
 
-Votre réserve est plafonnée à **`5 + votre niveau`** — de 6 PB au niveau 1 à 11 au niveau 6. Au-delà, donnez le surplus à un compagnon ou perdez-le : la _Bravoure_ circule, elle ne se thésaurise pas.
+Votre réserve est plafonnée à **`5 + votre niveau`** — de 6 PB au niveau 1 à 11 au niveau 6. Au-delà, le surplus est perdu : la _Bravoure_ se dépense, elle ne se thésaurise pas.
+
+**Entraîner un compagnon** — dépensez **2 PB** pour en donner **1** à un allié qui vous voit agir. Le courage se transmet, mais il se perd un peu en chemin.
 
 La _Bravoure_ est dépensée pour _Forcer le destin_ et pour utiliser certains _atouts_. Si elle tombe à zéro, votre héros est _Pessimiste_.
 

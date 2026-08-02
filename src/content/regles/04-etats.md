@@ -13,7 +13,7 @@ status: stable
 - **Épuisé** : Si votre *Charge* dépasse votre *capacité de charge*, ou si vous n'avez pas effectué de *Repos long* depuis plus d'un jour.
 - **Affamé** : Si vous ne consommez pas de ration de la journée. Mangez une ration pour annuler cet état.
 - **Empoisonné** : Si du poison atteint votre corps (*arme enduite, dard d'araignée, ingurgitation, etc.*).
-- **Pessimiste** : Si votre *Bravoure* est réduite à zéro.
+- **Pessimiste** : Tant que votre *Bravoure* est à zéro. L'état se lève de lui-même dès que vous regagnez 1 *PB* — et comme le *désavantage* ne frappe que le *dé du destin*, jamais vos *dés de bravoure*, rien ne vous empêche de remonter la pente.
 
 ## Inconscience
 

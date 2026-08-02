@@ -17,6 +17,7 @@ Toutes les actions communes coûtent 1 _PA_ et peuvent être effectuées plusieu
 
 - Attaque de mêlée (_jet de FOR_)
 - Attaque à distance (_jet de DEX_)
+- Se déplacer d'une catégorie de distance supplémentaire (_la première est gratuite chaque tour, voir Règles générales → Se déplacer_)
 - Autres actions (_jet déterminé par le MJ, facultatif_)
 
 > **Exemples** : Pousser un ennemi (_jet de FOR_), Maintenir/immobiliser (_jet de FOR_), Intimider (_jet de CHA_), Ouvrir/fermer une porte (_jet facultatif_), Se relever (_jet facultatif_)

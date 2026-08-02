@@ -1,11 +1,13 @@
 ---
 title: Introduction
-description: Un système OSR modulable, pensé pour être adopté et adapté.
+description: Un jeu de rôle OSR de fantasy médiévale, au moteur pensé pour être adapté.
 order: 1
 status: stable
 ---
 
-*Palantír RPG* est un *jeu de rôle OSR* générique et intuitif, qui n'a pas pour vocation de vous présenter un univers, mais un système modulable et simple à prendre en main, autant pour le MJ que les joueur·euse·s.
+*Palantír RPG* est un *jeu de rôle OSR* de **fantasy médiévale**, intuitif et simple à prendre en main, autant pour le MJ que les joueur·euse·s.
+
+Il ne vous présente pas un univers, mais tout ce qu'il faut pour en jouer un : des peuples, des métiers, un bestiaire et un équipement de fantasy classique, prêts à être posés sur la table. **Le moteur, lui, n'a rien de médiéval** — il ne connaît ni magie ni épées, seulement des attributs, du courage et un dé qui tranche. Changez le contenu des tables et il tient debout dans n'importe quel monde (voir _Ressources → Adapter à votre univers_).
 
 Les personnages sont définis par 5 *Attributs*, 4 *Essences* et 6 *États*. Un état invisible n'est pas nécessaire : utilisez votre bon sens, discutez autour de la table et — si cela s'avère nécessaire — rédigez votre propre règle maison.
 

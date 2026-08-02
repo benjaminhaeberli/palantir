@@ -23,6 +23,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Récupère les tags : la version affichée sur le site est lue au build
+          # via `git describe` (voir src/lib/version.ts). Sans ceci, le clone est
+          # superficiel et sans tags, et la prod retomberait sur le repli.
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

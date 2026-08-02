@@ -15,15 +15,17 @@ import { getCollection } from 'astro:content';
 const sortByOrder = (a: { data: { order: number } }, b: { data: { order: number } }) =>
   a.data.order - b.data.order;
 
-const [regles, conseilsMj, extensions, ressources] = await Promise.all([
+const [regles, heros, conseilsMj, extensions, ressources] = await Promise.all([
   getCollection('regles'),
+  getCollection('heros'),
   getCollection('conseils-mj'),
   getCollection('extensions'),
   getCollection('ressources'),
 ]);
 
 const parts = [
-  { groupTitle: 'Livre de base', entries: regles.sort(sortByOrder) },
+  { groupTitle: 'Livre des Règles', entries: regles.sort(sortByOrder) },
+  { groupTitle: 'Livre du héros', entries: heros.sort(sortByOrder) },
   { groupTitle: 'Livre du MJ', entries: conseilsMj.sort(sortByOrder) },
   { groupTitle: 'Extensions officielles', entries: extensions.sort(sortByOrder) },
   { groupTitle: 'Ressources & outils', entries: ressources.sort(sortByOrder) },

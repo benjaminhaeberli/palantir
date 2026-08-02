@@ -340,6 +340,21 @@ img { max-width: 100%; height: auto; }
 }
 .site-header__nav a:hover { color: var(--color-ink); }
 
+/* Groupe gauche : marque + version, lue depuis le dernier tag git au build. */
+.site-header__left {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.site-header__version {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
 /* Groupe droit de la top bar : liens externes + bouton Menu. */
 .site-header__right {
   display: flex;
@@ -536,6 +551,20 @@ img { max-width: 100%; height: auto; }
   color: var(--color-muted);
   margin-bottom: var(--space-6);
 }
+/* Illustration d'ouverture — seule entorse assumée au monochrome (voir CLAUDE.md). */
+.hero__artwork {
+  margin: 0 auto var(--space-8);
+  /* L'illustration est en portrait (2:3) : au-delà de ~420 px de large elle
+     repousse l'accroche et les boutons hors de l'écran au chargement. */
+  max-width: 420px;
+}
+.hero__artwork img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border-strong);
+}
+
 .hero__lead {
   max-width: 540px;
   margin: 0 auto var(--space-8);
@@ -551,9 +580,10 @@ img { max-width: 100%; height: auto; }
 /* Colophon — crédits & remerciements en fin de page (logique « fin de livre »). */
 .colophon {
   max-width: 760px;
-  margin: var(--space-12) 0;
+  margin: var(--space-12) auto;
   padding-top: var(--space-8);
   border-top: 2px solid var(--color-border-strong);
+  text-align: center;
 }
 .colophon__version {
   font-family: var(--font-heading);
@@ -590,7 +620,7 @@ img { max-width: 100%; height: auto; }
 }
 .colophon__thanks p {
   max-width: 540px;
-  margin: 0 0 var(--space-3);
+  margin: 0 auto var(--space-3);
   font-style: italic;
   color: var(--color-muted);
 }
@@ -1183,10 +1213,14 @@ img { max-width: 100%; height: auto; }
 }
 .copy-tools__fmt-icon--json {
   font-family: var(--font-mono, ui-monospace, monospace);
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   font-weight: 700;
   width: 20px;
   text-align: center;
+  /* Sans ceci, « { } » déborde du gabarit de 20 px et se coupe sur l'espace,
+     empilant les accolades sur deux lignes. */
+  white-space: nowrap;
+  letter-spacing: -0.06em;
 }
 .copy-tools__fmt {
   flex: 0 0 auto;

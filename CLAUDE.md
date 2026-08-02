@@ -14,7 +14,8 @@ Site statique **Astro** publiant les règles d'un JdR OSR francophone. Tout le c
 3. **Ne casse pas les `order` du frontmatter.** Ils déterminent l'ordre dans la sidebar. Si tu insères un chapitre au milieu, renumérote la suite.
 4. **Ne renomme pas un fichier `.md` sans raison.** Le slug devient l'URL publique.
 5. **Tu peux ajouter des composants MDX** (`src/components/`) si une règle gagne à être stylisée (dé, encadré, table interactive), mais reste sobre.
-6. **Charte visuelle strictement monochrome.** Uniquement noir, blanc et nuances de gris. **Pas de couleurs chaudes** (parchemin, crème, beige) ni d'accent coloré (rouge, vert, bleu). Les variables CSS de référence sont `--color-bg` (blanc), `--color-ink` (noir), `--color-muted` / `--color-border` (gris), `--color-subtle` (gris très clair pour secondary panels). Le contraste sémantique (réussite/échec) passe par le **typographique** (gras, soulignement, texte barré) plutôt que par la couleur.
+6. **Interface strictement monochrome.** Uniquement noir, blanc et nuances de gris. **Pas de couleurs chaudes** (parchemin, crème, beige) ni d'accent coloré (rouge, vert, bleu). Les variables CSS de référence sont `--color-bg` (blanc), `--color-ink` (noir), `--color-muted` / `--color-border` (gris), `--color-subtle` (gris très clair pour secondary panels). Le contraste sémantique (réussite/échec) passe par le **typographique** (gras, soulignement, texte barré) plutôt que par la couleur.
+   **Exception : les illustrations.** Elles peuvent être en couleur — c'est même ce qui leur donne leur impact, l'interface monochrome leur servant d'écrin. La règle ci-dessus vaut pour tout le reste : fonds, bordures, boutons, badges, tableaux.
 
 ## Frontmatter obligatoire
 

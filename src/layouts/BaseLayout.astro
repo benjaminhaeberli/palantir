@@ -4,6 +4,7 @@ import MusicPlayer from '../components/MusicPlayer.astro';
 import ViewCounter from '../components/ViewCounter.astro';
 import CopyTools from '../components/CopyTools.astro';
 import MobileMenu from '../components/MobileMenu.astro';
+import { version } from '../lib/version';
 
 interface Props {
   title: string;
@@ -29,9 +30,12 @@ const fullTitle = title === 'Palantír RPG' ? title : `${title} — Palantír RP
   <body>
     <header class="site-header">
       <div class="site-header__inner">
-        <a class="site-header__brand" href={`${base}/`}>
-          Palantír<span>·</span>RPG
-        </a>
+        <div class="site-header__left">
+          <a class="site-header__brand" href={`${base}/`}>
+            Palantír<span>·</span>RPG
+          </a>
+          <span class="site-header__version" title="Version publiée des règles">{version}</span>
+        </div>
         <div class="site-header__right">
           <nav class="site-header__nav" aria-label="Liens externes">
             <a href={`${base}#introduction`}>Le jeu</a>
@@ -54,7 +58,7 @@ const fullTitle = title === 'Palantír RPG' ? title : `${title} — Palantír RP
 
     <footer class="site-footer">
       <p>
-        <a href={`${base}/`}>Palantír RPG</a> © 2025 Benjamin Haeberli —
+        <a href={`${base}/`}>Palantír RPG</a> © {new Date().getFullYear()} Benjamin Haeberli —
         <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener license">CC BY 4.0</a>
       </p>
     </footer>

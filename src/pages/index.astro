@@ -1,10 +1,16 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Sidebar from '../components/Sidebar.astro';
 import BookToc from '../components/BookToc.astro';
+import artwork from '../assets/palantir-artwork.jpg';
+import { version } from '../lib/version';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Résolue au build : l'année se met à jour à chaque déploiement.
+const year = new Date().getFullYear();
 
 const sortByOrder = (a: { data: { order: number } }, b: { data: { order: number } }) =>
   a.data.order - b.data.order;
@@ -57,8 +63,18 @@ const tocChapters = renderedSections.flatMap(s =>
       <section id="accueil" class="hero hero--compact">
         <h1>Palantír RPG</h1>
         <p class="tagline">Héroïsme et bravoure, armés de 1d12 face au destin.</p>
+        <figure class="hero__artwork">
+          <Image
+            src={artwork}
+            alt="Trois chevaliers, l'épée levée au milieu des flammes, font face à un dragon noir surgissant de la fumée."
+            widths={[420, 640, 840]}
+            sizes="(max-width: 760px) 100vw, 420px"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </figure>
         <p class="hero__lead">
-          Un jeu de rôle OSR générique, modulable et simple à prendre en main.
+          Un jeu de rôle OSR de fantasy médiévale, simple à prendre en main et fait pour être adapté.
           Toutes les règles tiennent sur cette page — faites défiler ou utilisez la navigation.
         </p>
         <div class="hero__cta">
@@ -105,8 +121,8 @@ const tocChapters = renderedSections.flatMap(s =>
 
       <section id="credits" class="colophon" data-chapter-id="credits">
         <div class="colophon__credits">
-          <p class="colophon__version">v1.0.0-alpha</p>
-          <p class="colophon__title">Palantír RPG © Benjamin Haeberli, 2025</p>
+          <p class="colophon__version">{version}</p>
+          <p class="colophon__title">Palantír RPG © Benjamin Haeberli, {year}</p>
           <dl class="colophon__roles">
             <div>
               <dt>Écrit par</dt>
@@ -114,7 +130,7 @@ const tocChapters = renderedSections.flatMap(s =>
             </div>
             <div>
               <dt>Illustrations</dt>
-              <dd>XXX</dd>
+              <dd>Benjamin Haeberli — génération IA, retouche et traitement</dd>
             </div>
             <div>
               <dt>Site internet &amp; mise en page</dt>
@@ -122,7 +138,7 @@ const tocChapters = renderedSections.flatMap(s =>
             </div>
             <div>
               <dt>Relectures et corrections</dt>
-              <dd>XXX</dd>
+              <dd>Darius Défago, Francis Pannatier</dd>
             </div>
           </dl>
         </div>

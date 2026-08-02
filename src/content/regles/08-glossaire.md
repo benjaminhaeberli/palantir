@@ -15,7 +15,7 @@ status: stable
 
 **Dé du destin** : le d12, parfois jeté à double. Il fait réussir le jet sur ses trois faces les plus hautes.
 
-**Dé de bravoure** : les d6, selon votre niveau d'attribut. Chaque 6 sauve le jet et donne 1 *PB* à un compagnon.
+**Dé de bravoure** : les d6, autant que votre niveau d'attribut. Un 6 sauve le jet et rapporte 1 *PB* — un jet n'en rapporte jamais plus d'un, quel que soit le nombre de 6.
 
 **Dé d'usage (Δ)** : représente une ressource limitée, se rétrograde sur un 1-2.
 
@@ -29,7 +29,7 @@ status: stable
 
 **Point d'action (PA)** : détermine le coût d'une action.
 
-**Point de bravoure (PB)** : représente la *Bravoure* de votre héros.
+**Point de bravoure (PB)** : représente la *Bravoure* de votre héros. Réserve plafonnée à `5 + niveau` ; en dépenser 2 permet d'en donner 1 à un compagnon.
 
 **Point d'expérience** : ressource qui s'accumule à chaque *échec critique*.
 
