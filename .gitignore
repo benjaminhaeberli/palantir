@@ -19,6 +19,9 @@ pnpm-debug.log*
 # macOS
 .DS_Store
 
+# outils python
+__pycache__/
+
 # editor
 .vscode/*
 !.vscode/extensions.json

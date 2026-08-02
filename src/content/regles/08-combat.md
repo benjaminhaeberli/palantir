@@ -44,7 +44,7 @@ L'armure d'un héros est déterminée par son _Équipement_ et permet de réduir
 
 ## Dégâts
 
-Toutes les armes infligent **1d6 dégâts**. Une attaque à main nue cause 1d4.
+Les armes infligent **1d6 dégâts**, à l'exception des armes de **mêlée à deux mains** qui infligent **1d6+2**. Une attaque à main nue cause 1d4. Voir _Équipement → Armes_.
 
 ### Coup critique
 
@@ -53,6 +53,8 @@ Une **réussite critique** lors d'une attaque inflige les dégâts maximum de vo
 ### Attaque puissante
 
 Avant de lancer vos dégâts, vous pouvez déclarer une **attaque puissante** : vous **doublez les dés de dégâts**, mais votre **arme se brise** une fois les dégâts infligés. Inutilisable à main nue.
+
+> Seuls les **dés** doublent, pas les bonus fixes : un espadon inflige donc `2d6+2`.
 
 ### Dommages continus
 

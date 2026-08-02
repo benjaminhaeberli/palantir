@@ -15,9 +15,11 @@ Les héros sont définis par cinq _Attributs_.
 - **Esprit (ESP)** : Mémoriser, déchiffrer des runes, déceler les intentions, etc.
 - **Charisme (CHA)** : Convaincre les autres, inspirer confiance, etc.
 
-Ensuite, il faut définir le **seuil de réussite (SR)** de chaque attribut. Celui-ci est égal à `10 + (2 × attribut)`.
+La valeur d'un _attribut_ donne le nombre de **dés de bravoure** que vous lancez lorsque vous faites appel à lui (voir _Règles générales → Système de résolution_).
 
-> _Par exemple : pour une Force de 2, votre SR est de 14._
+Un seul chiffre se calcule : votre **capacité de charge**, égale à `10 + (2 × CON)`. C'est le nombre d'emplacements d'équipement que vous pouvez porter sans vous épuiser (voir _Équipement → Charge_).
+
+> _Par exemple : pour une Constitution de 2, votre capacité de charge est de 14._
 
 ## Essences
 

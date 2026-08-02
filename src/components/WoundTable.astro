@@ -73,7 +73,7 @@ const rows: Row[] = [
       <input type="number" min="0" max="6" value="2" data-wt-con />
     </label>
     <span class="wound-table__sr">
-      SR du jet de blessure : <strong data-wt-sr>14</strong>
+      Jet de blessure : <strong data-wt-pool>1d12 + 2d6</strong>
     </span>
     <span class="wound-table__hint">
       Cliquez une situation pour faire le jet de blessure, ou les dégâts pour les lancer.
@@ -166,13 +166,16 @@ const rows: Row[] = [
   const setupWoundTables = () => {
     document.querySelectorAll<HTMLElement>('[data-wound-table]').forEach(table => {
       const conInput = table.querySelector<HTMLInputElement>('[data-wt-con]')!;
-      const srEl = table.querySelector<HTMLElement>('[data-wt-sr]')!;
+      const poolEl = table.querySelector<HTMLElement>('[data-wt-pool]')!;
       const resultEl = table.querySelector<HTMLElement>('[data-wt-result]')!;
 
       const getCon = () => Math.max(0, Math.min(6, parseInt(conInput.value, 10) || 0));
-      const updateSR = () => { srEl.textContent = String(10 + 2 * getCon()); };
-      conInput.addEventListener('input', updateSR);
-      updateSR();
+      const updatePool = () => {
+        const con = getCon();
+        poolEl.textContent = con > 0 ? `1d12 + ${con}d6` : '1d12 seul';
+      };
+      conInput.addEventListener('input', updatePool);
+      updatePool();
 
       const showResult = (html: string, status: 'success' | 'fail' | 'crit-success' | 'crit-fail' | 'neutral') => {
         resultEl.className = `wound-table__result wound-table__result--${status}`;
@@ -183,17 +186,18 @@ const rows: Row[] = [
         btn.addEventListener('click', () => {
           const mode = btn.dataset.wtMode as 'normal' | 'advantage' | 'disadvantage';
           const con = getCon();
-          const sr = 10 + 2 * con;
           const { kept: d12, both: d12Rolls } = rollD12Mode(mode);
           const d6s = rollNd6(con);
-          const d6sum = d6s.reduce((a, b) => a + b, 0);
-          const total = d12 + d6sum;
+          // Le destin tranche sur ses trois faces les plus hautes ; sinon un 6
+          // sauve le jet. Rien ne s'additionne, et aucun 6 ne rattrape un 1.
+          const fateSaves = d12 >= 10;
+          const braverySaves = d6s.includes(6);
 
           let status: Parameters<typeof showResult>[1];
           let label: string;
           if (d12 === 12) { status = 'crit-success'; label = 'Réussite critique'; }
           else if (d12 === 1) { status = 'crit-fail'; label = 'Échec critique — Blessé'; }
-          else if (total >= sr) { status = 'success'; label = 'Réussite'; }
+          else if (fateSaves || braverySaves) { status = 'success'; label = 'Réussite'; }
           else { status = 'fail'; label = 'Échec — Blessé'; }
 
           const modeLabel = mode === 'normal' ? '' :
@@ -202,14 +206,17 @@ const rows: Row[] = [
             ? `<strong>${d12}</strong>`
             : `${d12Rolls.map(v => v === d12 ? `<strong>${v}</strong>` : `<s>${v}</s>`).join(', ')}`;
           const d6Display = d6s.length
-            ? ` + d6 [${d6s.join(', ')}] = <strong>${total}</strong>`
+            ? ` + d6 [${d6s.map(v => v === 6 ? `<strong>${v}</strong>` : `${v}`).join(', ')}]`
+            : '';
+          const why = status === 'success'
+            ? (fateSaves ? 'le destin tranche' : 'sauvé par un 6')
             : '';
 
           showResult(
             `<span class="wt-roll-label">${btn.textContent?.trim() ?? ''}${modeLabel}</span>
              <span class="wt-roll-dice">d12 ${d12Display}${d6Display}</span>
              <span class="wt-roll-status">${label}</span>
-             <span class="wt-roll-sr">SR ${sr}</span>`,
+             <span class="wt-roll-sr">${why}</span>`,
             status
           );
         });

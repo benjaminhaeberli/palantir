@@ -11,7 +11,7 @@ Les personnages sont définis par 5 *Attributs*, 4 *Essences* et 6 *États*. Un 
 
 En effet, chaque MJ ou joueur·euse est vivement invité·e à adapter le jeu pour sa table, et pourquoi pas créer ses *Essences* et *États* : l'extension *Espoir et tourment* en est un bon exemple.
 
-La mécanique la plus atypique à adopter est l'utilisation simultanée de d12 et d6 pour les jets d'attributs, là où la majorité des autres jeux OSR utilisent le classique d20.
+La mécanique la plus atypique à adopter est l'utilisation simultanée de d12 et d6 pour les jets d'attributs, là où la majorité des autres jeux OSR utilisent le classique d20. On ne fait **jamais d'addition** : le *dé du destin* tranche, et les *dés de bravoure* rattrapent le jet sur un 6.
 
 ## Communauté en ligne
 

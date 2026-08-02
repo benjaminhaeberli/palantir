@@ -7,6 +7,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 type Mode = 'normal' | 'advantage' | 'disadvantage';
 
+/** Le dé du destin réussit sur ses trois faces les plus hautes. */
+const FATE_THRESHOLD = 10;
+
 const d12Distribution = (mode: Mode): Map<number, number> => {
   const dist = new Map<number, number>();
   if (mode === 'normal') {
@@ -38,7 +41,6 @@ const nd6Distribution = (n: number): Map<number, number> => {
 };
 
 interface Outcome {
-  sr: number;
   critFail: number;
   fail: number;        // includes crit fail
   success: number;     // includes crit success
@@ -47,8 +49,49 @@ interface Outcome {
   normalSuccess: number;
 }
 
-const analyze = (attribute: number, mode: Mode = 'normal', srOverride?: number): Outcome => {
-  const sr = srOverride ?? 10 + 2 * attribute;
+/**
+ * Système actuel : le dé du destin réussit sur 10-11-12, ou n'importe quel
+ * dé de bravoure affichant un 6. Rien ne s'additionne.
+ */
+const analyze = (attribute: number, mode: Mode = 'normal', bonusDice = 0): Outcome => {
+  const pool = Math.max(0, attribute + bonusDice);
+  const noSix = (5 / 6) ** pool;
+  const anySix = 1 - noSix;
+
+  let critSuccess = 0;
+  let critFail = 0;
+  let success = 0;
+  let fail = 0;
+
+  for (const [v, p] of d12Distribution(mode)) {
+    if (v === 12) {
+      critSuccess += p;
+      success += p;
+    } else if (v === 1) {
+      // Aucun 6 ne rattrape un échec critique.
+      critFail += p;
+      fail += p;
+    } else if (v >= FATE_THRESHOLD) {
+      success += p;
+    } else {
+      success += p * anySix;
+      fail += p * noSix;
+    }
+  }
+
+  return {
+    critFail,
+    fail,
+    success,
+    critSuccess,
+    normalFail: fail - critFail,
+    normalSuccess: success - critSuccess,
+  };
+};
+
+/** Ancien système additif (1d12 + Nd6 ≥ SR), conservé pour comparaison. */
+const analyzeLegacy = (attribute: number, mode: Mode = 'normal'): Outcome & { sr: number } => {
+  const sr = 10 + 2 * attribute;
   const d12 = d12Distribution(mode);
   const d6s = nd6Distribution(attribute);
 
@@ -59,11 +102,10 @@ const analyze = (attribute: number, mode: Mode = 'normal', srOverride?: number):
 
   for (const [d12Val, p12] of d12) {
     for (const [sumD6, p6] of d6s) {
-      const total = d12Val + sumD6;
       const joint = p12 * p6;
       if (d12Val === 12) { critSuccess += joint; success += joint; }
       else if (d12Val === 1) { critFail += joint; fail += joint; }
-      else if (total >= sr) success += joint;
+      else if (d12Val + sumD6 >= sr) success += joint;
       else fail += joint;
     }
   }
@@ -88,20 +130,38 @@ const modeLabel: Record<Mode, string> = {
   advantage: 'Avantage',
   disadvantage: 'Désavantage',
 };
-const attributeRange = [0, 1, 2, 3];
+const attributeRange = [0, 1, 2, 3, 4, 5, 6];
 
 const tables = modes.map(mode => ({
   mode,
   rows: attributeRange.map(attr => ({ attr, ...analyze(attr, mode) })),
 }));
 
-// Defense crit fail rule comparison
-const defenseRows = attributeRange.map(con => {
+// Ancien système vs nouveau, en mode normal.
+const comparisonRows = attributeRange.map(attr => {
+  const legacy = analyzeLegacy(attr);
+  const current = analyze(attr);
+  return {
+    attr,
+    sr: legacy.sr,
+    legacy: legacy.success,
+    current: current.success,
+    delta: (current.success - legacy.success) * 100,
+  };
+});
+
+// Ce que rapporte chaque PB dépensé (1 PB = 1 dé de bravoure de plus).
+const forceDestinRows = [2, 4, 6].map(attr => ({
+  attr,
+  steps: [0, 1, 2, 3, 4, 5].map(spent => analyze(attr, 'normal', spent).success),
+}));
+
+// Échec critique en défense : deux lectures de la règle.
+const defenseRows = [0, 1, 2, 3].map(con => {
   const blessure = analyze(con);
   const critFailP = 1 / 12;
   return {
     con,
-    sr: blessure.sr,
     failBlessure: blessure.fail,
     blesseCurrent: critFailP * blessure.fail,
     blesseProposed: critFailP,
@@ -127,13 +187,14 @@ const defenseRows = attributeRange.map(con => {
     <main class="app__main">
       <article class="chapter" id="probabilites">
         <h1 class="chapter__title">Probabilités du système</h1>
-        <p class="page-meta">Calculateur exact pour le jet d'attribut <code>1d12 + Nd6 ≥ SR</code>.</p>
+        <p class="page-meta">Calculateur exact pour le jet d'attribut sans addition.</p>
 
         <p>
-          <strong>Rappel.</strong> Un jet d'attribut lance 1d12 (<em>dé du destin</em>) et N d6
-          (<em>dés de bravoure</em>, N = valeur d'attribut). Réussite si le total est <em>≥ SR</em>
-          (<code>10 + 2 × attribut</code>). Un 12 sur le d12 est une réussite critique systématique,
-          un 1 est un échec critique systématique — quelle que soit la valeur des d6.
+          <strong>Rappel.</strong> Un jet d'attribut lance 1d12 (<em>dé du destin</em>) et autant de d6
+          (<em>dés de bravoure</em>) que la valeur de l'attribut. Il est réussi si le <em>dé du destin</em>
+          tombe sur l'une de ses <strong>trois faces les plus hautes</strong> (10, 11 ou 12),
+          <strong>ou</strong> si au moins un <em>dé de bravoure</em> affiche un <strong>6</strong>.
+          Rien ne s'additionne. Un 12 est une réussite critique, un 1 un échec critique qu'aucun 6 ne rattrape.
         </p>
 
         <h2>Tableaux de référence</h2>
@@ -145,7 +206,6 @@ const defenseRows = attributeRange.map(con => {
               <thead>
                 <tr>
                   <th>Attribut</th>
-                  <th>SR</th>
                   <th>Crit ✗</th>
                   <th>Échec</th>
                   <th>Réussite</th>
@@ -157,7 +217,6 @@ const defenseRows = attributeRange.map(con => {
                 {t.rows.map(r => (
                   <tr>
                     <td>{r.attr}</td>
-                    <td>{r.sr}</td>
                     <td>{pct(r.critFail)}</td>
                     <td>{pct(r.normalFail)}</td>
                     <td>{pct(r.normalSuccess)}</td>
@@ -170,6 +229,64 @@ const defenseRows = attributeRange.map(con => {
           </>
         ))}
 
+        <h2>Ce que la refonte a changé</h2>
+        <p>
+          L'ancien système additionnait <code>1d12 + Nd6</code> et comparait le total à un
+          <em>seuil de réussite</em> valant <code>10 + 2 × attribut</code>. La courbe est
+          volontairement restée très proche, pour que le bestiaire, les dégâts et l'Endurance
+          n'aient pas à être recalibrés.
+        </p>
+        <table class="probs">
+          <thead>
+            <tr>
+              <th>Attribut</th>
+              <th>Ancien SR</th>
+              <th>Ancien système</th>
+              <th>Système actuel</th>
+              <th>Écart</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisonRows.map(r => (
+              <tr>
+                <td>{r.attr}</td>
+                <td>{r.sr}</td>
+                <td>{pct(r.legacy)}</td>
+                <td><strong>{pct(r.current)}</strong></td>
+                <td>{r.delta >= 0 ? '+' : ''}{r.delta.toFixed(1)} pts</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <h2>Forcer le destin — ce que rapporte chaque PB</h2>
+        <p>
+          Dépenser 1 <em>point de Bravoure</em> ajoute un <em>dé de bravoure</em> au jet, sans limite.
+          Chaque dé pèse un peu moins que le précédent : on améliore ses chances sans jamais
+          acheter la certitude, ce qui rend la dépense sûre à tout niveau.
+        </p>
+        <table class="probs">
+          <thead>
+            <tr>
+              <th>Attribut</th>
+              <th>0 PB</th>
+              <th>1 PB</th>
+              <th>2 PB</th>
+              <th>3 PB</th>
+              <th>4 PB</th>
+              <th>5 PB</th>
+            </tr>
+          </thead>
+          <tbody>
+            {forceDestinRows.map(r => (
+              <tr>
+                <td>{r.attr}</td>
+                {r.steps.map(v => <td>{pct(v)}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
         <h2>Échec critique en défense — règle actuelle vs proposée</h2>
         <p>
           Un pote a proposé : sur un <em>échec critique</em> en défense, infliger l'état <em>Blessé</em>
@@ -181,7 +298,6 @@ const defenseRows = attributeRange.map(con => {
           <thead>
             <tr>
               <th>CON</th>
-              <th>SR</th>
               <th>P(rater jet blessure)</th>
               <th>P(Blessé) <strong>actuelle</strong></th>
               <th>P(Blessé) <strong>proposée</strong></th>
@@ -192,7 +308,6 @@ const defenseRows = attributeRange.map(con => {
             {defenseRows.map(r => (
               <tr>
                 <td>{r.con}</td>
-                <td>{r.sr}</td>
                 <td>{pct(r.failBlessure)}</td>
                 <td>{pct(r.blesseCurrent)}</td>
                 <td>{pct(r.blesseProposed)}</td>
@@ -203,16 +318,20 @@ const defenseRows = attributeRange.map(con => {
         </table>
 
         <h2>Calculateur libre</h2>
-        <p>Modifier l'attribut, le mode et éventuellement le SR pour explorer des cas custom.</p>
+        <p>
+          Les <em>dés en plus</em> couvrent tout ce qui modifie un jet sans passer par le dé du destin :
+          outil adapté, aide d'un compagnon, PB dépensés pour <em>Forcer le destin</em>. Une valeur
+          négative représente des conditions défavorables.
+        </p>
 
         <form class="prob-form" id="prob-form">
           <label>
-            <span>Attribut (Nd6)</span>
-            <input type="number" id="prob-attr" value="2" min="0" max="6" />
+            <span>Attribut (nombre de d6)</span>
+            <input type="number" id="prob-attr" value="2" min="0" max="10" />
           </label>
           <label>
-            <span>SR personnalisé (laisser vide pour auto = 10 + 2×attr)</span>
-            <input type="number" id="prob-sr" placeholder="auto" min="1" max="30" />
+            <span>Dés en plus (outil, aide, PB dépensés)</span>
+            <input type="number" id="prob-bonus" value="0" min="-6" max="10" />
           </label>
           <label>
             <span>Mode</span>
@@ -229,22 +348,35 @@ const defenseRows = attributeRange.map(con => {
         <h2>Notes de design</h2>
         <ul>
           <li>
-            <strong>Attribut 0 (1d12 seul)</strong> ≈ 25 % de réussite — déjà punitif mais cohérent
-            pour quelqu'un de novice. L'avantage le remonte à 43,75 %.
+            <strong>Aucune addition.</strong> On lit le dé du destin, et s'il ne suffit pas on cherche
+            un 6. C'était le motif de la refonte : l'ancien système faisait additionner jusqu'à sept dés
+            à haut niveau.
           </li>
           <li>
-            <strong>Attribut 2 (max actuel)</strong> ≈ 50 % de réussite — le maximum sans aide.
-            Avec avantage ça monte à 70,95 %, ce qui justifie d'en faire une mécanique rare (PB, alliés).
+            <strong>Le MJ n'annonce jamais de nombre.</strong> Le seuil du dé du destin est une constante
+            du jeu ; la difficulté se règle en ajoutant ou retirant des <em>dés de bravoure</em>.
           </li>
           <li>
-            <strong>Crits</strong> ≈ 8,33 % chacun (1/12). En avantage les crits ✓ montent à ~16 %,
-            les crits ✗ chutent à ~0,7 %. Et inversement en désavantage.
+            <strong>Attribut 0</strong> ≈ 25 % — le destin laisse toujours sa chance sur quatre, même
+            à un parfait novice. Aucune accumulation de malus ne peut descendre sous ce plancher :
+            seul le <em>désavantage</em>, qui frappe le dé du destin lui-même, le fait tomber à 6,25 %.
+          </li>
+          <li>
+            <strong>Crits</strong> ≈ 8,33 % chacun (1/12), <strong>à tous les niveaux</strong>. C'est
+            volontaire : l'échec critique ignore l'armure, brise les boucliers et déclenche les jets de
+            blessure. Un système qui l'érode en montant en niveau désamorcerait la létalité du jeu.
+          </li>
+          <li>
+            <strong>Avantage et désavantage</strong> (deux dés du destin, on garde le meilleur ou le pire)
+            sont bien plus forts qu'un dé de bravoure : l'avantage fait passer l'attribut 2 de 45 % à 61 %
+            et divise l'échec critique par douze. D'où leur réserve aux <em>États</em>, aux objets
+            remarquables et aux sortilèges.
           </li>
           <li>
             La règle proposée pour l'échec critique en combat (Blessé direct) est
             <strong>plus simple et plus tendue</strong> mais double quasi le taux de blessures sur
             défense ratée à CON 2+. À tester : ça récompense davantage la <em>parade avec bouclier</em>
-            (avantage = beaucoup moins de crit fail) et l'évitement quand on est blessé.
+            et l'évitement quand on est blessé.
           </li>
         </ul>
       </article>
@@ -280,8 +412,10 @@ const defenseRows = attributeRange.map(con => {
   }
 </style>
 
-<script define:vars={{ }}>
+<script>
   // Mirror of the analyze() function above, in plain JS for client-side use.
+  const FATE_THRESHOLD = 10;
+
   const d12Dist = (mode) => {
     const m = new Map();
     if (mode === 'normal') {
@@ -295,47 +429,32 @@ const defenseRows = attributeRange.map(con => {
     return m;
   };
 
-  const nd6Dist = (n) => {
-    if (n <= 0) return new Map([[0, 1]]);
-    const m = new Map();
-    const total = 6 ** n;
-    const walk = (d, s) => {
-      if (d === 0) { m.set(s, (m.get(s) ?? 0) + 1 / total); return; }
-      for (let v = 1; v <= 6; v++) walk(d - 1, s + v);
-    };
-    walk(n, 0);
-    return m;
-  };
-
-  const analyze = (attribute, mode, srOverride) => {
-    const sr = srOverride ?? 10 + 2 * attribute;
-    const d12 = d12Dist(mode);
-    const d6s = nd6Dist(attribute);
+  const analyze = (attribute, mode, bonusDice) => {
+    const pool = Math.max(0, attribute + bonusDice);
+    const noSix = (5 / 6) ** pool;
+    const anySix = 1 - noSix;
     let cs = 0, cf = 0, s = 0, f = 0;
-    for (const [v12, p12] of d12) for (const [s6, p6] of d6s) {
-      const total = v12 + s6;
-      const joint = p12 * p6;
-      if (v12 === 12) { cs += joint; s += joint; }
-      else if (v12 === 1) { cf += joint; f += joint; }
-      else if (total >= sr) s += joint;
-      else f += joint;
+    for (const [v, p] of d12Dist(mode)) {
+      if (v === 12) { cs += p; s += p; }
+      else if (v === 1) { cf += p; f += p; }
+      else if (v >= FATE_THRESHOLD) { s += p; }
+      else { s += p * anySix; f += p * noSix; }
     }
-    return { sr, critFail: cf, fail: f, success: s, critSuccess: cs };
+    return { pool, critFail: cf, fail: f, success: s, critSuccess: cs };
   };
 
   const pct = (v) => `${(v * 100).toFixed(2)} %`;
 
   const render = () => {
-    const attr = Math.max(0, Math.min(6, Number(document.getElementById('prob-attr').value) || 0));
-    const srRaw = document.getElementById('prob-sr').value.trim();
-    const sr = srRaw === '' ? undefined : Number(srRaw);
+    const attr = Math.max(0, Math.min(10, Number(document.getElementById('prob-attr').value) || 0));
+    const bonus = Math.max(-6, Math.min(10, Number(document.getElementById('prob-bonus').value) || 0));
     const mode = document.getElementById('prob-mode').value;
-    const r = analyze(attr, mode, sr);
+    const r = analyze(attr, mode, bonus);
     document.getElementById('prob-result').innerHTML = `
       <table class="probs">
         <thead>
           <tr>
-            <th>SR utilisé</th>
+            <th>Dés lancés</th>
             <th>Crit ✗</th>
             <th>Échec</th>
             <th>Réussite</th>
@@ -345,7 +464,7 @@ const defenseRows = attributeRange.map(con => {
         </thead>
         <tbody>
           <tr>
-            <td>${r.sr}</td>
+            <td>1d12 + ${r.pool}d6</td>
             <td>${pct(r.critFail)}</td>
             <td>${pct(r.fail - r.critFail)}</td>
             <td>${pct(r.success - r.critSuccess)}</td>

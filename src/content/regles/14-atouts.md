@@ -13,6 +13,12 @@ Les _atouts_ représentent les compétences distinctives d'un héros — un mél
 
 Si le MJ préfère cadrer la création, il peut composer sa propre liste pour son univers. Un format de **8 atouts répartis en 4 catégories** (combat, survie, social, mystique) offre un point de départ équilibré et lisible — un idéal à viser, jamais une obligation.
 
+Trois garde-fous pour que la création libre reste équilibrée :
+
+- **Un _avantage_ se paie toujours en PB.** Il vaut environ deux dés de bravoure et divise par douze le risque d'_échec critique_ : il n'a donc jamais sa place dans un effet de base. Un effet de base peut en revanche accorder **+1d6** dans un domaine précis.
+- **Un effet de base ne doit jamais rendre un jet inutile**, sauf sur un domaine très étroit.
+- **Les atouts gagnés à partir du niveau 4 coûtent plus cher** : comptez **3 à 4 PB** pour leur effet renforcé, contre 1 à 2 pour ceux de départ. Le revenu en _Bravoure_ croît vite avec le niveau ; si les coûts ne suivent pas, les effets renforcés deviennent permanents.
+
 ## Exemples d'atouts
 
 Les atouts ci-dessous servent d'exemples : reprenez-les tels quels, adaptez-les, ou inspirez-vous-en pour créer les vôtres.
@@ -29,7 +35,7 @@ Les atouts ci-dessous servent d'exemples : reprenez-les tels quels, adaptez-les,
 
 ### Social & influence
 
-- **Verbe d'argent** — Base : _avantage_ à tous les jets de _CHA_ en négociation, marchandage ou plaidoyer. | Avec 2 PB : une fois par scène, un jet de _CHA_ raté devient une réussite partielle (le MJ décide ce que vous obtenez quand même).
+- **Verbe d'argent** — Base : **+1d6** à tous les jets de _CHA_ en négociation, marchandage ou plaidoyer. | Avec 2 PB : une fois par scène, un jet de _CHA_ raté devient une réussite partielle (le MJ décide ce que vous obtenez quand même).
 - **Lecture des cœurs** — Base : une fois par scène, le MJ révèle si un PNJ ment ou a peur. | Avec 1 PB : apprenez aussi ce que ce PNJ veut vraiment.
 
 ### Mystique & savoir

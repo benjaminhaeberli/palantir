@@ -2,7 +2,7 @@
 title: Règles générales
 description: Tours, points d'action, dés d'usage, distances et jets d'attributs.
 order: 10
-status: stable
+status: wip
 ---
 
 ## Tours
@@ -24,22 +24,50 @@ Que ce soit pour arbitrer un combat, une course-poursuite ou déclencher des pi�
 
 ## Système de résolution
 
-Lorsque le meneur le demande, lancez 1d12 — le **dé du destin** — et un nombre de d6 — les **dés de bravoure** — égal à la valeur de l'attribut utilisé.
+Lorsque le meneur le demande, lancez le **dé du destin** — 1d12 — et autant de **dés de bravoure** — des d6 — que la valeur de l'_attribut_ utilisé.
 
-Pour réussir, celui-ci doit être égal ou supérieur au **seuil de réussite (SR)** de cet _attribut_. Cependant, un 12 sur le _dé du destin_ est une **réussite critique**, un 1 sur le _dé du destin_ est un **échec critique**. En cas d'échec, vous gagnez 1 _point d'expérience_.
+Vous **réussissez** si l'une de ces deux conditions est remplie :
 
-Le jet peut également subir des _avantages_ et _désavantages_ déterminés arbitrairement par le MJ ou selon certaines mécaniques. Un _avantage_ annule un _désavantage_, et inversement.
+- le _dé du destin_ tombe sur l'une de ses **trois faces les plus hautes** — 10, 11 ou 12 ;
+- **ou** au moins un _dé de bravoure_ affiche un **6**.
+
+Rien ne s'additionne jamais : vous lisez le _dé du destin_, et s'il ne suffit pas, vous cherchez un 6.
+
+> **Exemple** : Bran force une porte barricadée. Sa _FOR_ est de 2, il lance donc 1d12 et 2d6. Le _dé du destin_ donne 6 — le destin ne lui sourit pas — mais ses _dés de bravoure_ donnent 3 et **6** : la porte cède.
+
+Un **12** sur le _dé du destin_ est une **réussite critique**. Un **1** est un **échec critique**, et aucun 6 ne peut le rattraper : quand le destin vous abandonne, votre talent n'y change rien. Chaque **échec critique** vous rapporte 1 _point d'expérience_ (voir _Héros → Expérience_).
+
+> **Avec les dés de _L'Anneau Unique_** : la Rune de Gandalf tient lieu de 12 et l'Œil de Sauron de 1. Les trois faces les plus hautes sont alors 9, 10 et la Rune.
+
+### Difficulté
+
+**Le MJ n'annonce jamais de nombre à atteindre.** Une action plus facile ou plus ardue se traduit par un _dé de bravoure_ **en plus ou en moins** :
+
+- un outil adapté, une position favorable, une préparation soignée : **+1d6** ;
+- un compagnon qui vous prête main-forte (_si la situation le permet et que le MJ l'accepte_) : **+1d6**. Un seul compagnon à la fois peut vous aider pour une même action ;
+- des conditions hostiles, un matériel de fortune, une contrainte de temps : **−1d6**.
+
+Un jet peut par ailleurs se faire avec **avantage** ou **désavantage** : on lance alors **deux dés du destin** et on garde le meilleur ou le pire. Un _avantage_ annule un _désavantage_, et inversement.
+
+> **Dé ou avantage ?** Un **dé couvre un geste**, un **avantage couvre un domaine**.
+> Un bon outil, l'aide d'un compagnon, une position favorable, un _PB_ dépensé : ça ne vaut que pour _cette action-là_ → **+1d6**.
+> Votre _Peuple_, votre _Historique_, un _atout_, votre bouclier, un _État_, un sortilège : c'est inscrit sur votre fiche et ça vaut pour _tout un domaine_ → **avantage** ou **désavantage**.
+
+L'_avantage_ est environ **deux fois plus puissant** qu'un dé supplémentaire, et il divise par douze le risque d'_échec critique_. Le MJ n'a donc qu'une question à se poser : est-ce que c'est écrit sur la fiche du joueur ?
 
 ### Accumuler de la bravoure
 
 Chaque 6 obtenu sur vos _dés de bravoure_ inspire vos compagnons et vous permet de donner 1 _point de Bravoure_ ou **PB** à l'un d'entre eux. Ceux-ci sont cumulables.
 
+Un 6 fait donc les deux à la fois : il **sauve votre jet** et il **inspire un compagnon**.
+
 La _Bravoure_ est dépensée pour _Forcer le destin_ et pour utiliser certains _atouts_. Si elle tombe à zéro, votre héros est _Pessimiste_.
 
 ### Forcer le destin
 
-- Dépenser **1 PB** pour ajouter un _dé de bravoure_ (1d6) supplémentaire à votre jet. Une seule fois par repos long, sans besoin d'annoncer à l'avance.
-- Se faire aider par un compagnon (_si la situation le permet et que le MJ l'accepte_) vous octroie un _avantage_. Un seul compagnon à la fois peut vous aider pour chaque action.
+Dépensez **1 PB** pour ajouter un _dé de bravoure_ (1d6) à votre jet, sans avoir à l'annoncer à l'avance. **Aucune limite** : videz votre réserve sur un jet décisif si le cœur vous en dit.
+
+> Chaque dé supplémentaire pèse un peu moins que le précédent : à force d'en ajouter, on améliore ses chances sans jamais acheter la certitude.
 
 ### Actions longues
 

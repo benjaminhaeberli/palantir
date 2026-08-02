@@ -21,14 +21,16 @@ Un objet se trouve plus ou moins facilement selon l'endroit :
 
 ## Armes
 
-Toutes les armes infligent **1d6 dégâts** (voir *Combat*) ; une attaque à main nue cause 1d4. Seules les armes **spéciales ou magiques** dérogent à cette règle. Ce qui distingue une arme d'une autre, c'est son encombrement, sa portée et son prix — pas ses dégâts.
+Presque toutes les armes infligent **1d6 dégâts** (voir *Combat*) ; une attaque à main nue cause 1d4. Ce qui distingue deux armes d'une même catégorie, c'est leur encombrement, leur portée et leur prix — pas leurs dégâts. Seule exception : une arme de **mêlée à deux mains** inflige **1d6+2**, ce qui compense de laisser l'autre main libre de bouclier.
 
-| Arme | Mains | *Charge* | Portée | Coût |
-|---|:---:|:---:|---|---:|
-| Une main (épée, hache, masse) | 1 | 1 | *Contact* | 50 c |
-| Deux mains (espadon, hallebarde) | 2 | 2 | *Contact* | 100 c |
-| Fronde | 1 | 1 | *Proche* | 50 c |
-| Arc | 2 | 2 | *Distant* | 100 c |
+| Arme | Mains | *Charge* | Portée | Dégâts | Coût |
+|---|:---:|:---:|---|:---:|---:|
+| Une main (épée, hache, masse) | 1 | 1 | *Contact* | 1d6 | 50 c |
+| Deux mains (espadon, hallebarde) | 2 | 2 | *Contact* | **1d6+2** | 100 c |
+| Fronde | 1 | 1 | *Proche* | 1d6 | 50 c |
+| Arc | 2 | 2 | *Distant* | 1d6 | 100 c |
+
+> L'**arc** occupe deux mains mais reste à 1d6 : son avantage, c'est de frapper à distance. Les armes **spéciales ou magiques** dérogent librement à ces valeurs.
 
 Les portées renvoient aux *Distances* (voir *Règles générales*). Les munitions — flèches, billes — se gèrent avec un **dé d'usage (Δ)** : un carquois plein démarre à Δ8 et se dégrade à l'usage.
 
@@ -44,7 +46,7 @@ Chaque pièce d'armure portée ajoute **+1 à votre *Armure*** : elle réduit d'
 | Plastron | +1 | 500 c |
 | Pièce de plaque (bras, jambe) | +1 | 500 c |
 
-Le **bouclier** n'ajoute pas d'*Armure* mais accorde l'**avantage en parade** (voir *Combat → Boucliers*) — 100 c.
+Le **bouclier** n'ajoute pas d'*Armure* mais accorde l'**avantage en parade** (voir *Combat → Boucliers*). Il occupe une main et **2 emplacements de *Charge*** — c'est un objet encombrant, et sa protection se paie — 100 c.
 
 ## Montures & transport
 
@@ -71,6 +73,6 @@ Une tenue signale votre rang, du plus humble au plus fastueux : pauvre 60 c · m
 
 ## Charge
 
-Un héros dispose d'un nombre d'**emplacements d'équipement** limité, équivalent au *SR* de sa *CON*. La *Charge* représente le poids de ce qu'il transporte : chaque objet notable occupe au moins un emplacement.
+Un héros dispose d'un nombre d'**emplacements d'équipement** limité, égal à sa **capacité de charge** : `10 + (2 × CON)`. La *Charge* représente le poids de ce qu'il transporte : chaque objet notable occupe au moins un emplacement.
 
-Si la *Charge* dépasse le *SR* de *CON*, le héros obtient l'état *Épuisé* et des malus s'appliquent à ses jets de dés (voir *États*).
+Si la *Charge* dépasse la *capacité de charge*, le héros obtient l'état *Épuisé* et ses jets subissent le *désavantage* (voir *États*).
