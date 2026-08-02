@@ -32,22 +32,20 @@ const fullTitle = title === 'Palantír RPG' ? title : `${title} — Palantír RP
         <a class="site-header__brand" href={`${base}/`}>
           Palantír<span>·</span>RPG
         </a>
-        <nav class="site-header__nav site-header__nav--desktop" aria-label="Liens externes">
-          <a href={`${base}#introduction`}>Le jeu</a>
-          <a href="https://github.com/benjaminhaeberli/palantir" target="_blank" rel="noopener">GitHub</a>
-        </nav>
-        <button
-          class="site-header__hamburger"
-          data-hamburger
-          aria-label="Ouvrir le menu"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-          type="button"
-        >
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-        </button>
+        <div class="site-header__right">
+          <nav class="site-header__nav" aria-label="Liens externes">
+            <a href={`${base}#introduction`}>Le jeu</a>
+            <a href="https://github.com/benjaminhaeberli/palantir" target="_blank" rel="noopener">GitHub</a>
+          </nav>
+          <button
+            class="site-header__menu-btn"
+            data-hamburger
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            type="button"
+          >Menu</button>
+        </div>
       </div>
     </header>
     <slot />

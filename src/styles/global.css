@@ -291,10 +291,6 @@ img { max-width: 100%; height: auto; }
   /* Breathing room for main content without sidebar */
   .app--book .app__main { padding: 0 var(--space-4); }
 
-  /* Hide desktop nav, show hamburger */
-  .site-header__nav--desktop { display: none; }
-  .site-header__hamburger { display: flex; }
-
   /* Inline chapter TOC */
   .chapter-toc {
     display: block;
@@ -343,6 +339,51 @@ img { max-width: 100%; height: auto; }
   text-transform: uppercase;
 }
 .site-header__nav a:hover { color: var(--color-ink); }
+
+/* Groupe droit de la top bar : liens externes + bouton Menu. */
+.site-header__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+/* Bouton « Menu » — même traitement plein noir que le bouton .btn du hero.
+   Il n'apparaît qu'en dessous de 760 px, là où la sidebar disparaît.
+   La règle d'affichage est collée juste en dessous de la règle de base :
+   à spécificité égale c'est l'ordre du fichier qui tranche, et les séparer
+   suffirait à re-masquer le bouton partout. */
+.site-header__menu-btn {
+  display: none;
+  padding: 0.4em 1em;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.site-header__menu-btn:hover { background: #000; }
+
+@media (max-width: 760px) {
+  .site-header__menu-btn { display: inline-block; }
+}
+
+/* Sous 480 px, resserrer la top bar pour que marque + liens + Menu tiennent. */
+@media (max-width: 480px) {
+  .site-header__inner { padding: 0 var(--space-3); gap: var(--space-3); }
+  .site-header__right { gap: var(--space-3); }
+  .site-header__nav { gap: var(--space-3); }
+  .site-header__nav a { font-size: 0.72em; }
+  .site-header__brand { font-size: 0.85rem; }
+  .site-header__menu-btn { padding: 0.4em 0.8em; font-size: 0.72rem; }
+}
 
 /* Footer */
 .site-footer {
@@ -1205,30 +1246,11 @@ img { max-width: 100%; height: auto; }
 .toc-card h3 { margin: 0 0 var(--space-2); font-size: 1.1rem; }
 .toc-card p { margin: 0; color: var(--color-muted); font-size: 0.95em; }
 
-/* === Hamburger button (hidden on desktop) === */
-.site-header__hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 36px;
-  height: 36px;
-  background: transparent;
-  border: 1px solid var(--color-border-strong);
-  padding: 6px 7px;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-.hamburger__line {
-  display: block;
-  height: 1px;
-  background: var(--color-ink);
-}
-
 /* === Mobile menu overlay === */
-/* Always in the DOM (out of flow, fixed) but hidden via opacity/visibility so
-   open/close can fade. visibility:hidden also pulls it from the a11y tree and
-   blocks pointer events when closed — including on desktop where it never opens. */
+/* Toujours dans le DOM (hors flux, fixed) mais masqué : visibility:hidden le
+   retire aussi de l'arbre d'accessibilité et bloque les clics quand il est
+   fermé — y compris sur desktop, où il ne s'ouvre jamais.
+   Aucune transition : l'ouverture doit être instantanée au clic. */
 .mobile-menu {
   position: fixed;
   inset: 0;
@@ -1236,16 +1258,10 @@ img { max-width: 100%; height: auto; }
   background: var(--color-bg);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  opacity: 0;
   visibility: hidden;
-  transition: opacity 0.18s ease, visibility 0.18s ease;
 }
 .mobile-menu.is-open {
-  opacity: 1;
   visibility: visible;
-}
-@media (prefers-reduced-motion: reduce) {
-  .mobile-menu { transition: none; }
 }
 
 .mobile-menu__inner {
@@ -1360,7 +1376,7 @@ img { max-width: 100%; height: auto; }
 }
 
 /* Keyboard focus visibility (touch uses :hover, keyboard needs an outline). */
-.site-header__hamburger:focus-visible,
+.site-header__menu-btn:focus-visible,
 .mobile-menu__close:focus-visible,
 .mobile-menu__link:focus-visible {
   outline: 2px solid var(--color-ink);
