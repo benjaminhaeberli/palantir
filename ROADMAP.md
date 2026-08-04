@@ -38,6 +38,7 @@ Roadmap vivante du projet. Mise à jour au fil des versions.
 
 - [ ] ⁠Ajouter un système de versioning des règles (alpha ou beta ou v1 jsp voir semanting versioning) pour débuter) où je travaille à chaque fois sur develop pour avancer quand on ramène sur main on rajoute un numéro de version. Et mettre un petit sélecteur de numéro de version (avec date de publication entre parenthèses et du plus récent au plus vieux)
 - [ ] Page "Contribuer" pointant vers `CONTRIBUTING.md`
+- [ ] **Proxy Plausible** : le tracker est déjà bundlé par Astro (pas de `<script>` tiers), mais l'endpoint reste `plausible.io/api/event` et se fait bloquer par les filtres qui coupent par domaine de requête. Servir les événements depuis `palantir-rpg.com/api/event` demande un serveur — impossible sur GitHub Pages, donc à coupler avec un passage sur Cloudflare Workers / Netlify / Vercel
 
 ## v2.0 — Export PDF print-ready
 

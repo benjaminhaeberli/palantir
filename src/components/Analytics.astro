@@ -1,0 +1,28 @@
+---
+/**
+ * Plausible Analytics — analytics sans cookies, sans données personnelles.
+ *
+ * Le tracker est installé via npm (@plausible-analytics/tracker) et bundlé par
+ * Astro : pas de <script src> tiers, donc pas de bloqueur qui l'assomme et
+ * aucune requête vers un CDN externe.
+ *
+ * Les événements ne partent qu'en production (captureOnLocalhost: false), donc
+ * `npm run dev` ne pollue pas les stats.
+ *
+ * Le domaine est écrit en dur dans le <script> : un script bundlé ne peut pas
+ * lire les variables du frontmatter (define:vars désactiverait le bundling).
+ */
+---
+
+<script>
+  import { init } from '@plausible-analytics/tracker';
+
+  init({
+    domain: 'palantir-rpg.com',
+    // Clics sortants (GitHub, licence CC…) et téléchargements de fichiers.
+    outboundLinks: true,
+    fileDownloads: true,
+    // Aucun événement depuis localhost : le dev reste hors des stats.
+    captureOnLocalhost: false,
+  });
+</script>

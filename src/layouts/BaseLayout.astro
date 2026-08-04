@@ -4,6 +4,7 @@ import MusicPlayer from '../components/MusicPlayer.astro';
 import ViewCounter from '../components/ViewCounter.astro';
 import CopyTools from '../components/CopyTools.astro';
 import MobileMenu from '../components/MobileMenu.astro';
+import Analytics from '../components/Analytics.astro';
 import { version } from '../lib/version';
 
 interface Props {
@@ -26,6 +27,7 @@ const fullTitle = title === 'Palantír RPG' ? title : `${title} — Palantír RP
     <title>{fullTitle}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <Analytics />
   </head>
   <body>
     <header class="site-header">
