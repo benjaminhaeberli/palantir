@@ -2,6 +2,10 @@
 
 > Héroïsme et bravoure, armés de 1d12 face au destin.
 
+<p align="center">
+  <img src="src/assets/palantir-artwork.jpg" alt="Quatre chevaliers dressés l'épée haute face à un dragon noir surgissant des flammes et de la fumée" width="520">
+</p>
+
 **Palantír RPG** est un jeu de rôle OSR de fantasy médiévale, francophone et open source. Minimaliste : 5 attributs, une mécanique centrale (1d12 + dés de bravoure, jamais d'addition), pas de classes. Conçu pour être expliqué en quelques minutes — et pour être adapté : le contenu est médiéval, le moteur ne l'est pas.
 
 - **Site officiel** : [palantir-rpg.com](https://palantir-rpg.com) — les règles complètes, lisibles en ligne
