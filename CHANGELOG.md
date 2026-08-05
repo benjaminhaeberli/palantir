@@ -64,6 +64,8 @@ Le jeu n'additionne plus rien : un jet se lit désormais sur les trois faces les
 - `tools/probabilites.py` étendu en harnais de comparaison exacte : systèmes candidats, fidélité à la courbe, valeur marginale d'un dé, revenu de *Bravoure* par combat. Le calculateur `/outils/probabilites` documente la bascule chiffrée.
 - Plugin rehype maison enveloppant chaque `<table>` dans `.table-scroll` — scroll horizontal seulement si nécessaire, desktop intact.
 - `fetch-depth: 0` sur le workflow de déploiement, sans quoi le clone arrive sans tags et la version ne peut pas être lue.
+- Montée en **Astro 7** (MDX 7, sitemap 3.7), qui exige désormais **Node ≥ 22.12**. Un `.nvmrc` fixe la version pour le local comme pour la CI, et `engines` la déclare dans `package.json` : le déploiement échouait, le workflow étant resté sur Node 20.
+- Actions du workflow montées en `checkout@v7` et `setup-node@v7`, qui tournent sur Node 24 — les versions `v4` étaient dépréciées par GitHub.
 - ROADMAP réorganisée (jalons v1.0 et v1.x) et README illustré ; piste du proxy Plausible documentée — DNS Cloudflare et route Worker suffisent, sans quitter GitHub Pages.
 
 ## v0.1.0 - 2026-06-03

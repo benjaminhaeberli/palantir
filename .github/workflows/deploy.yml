@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           # Récupère les tags : la version affichée sur le site est lue au build
           # via `git describe` (voir src/lib/version.ts). Sans ceci, le clone est
@@ -30,9 +30,11 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 20
+          # Astro 7 exige Node >= 22.12. La version exacte vit dans .nvmrc pour
+          # que le local et la CI ne divergent pas.
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
