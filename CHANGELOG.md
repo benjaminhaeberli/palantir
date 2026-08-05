@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/) and this 
 
 Le jeu n'additionne plus rien : un jet se lit désormais sur les trois faces les plus hautes du *dé du destin*, ou sur un 6 parmi les *dés de bravoure*. Cette refonte du moteur a entraîné dans son sillage le plafonnement de la *Bravoure*, la fusion des Traits dans les Historiques, le découpage du livre en trois volumes et une passe complète sur le combat. Le site gagne au passage un système de magie freeform, un chapitre pour adapter le jeu à son propre univers, un vrai menu mobile et une illustration d'ouverture.
 
+**Contributeurs :** @benjaminhaeberli, @claude
 **Comparer sur GitHub :** https://github.com/benjaminhaeberli/palantir/compare/v0.1.0...v0.2.0
 
 ### ⚠️ Critique
