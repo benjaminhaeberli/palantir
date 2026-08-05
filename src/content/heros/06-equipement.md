@@ -46,7 +46,7 @@ Chaque pièce d'armure portée ajoute **+1 à votre *Armure*** : elle réduit d'
 | Plastron | +1 | 500 c |
 | Pièce de plaque (bras, jambe) | +1 | 500 c |
 
-Le **bouclier** n'ajoute pas d'*Armure* mais accorde l'**avantage en parade** (voir *Combat → Boucliers*). Il occupe une main et **2 emplacements de *Charge*** — c'est un objet encombrant, et sa protection se paie — 100 c.
+Le **bouclier** n'ajoute pas d'*Armure* mais accorde l'**avantage en parade**, ce qui divise par douze le risque d'*échec critique* — au prix du bouclier lui-même, brisé quand ce 1 finit par tomber (voir *Combat → Boucliers*). Il occupe une main et **2 emplacements de *Charge*** — c'est un objet encombrant, et sa protection se paie — 100 c.
 
 ## Montures & transport
 

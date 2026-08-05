@@ -26,7 +26,8 @@ Les atouts ci-dessous servent d'exemples : reprenez-les tels quels, adaptez-les,
 ### Combat & manœuvres
 
 - **Frappe précise** — Base : sur une attaque réussie, infligez +1d6 dégâts (1×/combat). | Avec 2 PB : +2d6 dégâts à la place.
-- **Riposte** — Base : sur une _parade_ réussie avec une arme, contre-attaquez immédiatement pour 0 PA (1×/tour). | Avec 2 PB : la contre-attaque se fait avec _avantage_.
+- **Riposte** — Base : contre-attaquez pour 0 PA sur **toute _parade_ réussie** avec une arme, pas seulement sur une _réussite critique_ (1×/tour). | Avec 2 PB : la contre-attaque se fait avec _avantage_.
+- **Rompu aux coups** — Base : une fois par combat, ignorez la _Blessure_ infligée par un **échec critique** sur un _jet de défense_ (vous subissez quand même les dégâts, armure ignorée). | Avec 2 PB : une seconde fois dans le même combat.
 
 ### Survie & exploration
 

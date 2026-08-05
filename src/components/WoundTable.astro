@@ -15,15 +15,9 @@ interface Row {
   disadvantage?: string;
   damage?: string;          // "1d4", "1d6", "1d12", "Δ6"
   damageNote?: string;      // "par round", "s'éteint avec de l'eau"
-  combatOnly?: boolean;     // "Jet normal dans tous les cas"
 }
 
 const rows: Row[] = [
-  {
-    type: "Combat (défense ratée)",
-    normal: "Jet normal dans tous les cas",
-    combatOnly: true,
-  },
   {
     type: "Froid extrême",
     advantage: "Vent glacial, pluie battante",
@@ -95,33 +89,27 @@ const rows: Row[] = [
       {rows.map(row => (
         <tr>
           <th scope="row">{row.type}</th>
-          {row.combatOnly ? (
-            <td class="wound-table__combat" colspan="3">{row.normal}</td>
-          ) : (
-            <>
-              <td>
-                {row.advantage && (
-                  <button type="button" class="wt-cell" data-wt-jet data-wt-mode="advantage">
-                    {row.advantage}
-                  </button>
-                )}
-              </td>
-              <td>
-                {row.normal && (
-                  <button type="button" class="wt-cell" data-wt-jet data-wt-mode="normal">
-                    {row.normal}
-                  </button>
-                )}
-              </td>
-              <td>
-                {row.disadvantage && (
-                  <button type="button" class="wt-cell" data-wt-jet data-wt-mode="disadvantage">
-                    {row.disadvantage}
-                  </button>
-                )}
-              </td>
-            </>
-          )}
+          <td>
+            {row.advantage && (
+              <button type="button" class="wt-cell" data-wt-jet data-wt-mode="advantage">
+                {row.advantage}
+              </button>
+            )}
+          </td>
+          <td>
+            {row.normal && (
+              <button type="button" class="wt-cell" data-wt-jet data-wt-mode="normal">
+                {row.normal}
+              </button>
+            )}
+          </td>
+          <td>
+            {row.disadvantage && (
+              <button type="button" class="wt-cell" data-wt-jet data-wt-mode="disadvantage">
+                {row.disadvantage}
+              </button>
+            )}
+          </td>
           <td>
             {row.damage ? (
               <button type="button" class="wt-cell wt-cell--dmg" data-wt-dmg data-wt-die={row.damage}>

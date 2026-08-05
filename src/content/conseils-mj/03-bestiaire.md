@@ -15,7 +15,7 @@ Lorsqu'une créature attaque un Héros, celui-ci fait un *jet de défense*. Le M
 
 ## Blessures de créature
 
-Une créature meurt quand son *Endurance* tombe à **0**, ou quand elle accumule autant de **blessures** que son **Niveau**. Elle reçoit une blessure à chaque fois qu'un héros obtient une *réussite critique* sur une attaque.
+Une créature meurt quand son *Endurance* tombe à **0**, ou quand elle accumule autant de **blessures** que son **Niveau**. Elle reçoit une blessure à chaque fois qu'un héros obtient une *réussite critique* sur une attaque, ou déclare une *attaque puissante*.
 
 > *Un bandit de niveau 1 tombe au premier coup critique, même s'il lui reste de l'Endurance. Un troll de niveau 5 peut en encaisser cinq.*
 

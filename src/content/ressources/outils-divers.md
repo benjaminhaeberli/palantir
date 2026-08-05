@@ -18,7 +18,7 @@ Quelques repères pour calibrer vos jets :
 
 Les **réussites et échecs critiques** valent toujours 1/12 ≈ **8,33 %** chacun en mode normal, **à tous les niveaux**. En _avantage_, les critiques ✓ montent à ≈ 16 % et les critiques ✗ chutent à ≈ 0,7 % ; en _désavantage_, c'est l'inverse.
 
-> **Pour les MJ.** Vous n'avez aucun nombre à annoncer : la difficulté se règle en **ajoutant ou retirant un dé de bravoure**. Un dé de plus vaut environ **+8 points** de réussite, un dé de moins autant en négatif. L'_avantage_, lui, vaut environ **+15 points** et divise par douze le risque d'échec critique — réservez-le à ce qui est écrit sur la fiche du joueur (voir _Règles générales → Difficulté_).
+> **Pour les MJ.** Vous n'avez aucun nombre à annoncer : la difficulté se règle en **ajoutant ou retirant un dé de bravoure**. Un dé de plus vaut environ **+8 points** de réussite, un dé de moins autant en négatif. L'_avantage_, lui, vaut environ **+15 points** et divise par douze le risque d'échec critique — réservez-le à ce qui est écrit sur la fiche du joueur **et de portée étroite** (voir _Règles générales → Difficulté_).
 
 > Le _dé du destin_ laisse toujours sa chance : même accablé de malus, un héros réussit **une fois sur quatre**. Seul le _désavantage_ casse ce plancher, en le faisant tomber à ≈ 6 %.
 

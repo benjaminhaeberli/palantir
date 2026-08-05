@@ -955,7 +955,6 @@ img { max-width: 100%; height: auto; }
 .wt-cell--dmg { font-variant-numeric: tabular-nums; }
 .wound-table__note { color: var(--color-muted); font-size: 0.9em; }
 .wound-table__none { display: block; padding: 0.6em 0.7em; color: var(--color-muted); text-align: center; }
-.wound-table__combat { padding: 0.6em 0.7em; font-style: italic; color: var(--color-muted); }
 
 .wound-table__result {
   padding: 0.8em 1em;

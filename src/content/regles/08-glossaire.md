@@ -5,6 +5,8 @@ order: 8
 status: stable
 ---
 
+**Attaque puissante** : déclarer volontairement l'effet d'un *coup critique*, au prix de son arme, qui se brise.
+
 **Avantage** : lancer 2d et garder le meilleur.
 
 **Attribut** : représente les capacités d'un PJ dans un certain domaine. Sa valeur est le nombre de *dés de bravoure* qu'il fait lancer.
@@ -19,7 +21,7 @@ status: stable
 
 **Dé d'usage (Δ)** : représente une ressource limitée, se rétrograde sur un 1-2.
 
-**Échec critique** : obtenir un 1 sur le *dé du destin*.
+**Échec critique** : obtenir un 1 sur le *dé du destin*. Sur un *jet de défense*, il rend *Blessé* et ignore l'armure.
 
 **MJ** : Meneur ou meneuse de jeu.
 
@@ -35,7 +37,7 @@ status: stable
 
 **JdR** : acronyme de "jeu de rôle".
 
-**Réussite critique** : obtenir un 12 sur le *dé du destin*.
+**Réussite critique** : obtenir un 12 sur le *dé du destin*. Sur une attaque, elle blesse la cible ; sur un *jet de défense*, elle ouvre une contre-attaque gratuite.
 
 **Session zéro** : discussion avant la première partie où le MJ et les joueurs définissent l'univers, le ton du jeu et les attentes de chacun.
 

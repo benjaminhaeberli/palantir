@@ -156,15 +156,16 @@ const forceDestinRows = [2, 4, 6].map(attr => ({
   steps: [0, 1, 2, 3, 4, 5].map(spent => analyze(attr, 'normal', spent).success),
 }));
 
-// Échec critique en défense : deux lectures de la règle.
+// Échec critique en défense : l'ancienne règle enchaînait un jet de blessure (CON),
+// l'actuelle rend Blessé sur-le-champ.
 const defenseRows = [0, 1, 2, 3].map(con => {
   const blessure = analyze(con);
   const critFailP = 1 / 12;
   return {
     con,
     failBlessure: blessure.fail,
-    blesseCurrent: critFailP * blessure.fail,
-    blesseProposed: critFailP,
+    blesseLegacy: critFailP * blessure.fail,
+    blesseCurrent: critFailP,
     ratio: 1 / blessure.fail,
   };
 });
@@ -287,20 +288,19 @@ const defenseRows = [0, 1, 2, 3].map(con => {
           </tbody>
         </table>
 
-        <h2>Échec critique en défense — règle actuelle vs proposée</h2>
+        <h2>Échec critique en défense — pourquoi Blessé direct</h2>
         <p>
-          Un pote a proposé : sur un <em>échec critique</em> en défense, infliger l'état <em>Blessé</em>
-          directement, sans repasser par un jet de blessure (CON). On garderait le jet de blessure
-          uniquement pour les blessures hors combat (chute, feu, poison…).
+          Sur un <em>échec critique</em> en défense, le héros devient <em>Blessé</em> sur-le-champ, sans
+          repasser par un jet de blessure (CON). Le jet de blessure ne sert plus qu'aux périls hors
+          combat (chute, feu, poison…). Voici ce que la bascule a changé :
         </p>
-        <p>Voici l'impact chiffré :</p>
         <table class="probs">
           <thead>
             <tr>
               <th>CON</th>
               <th>P(rater jet blessure)</th>
+              <th>P(Blessé) <strong>ancienne</strong></th>
               <th>P(Blessé) <strong>actuelle</strong></th>
-              <th>P(Blessé) <strong>proposée</strong></th>
               <th>×</th>
             </tr>
           </thead>
@@ -309,8 +309,8 @@ const defenseRows = [0, 1, 2, 3].map(con => {
               <tr>
                 <td>{r.con}</td>
                 <td>{pct(r.failBlessure)}</td>
+                <td>{pct(r.blesseLegacy)}</td>
                 <td>{pct(r.blesseCurrent)}</td>
-                <td>{pct(r.blesseProposed)}</td>
                 <td>{r.ratio.toFixed(2)}</td>
               </tr>
             ))}
@@ -363,8 +363,8 @@ const defenseRows = [0, 1, 2, 3].map(con => {
           </li>
           <li>
             <strong>Crits</strong> ≈ 8,33 % chacun (1/12), <strong>à tous les niveaux</strong>. C'est
-            volontaire : l'échec critique ignore l'armure, brise les boucliers et déclenche les jets de
-            blessure. Un système qui l'érode en montant en niveau désamorcerait la létalité du jeu.
+            volontaire : l'échec critique ignore l'armure, brise les boucliers et blesse sur-le-champ.
+            Un système qui l'érode en montant en niveau désamorcerait la létalité du jeu.
           </li>
           <li>
             <strong>Avantage et désavantage</strong> (deux dés du destin, on garde le meilleur ou le pire)
@@ -373,10 +373,16 @@ const defenseRows = [0, 1, 2, 3].map(con => {
             remarquables et aux sortilèges.
           </li>
           <li>
-            La règle proposée pour l'échec critique en combat (Blessé direct) est
-            <strong>plus simple et plus tendue</strong> mais double quasi le taux de blessures sur
-            défense ratée à CON 2+. À tester : ça récompense davantage la <em>parade avec bouclier</em>
-            et l'évitement quand on est blessé.
+            <strong>Blessé direct en défense.</strong> La règle est plus simple et plus tendue, mais
+            double quasi le taux de blessures sur défense ratée à CON 2+. C'est assumé : elle récompense
+            la <em>parade avec bouclier</em> — l'avantage divise l'échec critique par douze — et
+            l'évitement quand on est déjà blessé, puisqu'une seconde blessure fait tomber
+            <em>Inconscient</em>.
+          </li>
+          <li>
+            <strong>Réussite critique en défense.</strong> Le 12 ouvre une contre-attaque gratuite, soit
+            ≈ 8,33 % des défenses. Comme le MJ ne lance jamais de dés, chaque attaque adverse est un jet
+            de joueur : sur un combat, cette symétrie rend le 1 et le 12 aussi fréquents l'un que l'autre.
           </li>
         </ul>
       </article>

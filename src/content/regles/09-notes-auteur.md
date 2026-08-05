@@ -25,7 +25,7 @@ Après une campagne sur _Coriolis_, dont le moteur compte les 6 sur un pool de d
 
 Trois choses m'importaient dans la bascule :
 
-- **Garder le d12.** Adopter un pool de d6 pur aurait supprimé l'échec critique, donc les armures ignorées, les boucliers brisés et les jets de blessure. Le jeu y aurait perdu sa mortalité.
+- **Garder le d12.** Adopter un pool de d6 pur aurait supprimé l'échec critique, donc les armures ignorées, les boucliers brisés et les blessures immédiates. Le jeu y aurait perdu sa mortalité.
 - **Ne pas rejouer l'équilibrage.** Les probabilités de réussite ont été calibrées pour rester à quelques points de l'ancien système, afin que le bestiaire, les dégâts et l'_Endurance_ restent justes. Le calculateur des [probabilités](//outils/probabilites) affiche les deux courbes côte à côte.
 - **Ne plus rien annoncer.** Le _seuil de réussite_ faisait de la difficulté une propriété du héros plutôt que de la tâche, et obligeait le MJ à sortir un nombre. Il a disparu : la difficulté se règle désormais en ajoutant ou retirant un dé.
 

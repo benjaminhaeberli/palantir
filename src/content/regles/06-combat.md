@@ -31,13 +31,16 @@ Le MJ ne fait pas de jet d'attaque pour les adversaires. Lorsqu'un d'entre eux a
 
 #### Résolution
 
+- En cas de **réussite critique**, le héros évite l'attaque et **contre-attaque immédiatement pour 0 _PA_**.
 - En cas de **réussite**, le héros évite l'attaque et ne subit aucun dégât.
 - En cas d'**échec**, le héros subit les dégâts de l'attaque, **réduits par son armure**.
-- En cas d'**échec critique**, le héros subit la totalité des dégâts (_son armure est ignorée_) et doit faire un _Jet de blessure_.
+- En cas d'**échec critique**, le héros subit la totalité des dégâts (_son armure est ignorée_) et devient **Blessé** — sans _jet de blessure_.
+
+> La contre-attaque suppose de pouvoir frapper : une arme en main et l'adversaire à portée. Pris à distance ou désarmé, le héros en est réduit à savourer son esquive.
 
 ### Boucliers
 
-Un _jet de défense_ effectué avec un bouclier (_FOR_) se fait avec **avantage**. En cas d'**échec critique**, le bouclier est brisé.
+Un _jet de défense_ effectué avec un bouclier (_FOR_) se fait avec **avantage**. En cas d'**échec critique**, le bouclier est brisé — en plus de la _Blessure_.
 
 ### Armure
 
@@ -53,9 +56,9 @@ Une **réussite critique** lors d'une attaque inflige les dégâts maximum de vo
 
 ### Attaque puissante
 
-Avant de lancer vos dégâts, vous pouvez déclarer une **attaque puissante** : vous **doublez les dés de dégâts**, mais votre **arme se brise** une fois les dégâts infligés. Inutilisable à main nue.
+Avant de lancer vos dégâts, vous pouvez déclarer une **attaque puissante** : elle produit le même effet qu'un **coup critique**, mais votre **arme se brise** une fois les dégâts infligés. Inutilisable à main nue.
 
-> Seuls les **dés** doublent, pas les bonus fixes : un espadon inflige donc `2d6+2`.
+> Une épée (`1d6`) inflige donc `6 + 1d6` et une blessure. Le bris est définitif : le jeu ne connaît pas la réparation en pleine bataille.
 
 ### Dommages continus
 

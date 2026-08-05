@@ -59,11 +59,13 @@ Un **12** sur le _dé du destin_ est une **réussite critique**. Un **1** est un
 
 Un jet peut par ailleurs se faire avec **avantage** ou **désavantage** : on lance alors **deux dés du destin** et on garde le meilleur ou le pire. Un _avantage_ annule un _désavantage_, et inversement.
 
-> **Dé ou avantage ?** Un **dé couvre un geste**, un **avantage couvre un domaine**.
-> Un bon outil, l'aide d'un compagnon, une position favorable, un _PB_ dépensé : ça ne vaut que pour _cette action-là_ → **+1d6**.
-> Votre _Peuple_, votre _Historique_, un _atout_, votre bouclier, un _État_, un sortilège : c'est inscrit sur votre fiche et ça vaut pour _tout un domaine_ → **avantage** ou **désavantage**.
+> **Dé ou avantage ?** Les deux poussent dans le même sens, mais pas avec la même force.
+>
+> **Ce qui vient de la situation donne un dé.** Un bon outil, l'aide d'un compagnon, une position favorable, un _PB_ dépensé — ou à l'inverse le froid, la fatigue, un matériel de fortune : ça ne vaut que pour _cette action-là_, et ça vaut **±1d6**.
+>
+> **Ce qui est écrit sur la fiche donne un dé _ou_ un avantage, selon sa portée.** Large et souvent utile — un domaine de connaissance, l'effet de base d'un _atout_ — c'est **+1d6**. Étroit, situationnel ou payé en _PB_ — un métier, votre _Peuple_, un bouclier en parade, l'effet renforcé d'un _atout_ — c'est un **avantage**. Les _États_ font exception et frappent d'emblée en _désavantage_ : c'est ce qui rend la survie tendue.
 
-L'_avantage_ est environ **deux fois plus puissant** qu'un dé supplémentaire, et il divise par douze le risque d'_échec critique_. Le MJ n'a donc qu'une question à se poser : est-ce que c'est écrit sur la fiche du joueur ?
+L'_avantage_ vaut environ **deux dés de bravoure** et divise par douze le risque d'_échec critique_ : c'est le bonus le plus fort du jeu. Dans le doute, accordez un dé — il se donne et se retire sans conséquence.
 
 ### Accumuler de la bravoure
 

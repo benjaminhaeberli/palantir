@@ -42,6 +42,7 @@ status: stable   # ou 'wip' ou 'draft'
 | Changer la typo, les couleurs | `src/styles/global.css` (variables CSS en haut du fichier) |
 | Modifier la landing | `src/pages/index.astro` |
 | Modifier le déploiement | `.github/workflows/deploy.yml`, `astro.config.mjs` |
+| Consigner un changement | `CHANGELOG.md` (voir *Workflow git*) |
 
 ## Conventions de contenu
 
@@ -58,6 +59,17 @@ status: stable   # ou 'wip' ou 'draft'
 - Branche de déploiement : `main` (push → GH Action → publish).
 - **Ne pas pousser directement sur `main`** sans validation locale (`npm run build`).
 - Tester localement avant de pousser : `npm run dev` + checker la page modifiée.
+
+### Tenir le CHANGELOG à jour
+
+**Toute modification de règle, d'interface ou de déploiement se consigne dans `CHANGELOG.md`, dans le même passage que la modification elle-même** — sans attendre qu'on te le demande. C'est la seule trace lisible de ce qui a changé pour un joueur : un commit ne se lit pas à la table.
+
+- Format [Keep a Changelog](https://keepachangelog.com/) + GitMoji, **en français**, catégories dans cet ordre : `⚠️ Critique`, `✨ Ajouté`, `🔨 Changé`, `🐛 Corrigé`, `🔥 Supprimé`, `⚙️ Technique`. Omets les catégories vides.
+- Chaque version ouvre sur un **résumé de 2-3 phrases** en langage clair, orienté joueur, qui met en avant ce qui change vraiment à la table.
+- Préfixe le scope en gras quand il y en a un : `- **combat** : description`. Reformule — ne recopie jamais un sujet de commit tel quel.
+- **Une rupture de règle va en `⚠️ Critique`**, pas seulement en `🔨 Changé` : un MJ doit pouvoir repérer d'un coup d'œil ce qui invalide sa préparation.
+- Le projet est en `0.x` : une rupture reste un **bump mineur** (`v0.2.0`), la `v1.0.0` étant réservée aux jalons de la ROADMAP.
+- Le skill `git:changelogator` génère les entrées depuis les commits ; relis-le toujours, il ne connaît pas le travail non commité.
 
 ## Build & vérifs
 
