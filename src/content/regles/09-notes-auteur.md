@@ -2,7 +2,7 @@
 title: Notes de l'auteur
 description: Le making-of du jeu, à la manière de Knave.
 order: 9
-status: stable
+status: wip
 ---
 
 ## Mise en page

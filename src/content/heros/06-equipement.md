@@ -2,10 +2,10 @@
 title: Équipement
 description: Monnaie, raretés, armes, armures et règles de Charge.
 order: 6
-status: stable
+status: wip
 ---
 
-Cette liste sert à **inspirer**, pas à enfermer : ce n'est pas un catalogue exhaustif. Le MJ ajuste prix et disponibilité à son univers. Liste adaptée de *Knave*, *ShadowDark*, *Cairn* et *L'Anneau Unique*.
+Cette liste sert à **inspirer**, pas à enfermer : ce n'est pas un catalogue exhaustif. Le MJ ajuste prix et disponibilité à son univers. Liste adaptée de _Knave_, _ShadowDark_, _Cairn_ et _L'Anneau Unique_.
 
 ## Pièces
 
@@ -21,47 +21,47 @@ Un objet se trouve plus ou moins facilement selon l'endroit :
 
 ## Armes
 
-Presque toutes les armes infligent **1d6 dégâts** (voir *Combat*) ; une attaque à main nue cause 1d4. Ce qui distingue deux armes d'une même catégorie, c'est leur encombrement, leur portée et leur prix — pas leurs dégâts. Seule exception : une arme de **mêlée à deux mains** inflige **1d6+2**, ce qui compense de laisser l'autre main libre de bouclier.
+Presque toutes les armes infligent **1d6 dégâts** (voir _Combat_) ; une attaque à main nue cause 1d4. Ce qui distingue deux armes d'une même catégorie, c'est leur encombrement, leur portée et leur prix — pas leurs dégâts. Seule exception : une arme de **mêlée à deux mains** inflige **1d6+2**, ce qui compense de laisser l'autre main libre de bouclier.
 
-| Arme | Mains | *Charge* | Portée | Dégâts | Coût |
-|---|:---:|:---:|---|:---:|---:|
-| Une main (épée, hache, masse) | 1 | 1 | *Contact* | 1d6 | 50 c |
-| Deux mains (espadon, hallebarde) | 2 | 2 | *Contact* | **1d6+2** | 100 c |
-| Fronde | 1 | 1 | *Proche* | 1d6 | 50 c |
-| Arc | 2 | 2 | *Distant* | 1d6 | 100 c |
+| Arme                             | Mains | _Charge_ | Portée    |  Dégâts   |  Coût |
+| -------------------------------- | :---: | :------: | --------- | :-------: | ----: |
+| Une main (épée, hache, masse)    |   1   |    1     | _Contact_ |    1d6    |  50 c |
+| Deux mains (espadon, hallebarde) |   2   |    2     | _Contact_ | **1d6+2** | 100 c |
+| Fronde                           |   1   |    1     | _Proche_  |    1d6    |  50 c |
+| Arc                              |   2   |    2     | _Distant_ |    1d6    | 100 c |
 
 > L'**arc** occupe deux mains mais reste à 1d6 : son avantage, c'est de frapper à distance. Les armes **spéciales ou magiques** dérogent librement à ces valeurs.
 
-Les portées renvoient aux *Distances* (voir *Règles générales*). Les munitions — flèches, billes — se gèrent avec un **dé d'usage (Δ)** : un carquois plein démarre à Δ8 et se dégrade à l'usage.
+Les portées renvoient aux _Distances_ (voir _Règles générales_). Les munitions — flèches, billes — se gèrent avec un **dé d'usage (Δ)** : un carquois plein démarre à Δ8 et se dégrade à l'usage.
 
 ## Armures
 
-Chaque pièce d'armure portée ajoute **+1 à votre *Armure*** : elle réduit d'autant les dégâts subis, sauf en cas d'**échec critique** sur un *jet de défense* (voir *Combat*). Chaque pièce occupe **1 emplacement de *Charge*** ; on peut en cumuler plusieurs pour mieux encaisser, au prix d'un sac plus lourd.
+Chaque pièce d'armure portée ajoute **+1 à votre _Armure_** : elle réduit d'autant les dégâts subis, sauf en cas d'**échec critique** sur un _jet de défense_ (voir _Combat_). Chaque pièce occupe **1 emplacement de _Charge_** ; on peut en cumuler plusieurs pour mieux encaisser, au prix d'un sac plus lourd.
 
-| Pièce | *Armure* | Coût |
-|---|:---:|---:|
-| Gambison | +1 | 100 c |
-| Casque | +1 | 100 c |
-| Cotte de mailles | +1 | 200 c |
-| Plastron | +1 | 500 c |
-| Pièce de plaque (bras, jambe) | +1 | 500 c |
+| Pièce                         | _Armure_ |  Coût |
+| ----------------------------- | :------: | ----: |
+| Gambison                      |    +1    | 100 c |
+| Casque                        |    +1    | 100 c |
+| Cotte de mailles              |    +1    | 200 c |
+| Plastron                      |    +1    | 500 c |
+| Pièce de plaque (bras, jambe) |    +1    | 500 c |
 
-Le **bouclier** n'ajoute pas d'*Armure* mais accorde l'**avantage en parade**, ce qui divise par douze le risque d'*échec critique* — au prix du bouclier lui-même, brisé quand ce 1 finit par tomber (voir *Combat → Boucliers*). Il occupe une main et **2 emplacements de *Charge*** — c'est un objet encombrant, et sa protection se paie — 100 c.
+Le **bouclier** n'ajoute pas d'_Armure_ mais accorde l'**avantage en parade**, ce qui divise par douze le risque d'_échec critique_ — au prix du bouclier lui-même, brisé quand ce 1 finit par tomber (voir _Combat → Boucliers_). Il occupe une main et **2 emplacements de _Charge_** — c'est un objet encombrant, et sa protection se paie — 100 c.
 
 ## Montures & transport
 
-La capacité est exprimée en **emplacements de *Charge*** ; l'équipage éventuel n'est pas compris dans le prix.
+La capacité est exprimée en **emplacements de _Charge_** ; l'équipage éventuel n'est pas compris dans le prix.
 
-| Moyen | Capacité | Coût |
-|---|:---:|---:|
-| Mule | 50 | 30 c |
-| Cheval de selle | 80 | 200 c |
-| Destrier | 80 | 10 000 c |
-| Charrette | 200 | 50 c |
-| Chariot | 800 | 120 c |
-| Barque | 320 | 50 c |
-| Navire de pêche (2 d'équipage) | 2 000 | 500 c |
-| Sloop (10 d'équipage) | 8 000 | 5 000 c |
+| Moyen                          | Capacité |     Coût |
+| ------------------------------ | :------: | -------: |
+| Mule                           |    50    |     30 c |
+| Cheval de selle                |    80    |    200 c |
+| Destrier                       |    80    | 10 000 c |
+| Charrette                      |   200    |     50 c |
+| Chariot                        |   800    |    120 c |
+| Barque                         |   320    |     50 c |
+| Navire de pêche (2 d'équipage) |  2 000   |    500 c |
+| Sloop (10 d'équipage)          |  8 000   |  5 000 c |
 
 ## Animaux
 
@@ -73,6 +73,6 @@ Une tenue signale votre rang, du plus humble au plus fastueux : pauvre 60 c · m
 
 ## Charge
 
-Un héros dispose d'un nombre d'**emplacements d'équipement** limité, égal à sa **capacité de charge** : `10 + (2 × CON)`. La *Charge* représente le poids de ce qu'il transporte : chaque objet notable occupe au moins un emplacement.
+Un héros dispose d'un nombre d'**emplacements d'équipement** limité, égal à sa **capacité de charge** : `10 + (2 × CON)`. La _Charge_ représente le poids de ce qu'il transporte : chaque objet notable occupe au moins un emplacement.
 
-Si la *Charge* dépasse la *capacité de charge*, le héros obtient l'état *Épuisé* et ses jets subissent le *désavantage* (voir *États*).
+Si la _Charge_ dépasse la _capacité de charge_, le héros obtient l'état _Épuisé_ et ses jets subissent le _désavantage_ (voir _États_).
