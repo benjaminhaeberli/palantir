@@ -17,14 +17,15 @@ Roadmap vivante du projet. Mise à jour au fil des versions.
 - [x] Fusionner les Historiques et les Traits et Désirs
 - [x] Découper le livre en trois : Livre des Règles, Livre du héros, Livre du MJ
 - [ ] **Playtest de la refonte** : une séance à niveau 1 et une à niveau 5 — temps de résolution d'un jet, PB réellement accumulés, puis repasser *Règles générales* et *Historiques* en `status: stable`
-- [ ] Assumer le cadre **fantasy médiévale** (le contenu l'est déjà : Peuples, bestiaire, équipement, métiers) et ajouter un chapitre « Adapter Palantír à votre univers » distinguant ce qui tient au décor de ce qui est universel
+- [x] Assumer le cadre **fantasy médiévale** (le contenu l'est déjà : Lignées, bestiaire, équipement, métiers) et ajouter un chapitre « Adapter Palantír à votre univers » distinguant ce qui tient au décor de ce qui est universel
 - [ ] Ajouter un système de Blessure permanente (échec critique sur jet CON) avec une table aléatoire dédiée (perd 1 point d'attribut ? ou gagne un atout négatif pour que ce soit libre, plus narratif ?)
 - [ ] Vérification par Claude (orthographe, cohérence des règles et des termes comme "héros/personnages/PJ/joueurs", simulation de combats avec des héros et adversaires de différents niveau pour voir s'il faut ajuster les dégâts des adversaires)
 - [ ] Compléter le glossaire et le mettre dans une modal ou en draw qui s'ouvre depuis un bouton sur la sidebar de droite jsp, avec tous les termes spécifiques par exemple "convalescence" (dans les blessures) et ajouter un lien vers les pages concernées
 - [ ] Ajouter un index au début (comme dans un livre -> plus complet que la sidebar car on mets tous les sous-chapitres, si possibles dynamiquement pour éviter de devoir le tenir à jour H24 je sais pas (avec les H1, H2 ?))
 - [ ] Liens [`ROADMAP`](https://github.com/benjaminhaeberli/palantir/blob/develop/ROADMAP.md) avec icône "lien externe" et rajouter icône de GITHUB à côté du lien GITHUB (icon library déjà chargée ? sinon lucide-icons?)
 
-- [x] Simplifier **Atouts** : 8 atouts avec effet de base + effet renforcé (PB)
+- [x] Simplifier **Atouts** : effet de base + effet renforcé (PB)
+- [x] Étoffer **Atouts** : 24 atouts en 4 catégories, chacun sur trois rangs (Novice / Aguerri / Maître), et progression portée à 10 niveaux
 - [x] Compléter **Combat** : actions non-offensives, dégâts 1d6 uniformes, coup critique = blessure
 - [x] Compléter **Bestiaire** : 8 créatures de référence (niveaux 1–6), mécanique blessures/niveau
 - [ ] Compléter **Équipement** : liste complète d'armes/armures avec propriétés

@@ -4,6 +4,36 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/) and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Non publié]
+
+Les *Peuples* deviennent les **Lignées** et quittent la Terre du Milieu : six lignées maison — Astrubaliens, Vœrn, Nains, Elfes, Centaures, Lutins — proposant chacune quatre pouvoirs, dont un seul est retenu. Les *Atouts* passent de 9 exemples à **24 atouts jouables**, et gagnent surtout ce qui leur manquait : ils **progressent** désormais sur trois rangs. La campagne s'étend à **10 niveaux**, où chaque palier laisse choisir entre apprendre un atout de plus ou approfondir un atout déjà acquis.
+
+### ⚠️ Critique
+
+- **lignées** : le chapitre *Peuples* devient **Lignées**. L'ancre publique change : `palantir-rpg.com/#peuples` ne résout plus, remplacée par `#lignees`. Les douze peuples empruntés à la Terre du Milieu et à Westeros disparaissent au profit de six lignées propres au jeu.
+- **progression** : la campagne passe de **6 à 10 niveaux**. Les seuils d'XP des six premiers niveaux sont **inchangés** — une table en cours ne perd rien — mais l'attribut ne monte plus qu'**un niveau sur deux** et les *PA* **plafonnent à 4**. Un héros de niveau 10 atteint donc exactement le même attribut maximum qu'un héros de niveau 6 auparavant : la courbe est étirée, pas gonflée.
+- **atouts** : un atout se joue désormais à l'un de **trois rangs** — *Novice*, *Aguerri*, *Maître* — dont les effets renforcés coûtent **2, 4 puis 6 PB**. Le gain de niveau devient une monnaie unique : un nouvel atout, ou la montée d'un rang.
+- **combat** : les *points d'action* **plafonnent à 3** au lieu de 4, et se gagnent plus tard — le 2ᵉ au niveau 3, le 3ᵉ au niveau 7. Chaque PA ajoute un jet par héros et par tour : à quatre joueurs, le 4ᵉ PA portait un combat de quatre tours à plus de seize minutes de lancers.
+
+### ✨ Ajouté
+
+- **lignées** : six lignées jouables avec quatre pouvoirs au choix chacune, soit **24 pouvoirs**. Gobelins, Fées et Dragons sont explicitement rangés du côté des PNJ.
+- **atouts** : la liste passe à **24 atouts**, six par catégorie, sur trois rangs — soit 72 rangs et 144 effets. Quatre leviers jusque-là inexploités sont couverts : les *points d'action*, l'initiative libre, les manœuvres (pousser, immobiliser, intimider) et les *Premiers soins*.
+- **ressources** : section **Calibrer un atout maison** dans *Adapter à votre univers*, qui publie le barème chiffré — combien de *PB* un héros gagne par tour à chaque niveau, et pourquoi 2, 4 et 6 restent des arbitrages.
+- **glossaire** : entrées **Atout**, **Gain d'atout** et **Lignée**.
+- **bestiaire** : section **Adversaire solitaire**. Une créature seule ne tient jamais face à une compagnie — quatre héros lancent jusqu'à douze attaques par tour, elle en lance trois — et aucune *Endurance* ne rattrape ce rapport. Deux correctifs : doubler son Endurance, et lui donner une **attaque de zone** un tour sur deux. Le dragon les applique (Endurance 60, souffle régulier).
+- **outils** : `tools/probabilites.py` réécrit autour du système en vigueur, avec onze sections appelables séparément — dont la simulation de combat que la ROADMAP réclamait : espérance de dégâts, duel, matrice héros × créature, rencontres de groupe, adversaire solitaire et chaîne de létalité.
+
+### 🔨 Changé
+
+- **héros** : l'étape 1 de la création choisit une *Lignée* et l'un de ses pouvoirs ; l'étape 8 ne renvoie plus à « la liste générale », qui contredisait la création libre.
+- **atouts** : le garde-fou « les atouts gagnés à partir du niveau 4 coûtent 3 à 4 PB » disparaît — le barème de rangs fait le même travail plus proprement. La création libre reste possible, résumée dans *Atouts* et détaillée dans *Adapter à votre univers*.
+- **bravoure** : le plafond `5 + niveau` **ne bouge pas**, malgré les effets à 6 PB. Vérifié : un rang *Maître* arrive au plus tôt au niveau 3, où 6 PB représentent 75 % de la réserve, et reste un vrai coût jusqu'au niveau 10.
+
+### 🐛 Corrigé
+
+- **glossaire** : l'entrée *Tour* annonçait encore « deux actions », en contradiction avec le système de *PA* qui en donne 1 au niveau 1.
+
 ## v0.2.0 - 2026-08-06
 
 Le jeu n'additionne plus rien : un jet se lit désormais sur les trois faces les plus hautes du *dé du destin*, ou sur un 6 parmi les *dés de bravoure*. Cette refonte du moteur a entraîné dans son sillage le plafonnement de la *Bravoure*, la fusion des Traits dans les Historiques, le découpage du livre en trois volumes et une passe complète sur le combat. Le site gagne au passage un système de magie freeform, un chapitre pour adapter le jeu à son propre univers, un vrai menu mobile et une illustration d'ouverture.

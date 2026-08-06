@@ -15,7 +15,7 @@
 
 ## Matériel compatible
 
-Vous pouvez créer et **vendre** des suppléments basés sur ce système (aventures, listes d'atouts, peuples, monstres, settings…). Mentionnez simplement :
+Vous pouvez créer et **vendre** des suppléments basés sur ce système (aventures, listes d'atouts, lignées, monstres, settings…). Mentionnez simplement :
 
 > *« Compatible avec Palantír RPG de Benjamin Haeberli — [palantir-rpg.com](https://palantir-rpg.com) »*
 

@@ -9,6 +9,8 @@ status: stable
 
 **Avantage** : lancer 2d et garder le meilleur.
 
+**Atout** : capacité distinctive d'un héros, jouée à l'un de trois rangs — *Novice*, *Aguerri*, *Maître*. Chaque rang donne un effet permanent gratuit et un effet renforcé coûtant 2, 4 ou 6 *PB*.
+
 **Attribut** : représente les capacités d'un PJ dans un certain domaine. Sa valeur est le nombre de *dés de bravoure* qu'il fait lancer.
 
 **Capacité de charge** : nombre d'emplacements d'équipement transportables sans s'épuiser, égal à `10 + (2 × CON)`.
@@ -22,6 +24,10 @@ status: stable
 **Dé d'usage (Δ)** : représente une ressource limitée, se rétrograde sur un 1-2.
 
 **Échec critique** : obtenir un 1 sur le *dé du destin*. Sur un *jet de défense*, il rend *Blessé* et ignore l'armure.
+
+**Gain d'atout** : accordé à chaque montée de niveau. S'échange contre un nouvel *atout* au rang *Novice*, ou contre la montée d'un rang sur un atout déjà possédé.
+
+**Lignée** : ce que le sang d'un héros lui lègue. Chacune propose quatre pouvoirs, dont un seul est retenu à la création.
 
 **MJ** : Meneur ou meneuse de jeu.
 
@@ -41,4 +47,4 @@ status: stable
 
 **Session zéro** : discussion avant la première partie où le MJ et les joueurs définissent l'univers, le ton du jeu et les attentes de chacun.
 
-**Tour** : séquence de jeu durant laquelle un héros peut effectuer deux actions.
+**Tour** : séquence de jeu durant laquelle chaque protagoniste agit une fois, en dépensant ses *points d'action*.

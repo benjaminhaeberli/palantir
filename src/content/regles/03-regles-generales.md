@@ -2,7 +2,7 @@
 title: Règles générales
 description: Tours, points d'action, dés d'usage, distances et jets d'attributs.
 order: 3
-status: wip
+status: stable
 ---
 
 ## Tours
@@ -11,7 +11,7 @@ Un **tour** correspond à une séquence de jeu durant laquelle chaque protagonis
 
 ### Points d'action (PA)
 
-Chaque action coûte un **point d'action**. Un héros en dispose d'un nombre limité par _tour_ : **1 au premier niveau**, jusqu'à 4 au sixième (voir _Héros → Tableau de progression_). Certains artefacts et sortilèges peuvent en accorder davantage.
+Chaque action coûte un **point d'action**. Un héros en dispose d'un nombre limité par _tour_ : **1 au premier niveau**, 2 au troisième et 3 au septième (voir _Héros → Tableau de progression_). Certains artefacts et sortilèges peuvent en accorder davantage.
 
 Une créature dispose d'autant de _PA_ que son nombre d'attaques (voir _Bestiaire_).
 
@@ -63,7 +63,7 @@ Un jet peut par ailleurs se faire avec **avantage** ou **désavantage** : on lan
 >
 > **Ce qui vient de la situation donne un dé.** Un bon outil, l'aide d'un compagnon, une position favorable, un _PB_ dépensé — ou à l'inverse le froid, la fatigue, un matériel de fortune : ça ne vaut que pour _cette action-là_, et ça vaut **±1d6**.
 >
-> **Ce qui est écrit sur la fiche donne un dé _ou_ un avantage, selon sa portée.** Large et souvent utile — un domaine de connaissance, l'effet de base d'un _atout_ — c'est **+1d6**. Étroit, situationnel ou payé en _PB_ — un métier, votre _Peuple_, un bouclier en parade, l'effet renforcé d'un _atout_ — c'est un **avantage**. Les _États_ font exception et frappent d'emblée en _désavantage_ : c'est ce qui rend la survie tendue.
+> **Ce qui est écrit sur la fiche donne un dé _ou_ un avantage, selon sa portée.** Large et souvent utile — un domaine de connaissance, l'effet de base d'un _atout_ — c'est **+1d6**. Étroit, situationnel ou payé en _PB_ — un métier, le pouvoir de votre _Lignée_, un bouclier en parade, l'effet renforcé d'un _atout_ — c'est un **avantage**. Les _États_ font exception et frappent d'emblée en _désavantage_ : c'est ce qui rend la survie tendue.
 
 L'_avantage_ vaut environ **deux dés de bravoure** et divise par douze le risque d'_échec critique_ : c'est le bonus le plus fort du jeu. Dans le doute, accordez un dé — il se donne et se retire sans conséquence.
 

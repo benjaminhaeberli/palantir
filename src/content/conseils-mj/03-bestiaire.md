@@ -32,6 +32,19 @@ Une créature meurt quand son *Endurance* tombe à **0**, ou quand elle accumule
 
 Le **niveau** dit ce qu'une créature encaisse et ce qu'elle inflige. Ses **PA** se choisissent à part, selon sa façon de se battre : **1** pour une créature ordinaire, **2** pour une rapide ou une féroce, **3** pour une colossale. Les deux réglages sont indépendants — un gobelin de niveau 1 à 2 PA harcèle sans encaisser, un troll de niveau 5 à 2 PA fait les deux.
 
+### Adversaire solitaire
+
+**Une créature qui affronte seule une compagnie perd, quel que soit son niveau.** Quatre héros lancent huit à douze attaques par tour ; elle en lance trois au mieux. Aucune *Endurance* ne rattrape ce rapport — il en faudrait plus de cent à un adversaire de niveau 10 pour tenir quatre tours. Ce n'est pas une question de chiffres, c'est une question d'arithmétique des actions.
+
+Si la fiction impose un adversaire seul — un dragon dans son antre, un chevalier qui barre le pont — deux corrections suffisent, et elles se cumulent :
+
+- **Doublez son _Endurance_.** C'est ce qui fait durer le combat : de deux tours, on passe à quatre.
+- **Donnez-lui une attaque de zone**, qu'elle emploie environ **un tour sur deux**. C'est ce qui la rend dangereuse.
+
+> **Pourquoi la zone et pas les dégâts.** Un héros ne rate sa défense qu'une fois sur trois, et les coups d'une créature se répartissent sur tout le groupe : tripler ses dégâts au corps à corps ne change presque rien. Une attaque de zone, elle, contourne le problème — une seule action du MJ, quatre héros touchés. Un dragon ne fait pas peur parce qu'il encaisse, mais parce qu'il souffle.
+
+Le reste du temps, préférez le **nombre**. Une rencontre se durcit bien plus vite en ajoutant des corps qu'en montant le niveau : ce sont les attaques subies qui tuent, pas les dégâts par attaque. Un chef se joue escorté ; seul, il négocie ou il fuit.
+
 ### Adversaires en armure
 
 Pour éviter les complications inutiles, il suffit d'ajouter quelques points d'*Endurance* : 2 (armure légère), 3 (armure moyenne) ou 4 (armure complète ou équivalente).
@@ -91,5 +104,7 @@ Endurance 25 (+4 armure lourde) | 2 PA | Dégâts 8
 ---
 
 **Dragon** — Niveau 6
-Endurance 30 | 3 PA | Dégâts 9
-*Résistant au feu.* *Souffle de feu* — au lieu d'attaquer normalement, le dragon peut déclencher une zone de feu (distance Proche) : chaque héros présent fait un jet de DEX ou subit 3d6 dégâts. Utilisable 1×/combat.
+Endurance 60 | 3 PA | Dégâts 9
+*Résistant au feu.* *Souffle de feu* — pour 1 PA, le dragon déclenche une zone de feu (distance *Proche*) : chaque héros présent fait un jet de *DEX* ou subit 3d6 dégâts. Utilisable **un tour sur deux**.
+
+> Le dragon applique la règle de l'*adversaire solitaire* : son *Endurance* est doublée et son souffle revient régulièrement. S'il combat escorté, ramenez-le à 30 d'*Endurance* et à un souffle par combat — ses serviteurs font le travail à sa place.
